@@ -219,7 +219,7 @@ export const DIAG: Record<string, Diagnostico> = {
     ordem: [
       'Separar erro de conteúdo, erro de leitura e erro de escrita.',
       'Erro de conteúdo: teoria curta e questão da mesma banca, no assunto exato.',
-      'Erro de escrita: uma discursiva por semana, corrigida pelo espelho.',
+      'Erro de escrita: uma discursiva por semana, que você mesmo corrige pelo espelho da banca.',
       'Matéria forte entra só em revisão, nunca em reestudo.',
     ],
   },

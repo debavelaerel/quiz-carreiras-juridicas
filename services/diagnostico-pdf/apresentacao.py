@@ -25,8 +25,8 @@ from diagnosis.questions import TEST
 # ---- grade do curso (tela 6) ------------------------------------------
 # Formação de Base: 23 disciplinas e 420+ temas (página oficial do produto).
 # A página não lista as 23 por nome; a lista abaixo é só a das disciplinas que
-# têm professor na página (conferida em 11/11/2026). PENDENTE: confirmar com o
-# time a lista completa das 23 e quais são as 8 principais.
+# têm professor na página (conferida em 11/11/2026). O site não divulga a
+# lista completa das 23.
 GRADE = {
     "disciplinas_total": 23,
     "temas": "420+",
