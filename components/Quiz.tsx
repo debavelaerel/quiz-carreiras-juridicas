@@ -1533,9 +1533,12 @@ export default function Quiz() {
   if (tela === 'quiz') {
     const questao = QUESTIONS[atual]
     const progresso = Math.round(((PERFIL_SCREENS.length + 4 + atual) / PASSOS_POS_INTRO) * 100)
+    // Voltar: questão anterior (a resposta dela continua marcada e pode ser trocada,
+    // o servidor regrava por número) ou, na primeira, a tela da conta.
+    const voltarQuestao = () => { setErro(null); if (atual > 0) setAtual((n) => n - 1); else setTela('conta'); window.scrollTo({ top: 0 }) }
     return (
       <div className="flex min-h-screen flex-col">
-        <Header progresso={progresso} />
+        <Header progresso={progresso} onVoltar={enviando ? undefined : voltarQuestao} />
         <main className="flex flex-1 items-start justify-center px-6 py-8">
           <div className="w-full max-w-md preview-qcard">
             <div className="flex items-start justify-between gap-3">
@@ -1560,6 +1563,14 @@ export default function Quiz() {
               ))}
             </div>
             <p className="mt-5 text-center text-[13.5px] text-brand-ink-dim">Questão que já caiu, sem adaptação. Sem pressa e sem chute automático.</p>
+            <button
+              type="button"
+              onClick={voltarQuestao}
+              disabled={enviando}
+              className="mt-4 inline-flex items-center gap-1 text-[13px] font-semibold text-brand-ink-dim transition-colors hover:text-brand-ink disabled:opacity-50"
+            >
+              ‹ {atual > 0 ? 'Voltar pra questão anterior' : 'Voltar'}
+            </button>
           </div>
         </main>
       </div>
@@ -1574,7 +1585,7 @@ export default function Quiz() {
     const progresso = Math.round(((PERFIL_SCREENS.length + 4 + TOTAL) / PASSOS_POS_INTRO) * 100)
     return (
       <div className="flex min-h-screen flex-col">
-        <Header progresso={progresso} />
+        <Header progresso={progresso} onVoltar={() => { setAtual(TOTAL - 1); setTela('quiz') }} />
         <main className="flex flex-1 items-start justify-center px-6 py-8">
           <div className="w-full max-w-md">
             <Eyebrow>Corrigido na hora</Eyebrow>
@@ -1850,9 +1861,9 @@ export default function Quiz() {
               <button
                 type="button"
                 onClick={refazerQuiz}
-                className="mt-4 flex w-full items-center justify-center gap-1.5 rounded-full border-[1.5px] border-brand-line-strong py-3 text-[13px] font-semibold text-brand-ink-soft transition-colors hover:border-brand-ink-dim hover:text-brand-ink"
+                className="mt-5 flex w-full items-center justify-center gap-2 rounded-full border-[1.5px] border-brand-lilas py-3.5 text-[14.5px] font-semibold text-brand-lilas transition-colors hover:bg-brand-tint"
               >
-                <RotateCcw size={14} strokeWidth={2.25} /> Refazer o diagnóstico
+                <RotateCcw size={16} strokeWidth={2.25} /> Refazer o quiz
               </button>
             </>
           )}
