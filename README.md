@@ -1,7 +1,10 @@
-# Diagnóstico da Base — Quiz VDE Tribunais
+# Diagnóstico da Base — Quiz VDE Carreiras Jurídicas
 
-Funil de quiz comercial: a pessoa responde um teste graduado (4 questões
-reais de concurso) + um perfilamento (alvo, cargo, tempo de estudo, dor,
+> **Vai subir na AWS?** Comece por [`docs/DEPLOY.md`](docs/DEPLOY.md). Este repo nasceu do
+> `quiz-tribunais` e usa o **mesmo banco, sem migration** (separado por `evento`).
+
+Funil de quiz comercial: a pessoa responde um teste graduado (5 questões
+reais de concurso, uma por disciplina) + um perfilamento (alvo, cargo, tempo de estudo, dor,
 momento etc.), e o sistema devolve um resultado personalizado na tela, um
 **diagnóstico em PDF** (gerado sozinho, em background) e — sob demanda, pelo
 painel administrativo — uma **apresentação comercial em PDF** (deck pra
@@ -52,12 +55,11 @@ call 1:1 de vendas).
                                    └────────────────────────┘
 ```
 
-Dois deploys separados na Vercel:
-- **App Next.js** (raiz do repo) — quiz público + painel `/admin`.
-- **`services/diagnostico-pdf`** — container Docker à parte (Playwright precisa
-  de Chromium instalado no sistema; não roda numa function serverless
-  comum). No projeto da Vercel desse serviço, *Root Directory* precisa ser
-  `services/diagnostico-pdf` (ver comentário no topo do `Dockerfile`).
+Dois containers na AWS (mesmo modelo do quiz OAB — ver [`docs/DEPLOY.md`](docs/DEPLOY.md)):
+- **App Next.js** (`Dockerfile` na raiz, `output: 'standalone'`) — quiz público + painel `/admin`.
+  Precisa ser container de longa duração: o PDF é disparado com `after()`.
+- **`services/diagnostico-pdf`** — container à parte (Playwright precisa de Chromium instalado
+  no sistema), só na rede interna.
 
 ## Estrutura de pastas
 
@@ -269,38 +271,34 @@ referência de conteúdo/estrutura, mantido intocado — overrides de marca em
   é "recurso ainda não ligado" (o lado Next.js trata isso como "sem link
   ainda", não como falha).
 
-Deploy: container Docker próprio (`Dockerfile`, Python 3.12 slim-bookworm —
-não "slim" puro, ver comentário no arquivo), *Root Directory* =
-`services/diagnostico-pdf` no projeto Vercel correspondente.
+Deploy: container Docker próprio (`Dockerfile`, Python 3.12 slim-bookworm — não "slim" puro,
+ver comentário no arquivo). S3 via IAM role (sem chave) na AWS.
 
 ## Variáveis de ambiente
 
+Tabela de produção em [`docs/DEPLOY.md`](docs/DEPLOY.md#4-variáveis-de-ambiente-produção); valores
+de desenvolvimento em [`.env.example`](.env.example). Em resumo:
+
 | Variável | Onde | Descrição |
 |---|---|---|
-| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Next.js | Conexão com o Postgres (só service role, sem policy pública) |
-| `ADMIN_PASSWORD` | Next.js | Senha única do painel `/admin` |
-| `ADMIN_SESSION_SECRET` | Next.js | Assina o cookie de sessão do admin (HMAC) |
-| `LAUDO_SERVICE_URL`, `LAUDO_SERVICE_SECRET` | Next.js | Base URL + segredo pra chamar `services/diagnostico-pdf` |
-| `BUCKET_NAME`, `REGION`, `ACCESS_KEY`, `SECRET_KEY` | Next.js | Credenciais do S3 pra gerar URL assinada do diagnóstico (nomes próprios, não os padrão `AWS_*` do SDK — a Vercel já injeta `AWS_*` próprias por function, que não têm nada a ver com o bucket) |
-
-Ver `.env.example` (raiz) pra template das variáveis do Next.js. O serviço
-Python usa suas próprias env vars de S3/segredo (ver `services/diagnostico-pdf/s3.py`),
-configuradas à parte no deploy dele.
+| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Next.js | Conexão com o Postgres (só service role) |
+| `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` | Next.js | Senha do `/admin` e segredo do cookie (HMAC) |
+| `LAUDO_SERVICE_URL`, `LAUDO_SERVICE_SECRET` | Next.js (+ segredo no serviço) | Chamada ao `services/diagnostico-pdf` |
+| `BUCKET_NAME`, `REGION` | Next.js **e** serviço | Bucket do S3 |
+| `ACCESS_KEY`, `SECRET_KEY`, `S3_ENDPOINT`, `S3_PUBLIC_ENDPOINT` | Next.js **e** serviço | **Só local (MinIO).** Na AWS ficam vazias: o SDK usa a IAM role |
+| `PREVIA_MEMORIA` | Next.js | `1` = banco em memória pra prévia sem Supabase. **Nunca em produção** |
 
 ## Rodando localmente
 
 ```bash
 npm install
-cp .env.example .env.local   # preencher Supabase + admin
-npm run dev                  # http://localhost:3000
+cp .env.example .env.local
+npx supabase start                    # Supabase local (portas 655xx); copie a service_role pro .env.local
+docker compose -p quiz-cj --env-file .env.local up -d --build   # MinIO + bucket + serviço de PDF
+npm run dev                           # http://localhost:3000
 ```
 
-Sem `LAUDO_SERVICE_URL`/`LAUDO_SERVICE_SECRET` configurados, o quiz
-funciona normalmente — só a geração de diagnóstico/apresentação falha (fica
-registrada em `laudo_pdf_erro`, nunca quebra o fluxo do usuário). Pra
-rodar o serviço de PDF localmente: `cd services/diagnostico-pdf && pip install
--r requirements.txt && playwright install --with-deps chromium && uvicorn
-main:app --reload`.
+O PDF gerado fica no MinIO (console em http://localhost:9101, usuário/senha `minioadmin`).
 
 ## Testes
 

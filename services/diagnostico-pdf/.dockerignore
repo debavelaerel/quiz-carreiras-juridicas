@@ -2,5 +2,4 @@
 __pycache__/
 *.pyc
 pdfs-teste-python/
-vercel.json
 .gitignore

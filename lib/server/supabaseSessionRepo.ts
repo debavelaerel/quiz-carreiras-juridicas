@@ -104,14 +104,15 @@ function paraLinhaPatch(patch: Partial<QuizSession>): Record<string, unknown> {
   if (patch.total !== undefined) linha.total = patch.total
   if (patch.areaPrioritaria !== undefined) linha.area_prioritaria = patch.areaPrioritaria
   if (patch.perfil !== undefined) linha.perfil = patch.perfil
-  // perfil_calculado e token_conclusao moram no mesmo jsonb, então são sempre
-  // gravados juntos (concluirSessao e o reset do "Refazer" já fazem isso).
-  if (patch.perfilCalculado !== undefined || patch.tokenConclusao !== undefined) {
-    if (patch.perfilCalculado === undefined || patch.tokenConclusao === undefined) {
-      throw new Error('perfilCalculado e tokenConclusao precisam ser gravados juntos')
-    }
+  // perfil_calculado e token_conclusao moram no mesmo jsonb. Gravar o token
+  // sozinho apagaria a classificação, então é recusado; gravar a classificação
+  // sem token (criação da sessão) grava o token como null.
+  if (patch.tokenConclusao !== undefined && patch.perfilCalculado === undefined) {
+    throw new Error('tokenConclusao só pode ser gravado junto com perfilCalculado')
+  }
+  if (patch.perfilCalculado !== undefined) {
     linha.perfil_calculado = patch.perfilCalculado
-      ? { ...patch.perfilCalculado, token_conclusao: patch.tokenConclusao }
+      ? { ...patch.perfilCalculado, token_conclusao: patch.tokenConclusao ?? null }
       : null
   }
   if (patch.blocos !== undefined) linha.blocos = patch.blocos

@@ -3,31 +3,26 @@
 // estável que vai pro CRM nunca expira porque gera uma URL nova a cada
 // acesso; essa aqui é a de curta duração, só pro tempo do redirect.
 //
-// Nomes de env var próprios (BUCKET_NAME/REGION/ACCESS_KEY/SECRET_KEY), não
-// os padrão do SDK (AWS_ACCESS_KEY_ID/AWS_REGION/etc.), pelo mesmo motivo do
-// lado Python (services/diagnostico-pdf/s3.py, comentário no topo): a Vercel
-// injeta as PRÓPRIAS AWS_* ambiente (região/identidade da function, não
-// credencial de bucket nenhuma) em toda function — se o client detectasse
-// credenciais via essas env vars padrão, esquecer de configurar uma das
-// nossas faria a assinatura sair "válida" só que com uma credencial sem
-// permissão nenhuma no nosso bucket, em vez de simplesmente não funcionar de
-// um jeito óbvio.
+// Infra AWS (mesmo modelo do quiz OAB): só BUCKET_NAME e REGION são
+// obrigatórias. Sem ACCESS_KEY/SECRET_KEY o SDK usa a cadeia padrão de
+// credenciais (IAM role da tarefa/pod) — o caminho de produção. As duas ficam
+// como fallback opcional pra dev local (MinIO). S3_PUBLIC_ENDPOINT (ou
+// S3_ENDPOINT) só existe pro MinIO local: é o host que o NAVEGADOR enxerga na
+// URL assinada; vazio na AWS.
 import { S3Client, GetObjectCommand } from '@aws-sdk/client-s3'
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner'
 
-const _VARS = ['BUCKET_NAME', 'REGION', 'ACCESS_KEY', 'SECRET_KEY'] as const
-
 export function s3Configurado(): boolean {
-  return _VARS.every((v) => Boolean(process.env[v]))
+  return Boolean(process.env.BUCKET_NAME && process.env.REGION)
 }
 
 function cliente(): S3Client {
+  const endpoint = process.env.S3_PUBLIC_ENDPOINT || process.env.S3_ENDPOINT || undefined
+  const { ACCESS_KEY: accessKeyId, SECRET_KEY: secretAccessKey } = process.env
   return new S3Client({
     region: process.env.REGION,
-    credentials: {
-      accessKeyId: process.env.ACCESS_KEY ?? '',
-      secretAccessKey: process.env.SECRET_KEY ?? '',
-    },
+    ...(endpoint ? { endpoint, forcePathStyle: true } : {}),
+    ...(accessKeyId && secretAccessKey ? { credentials: { accessKeyId, secretAccessKey } } : {}),
   })
 }
 

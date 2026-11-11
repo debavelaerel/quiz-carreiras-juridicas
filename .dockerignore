@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+services
+supabase
+docs
+.superpowers
+.playwright-mcp
+test-results
+.env*
+*.tsbuildinfo

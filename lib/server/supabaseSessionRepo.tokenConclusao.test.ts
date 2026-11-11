@@ -36,7 +36,13 @@ describe('token_conclusao dentro de perfil_calculado', () => {
     expect(sessao.tokenConclusao).toBeNull()
   })
 
-  it('recusa gravar só um dos dois (um sobrescreveria o outro)', async () => {
+  it('criação da sessão (classificação null, sem token) grava null', async () => {
+    const { client, gravado } = clienteFalso({ id: 1 })
+    await criarSupabaseSessionRepo(client).atualizar(1, { perfilCalculado: null })
+    expect(gravado.patch).toEqual({ perfil_calculado: null })
+  })
+
+  it('recusa gravar o token sem a classificação (apagaria a classificação) (um sobrescreveria o outro)', async () => {
     const { client } = clienteFalso({ id: 1 })
     await expect(criarSupabaseSessionRepo(client).atualizar(1, { tokenConclusao: 'tok' })).rejects.toThrow()
   })

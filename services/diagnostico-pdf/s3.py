@@ -1,26 +1,15 @@
-"""Upload do PDF pro S3 — feature opcional: sem as 4 env vars configuradas,
-`configurado()` devolve False e quem chama (main.py) pula o upload sem
-tratar como erro (ainda não recebemos as credenciais do devops). Uma vez
-configurado, uma falha real de upload é erro de verdade — vira 502 em
-main.py, não é engolida aqui.
-
-Nomes de env var próprios (BUCKET_NAME/REGION/ACCESS_KEY/SECRET_KEY), não os
-padrão do boto3 (AWS_ACCESS_KEY_ID/AWS_DEFAULT_REGION/etc.), e passados
-explícito pro client, de propósito: a Vercel expõe as suas PRÓPRIAS AWS_*
-ambiente (região e identidade da function, não credencial de bucket nenhum)
-pra dentro de toda function — se o client lesse as env vars padrão via
-detecção automática, um dia em que alguém esquecesse de configurar uma das
-nossas faria o boto3 silenciosamente cair pra essa credencial ambiente sem
-permissão nenhuma no nosso bucket, em vez de simplesmente não subir nada.
+"""Upload do PDF pro S3. Infra AWS (mesmo modelo do quiz OAB): `configurado()`
+só exige BUCKET_NAME e REGION; sem ACCESS_KEY/SECRET_KEY o boto3 usa a cadeia
+padrão de credenciais (IAM role da tarefa/pod), que é o caminho de produção.
+ACCESS_KEY/SECRET_KEY ficam como fallback opcional pra dev local (MinIO), e
+S3_ENDPOINT aponta pro MinIO local (vazio na AWS). Sem BUCKET_NAME, quem chama
+(main.py) pula o upload sem tratar como erro.
 """
 import os
 from functools import lru_cache
 
-_VARS = ("BUCKET_NAME", "REGION", "ACCESS_KEY", "SECRET_KEY")
-
-
 def configurado() -> bool:
-    return all(os.environ.get(v) for v in _VARS)
+    return bool(os.environ.get("BUCKET_NAME") and os.environ.get("REGION"))
 
 
 @lru_cache(maxsize=1)
@@ -34,13 +23,16 @@ def _cliente():
     # (ver upload_pdf), então "só" atrasa aquele upload, mas não faz sentido
     # deixar mais longo que o timeout de 55s que o lado Next.js já usa pra
     # desistir dessa chamada (ver lib/server/diagnosticoService.ts).
-    return boto3.client(
-        "s3",
-        region_name=os.environ["REGION"],
-        aws_access_key_id=os.environ["ACCESS_KEY"],
-        aws_secret_access_key=os.environ["SECRET_KEY"],
-        config=Config(connect_timeout=5, read_timeout=20, retries={"max_attempts": 2}),
-    )
+    kw: dict = {"region_name": os.environ["REGION"]}
+    if os.environ.get("S3_ENDPOINT"):
+        kw["endpoint_url"] = os.environ["S3_ENDPOINT"]
+        cfg = Config(connect_timeout=5, read_timeout=20, retries={"max_attempts": 2}, s3={"addressing_style": "path"})
+    else:
+        cfg = Config(connect_timeout=5, read_timeout=20, retries={"max_attempts": 2})
+    if os.environ.get("ACCESS_KEY") and os.environ.get("SECRET_KEY"):
+        kw["aws_access_key_id"] = os.environ["ACCESS_KEY"]
+        kw["aws_secret_access_key"] = os.environ["SECRET_KEY"]
+    return boto3.client("s3", config=cfg, **kw)
 
 
 async def upload_pdf(session_token: str, pdf_bytes: bytes, prefixo: str = "laudos") -> str:

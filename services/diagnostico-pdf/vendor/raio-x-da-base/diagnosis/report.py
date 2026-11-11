@@ -167,6 +167,8 @@ def build_html(lead, hoje=None):
     blocos = selected_blocks(BLOCKS, lead)
     primeiro = (lead.nome or "").split(" ")[0]
     saudacao = f"Oi, {_esc(primeiro)}." if primeiro else "Oi."
+    # Quem está cursando não vê a pergunta de prática jurídica (12 telas); bacharel vê 13.
+    n_perguntas = "treze" if lead.get("pratica") else "doze"
 
     resumo = [("Onde você está", p["momento"]),
               ("Alvo", f"{p['cargo']} · {p['alvo']}"),
@@ -245,7 +247,7 @@ def build_html(lead, hoje=None):
     <div class="painel">
       <span class="eyebrow">Raio-X da Base</span>
       <h1>{saudacao} Este é o seu raio-X completo.</h1>
-      <p class="abertura">Ele sai das doze perguntas e das cinco questões que você
+      <p class="abertura">Ele sai das {n_perguntas} perguntas e das cinco questões que você
       respondeu. Eu leio o seu caso na mesma ordem em que eu leria pessoalmente: onde
       você está hoje, o que está te segurando, e o que eu faria primeiro se o problema
       fosse meu.</p>
