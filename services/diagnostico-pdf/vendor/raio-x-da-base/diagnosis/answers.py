@@ -7,7 +7,7 @@ laudo sai do JSON que o quiz envia, sem mudar nada aqui.
 import json
 import pathlib
 
-from .questions import QUESTIONS, EDITAIS, TEST
+from .questions import QUESTIONS, EDITAIS, TEST, CARGO_POR_ALVO
 
 PREFIXO = "RX1"
 # Ordem dos campos dentro do código. Só dá pra acrescentar no fim; mexer na
@@ -21,8 +21,7 @@ class LeadInvalido(ValueError):
 
 
 def _validos(campo, alvo=None):
-    chave = "cargo_fe" if (campo == "cargo" and alvo == "fe") else campo
-    return [o[0] for o in QUESTIONS[chave]["opcoes"]]
+    return [o[0] for o in QUESTIONS[campo]["opcoes"]]
 
 
 class Lead:
@@ -78,8 +77,11 @@ class Lead:
             return ", ".join(e["label"] for e in self.editais) or (
                 "Qualquer um, quero estar pronto quando abrir"
                 if "qualquer" in self.editais_raw else "")
-        chave = "cargo_fe" if (campo == "cargo" and self.get("alvo") == "fe") else campo
-        for opt in QUESTIONS[chave]["opcoes"]:
+        if campo == "cargo":
+            mapa = CARGO_POR_ALVO.get(self.get("alvo")) or CARGO_POR_ALVO["any"]
+            rotulo = mapa.get(self.get("cargo"), "")
+            return rotulo[:1].upper() + rotulo[1:]
+        for opt in QUESTIONS[campo]["opcoes"]:
             if opt[0] == self.get(campo):
                 return opt[1]
         return ""
@@ -89,8 +91,7 @@ class Lead:
         return {
             "edital_label": ed[0]["label"] if ed else "",
             "edital_sub": ed[0]["sub"] if ed else "",
-            "disciplinas": ("as 12 disciplinas do TRT" if self.get("alvo") == "trt"
-                            else "as 16 disciplinas de TJ e TRF"),
+            "disciplinas": "as disciplinas comuns a toda carreira jurídica",
         }
 
     # ---- código compacto --------------------------------------------

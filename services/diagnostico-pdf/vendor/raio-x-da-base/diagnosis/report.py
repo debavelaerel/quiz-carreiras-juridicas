@@ -16,8 +16,8 @@ from .rules import selected_blocks
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
 
-FICHA = [("alvo", "Concurso alvo"), ("cargo", "Cargo"), ("formacao", "Formação"),
-         ("tempo", "Tempo de estudo"), ("provas", "Provas de tribunal já feitas"),
+FICHA = [("alvo", "Carreira"), ("cargo", "Cargo"), ("formacao", "Formação"),
+         ("tempo", "Tempo de estudo"), ("provas", "Provas de carreira jurídica"),
          ("metodo", "Como estudou até aqui"), ("vde", "Conhece o Método VDE"),
          ("horas", "Horas por dia"), ("edital", "Edital na mira"),
          ("editais", "Concursos escolhidos"), ("dor", "Maior gargalo"),
@@ -52,13 +52,13 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
 /* ---- capa ---- */
 .capa{min-height:266mm;display:flex;flex-direction:column;justify-content:space-between;
   break-after:page}
-.marca{display:flex;align-items:center;gap:10px;color:var(--navy)}
+.marca{display:flex;align-items:center;gap:10px;color:var(--ink)}
 .marca svg{width:38px;height:38px}
 .marca b{font-size:17px;letter-spacing:-.01em}
 .marca b span{display:inline-block;margin-left:7px;padding:3px 9px;border-radius:999px;
   background:var(--lav);color:var(--navy);font-size:11px;font-weight:600;vertical-align:middle}
 .capa .painel{background:var(--creme);border-radius:26px;padding:34px 32px 30px}
-.capa .painel .resumo div{background:#fff}   /* cartão branco sobre o creme, como no quiz */
+.capa .painel .resumo div{background:var(--card)}   /* cartão branco sobre o creme, como no quiz */
 .capa h1{font-size:31px;line-height:1.18;letter-spacing:-.025em;margin:0 0 12px}
 .capa .abertura{font-size:14px;line-height:1.6;color:var(--ink-soft);margin:0;max-width:150mm}
 .capa .rodape-capa{padding-top:22px;border-top:1.5px solid var(--line);
@@ -91,9 +91,9 @@ html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
 .sec{margin-top:26px;break-inside:auto}
 .sec + .sec{margin-top:30px}
 h1{font-size:25px;line-height:1.2;letter-spacing:-.02em;margin:0 0 8px}
-h2{font-size:20px;line-height:1.3;letter-spacing:-.015em;margin:0 0 14px;color:var(--navy);
+h2{font-size:20px;line-height:1.3;letter-spacing:-.015em;margin:0 0 14px;color:var(--ink);
   break-after:avoid}
-h3{font-size:14.5px;margin:0 0 7px;color:var(--navy);line-height:1.35}
+h3{font-size:14.5px;margin:0 0 7px;color:var(--lav);line-height:1.35}
 p{font-size:12.6px;line-height:1.62;color:var(--ink-soft);margin:0 0 9px}
 p b,li b{color:var(--ink)}
 .leitura p{font-size:13.2px}
@@ -111,7 +111,7 @@ ol li{counter-increment:passo;position:relative;padding:11px 15px 11px 46px;marg
   background:var(--card);border:1.5px solid var(--line);border-radius:14px;
   font-size:12.6px;line-height:1.55;color:var(--ink-soft);break-inside:avoid}
 ol li::before{content:counter(passo);position:absolute;left:14px;top:10px;width:21px;height:21px;
-  border-radius:50%;background:var(--navy);color:#fff;font-size:11px;font-weight:600;
+  border-radius:50%;background:var(--lav);color:#16122E;font-size:11px;font-weight:600;
   display:flex;align-items:center;justify-content:center}
 
 /* ---- questões ---- */
@@ -120,8 +120,8 @@ ol li::before{content:counter(passo);position:absolute;left:14px;top:10px;width:
 .q .cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:4px}
 .q .cab b{font-size:13px}
 .q .cab .r{font-size:11px;font-weight:600;white-space:nowrap;padding:3px 9px;border-radius:999px}
-.q .ok{color:var(--green);background:#E9F7EF}
-.q .no{color:var(--red);background:#FDECEC}
+.q .ok{color:var(--green);background:rgba(91,214,154,.12)}
+.q .no{color:var(--red);background:rgba(242,119,122,.12)}
 .q .fonte{font-size:10.5px;color:var(--ink-dim);margin:0 0 7px}
 .q p{margin:0;font-size:12.2px}
 
@@ -134,16 +134,16 @@ ol li::before{content:counter(passo);position:absolute;left:14px;top:10px;width:
 .ficha div span:last-child{font-weight:600;text-align:right;color:var(--ink)}
 
 /* ---- fechamento ---- */
-.fim{background:var(--navy);color:#fff;border-radius:20px;padding:24px 26px;margin-top:18px;
+.fim{background:var(--navy);color:var(--ink);border:1.5px solid var(--lav);border-radius:20px;padding:24px 26px;margin-top:18px;
   break-inside:avoid}
-.fim .eyebrow{background:rgba(249,224,138,.16);color:var(--gold)}
-.fim h2{color:#fff;margin-bottom:10px}
-.fim p{color:#CBD3E8;font-size:12.8px}
+.fim .eyebrow{background:rgba(245,207,74,.16);color:var(--gold)}
+.fim h2{color:var(--ink);margin-bottom:10px}
+.fim p{color:var(--ink-soft);font-size:12.8px}
 .fim p:last-child{margin-bottom:0}
 .fim b{color:var(--gold)}
 .fim .selo{display:inline-block;margin-top:14px;text-decoration:none;
   background:linear-gradient(135deg,var(--gold),var(--gold-deep));
-  color:var(--navy);font-weight:600;font-size:13px;border-radius:999px;padding:12px 22px}
+  color:#1A1608;font-weight:600;font-size:13px;border-radius:999px;padding:12px 22px}
 
 footer{margin-top:20px;padding-top:11px;border-top:1px solid var(--line);
   font-size:9.5px;color:var(--ink-dim);line-height:1.6}
@@ -207,7 +207,7 @@ def build_html(lead, hoje=None):
     secoes = ["A leitura do seu caso"]
     if lead.get("leitura") == "completa":
         secoes.append("A ordem que eu seguiria")
-    secoes += ["Ponto a ponto das suas respostas", "As quatro questões, comentadas",
+    secoes += ["Ponto a ponto das suas respostas", "As cinco questões, comentadas",
                "A sua ficha completa", "O próximo passo"]
     indice = "".join(f"<li>{_esc(x)}</li>" for x in secoes)
 
@@ -245,7 +245,7 @@ def build_html(lead, hoje=None):
     <div class="painel">
       <span class="eyebrow">Raio-X da Base</span>
       <h1>{saudacao} Este é o seu raio-X completo.</h1>
-      <p class="abertura">Ele sai das doze perguntas e das quatro questões que você
+      <p class="abertura">Ele sai das doze perguntas e das cinco questões que você
       respondeu. Eu leio o seu caso na mesma ordem em que eu leria pessoalmente: onde
       você está hoje, o que está te segurando, e o que eu faria primeiro se o problema
       fosse meu.</p>
@@ -279,7 +279,7 @@ def build_html(lead, hoje=None):
 
   <section class="sec">
     <span class="eyebrow">O teste de nível</span>
-    <h2>As quatro questões, comentadas</h2>
+    <h2>As cinco questões, comentadas</h2>
     {"".join(questoes)}
   </section>
 
@@ -293,8 +293,8 @@ def build_html(lead, hoje=None):
     <span class="eyebrow">O próximo passo</span>
     <h2>Isto diz onde você está. Agora falta o plano.</h2>
     <p>Um raio-X aponta o problema e não resolve ele sozinho. O que a conversa com o meu
-    time faz é pegar este diagnóstico e virar plano de ação dentro do VDE Tribunais:
-    qual dos dois cursos atende o seu alvo, o cronograma que cabe no seu tempo real de
+    time faz é pegar este diagnóstico e virar plano de ação dentro do VDE Carreiras Jurídicas:
+    a carreira e a esfera que você mira, o cronograma que cabe no seu tempo real de
     estudo, quais disciplinas entram primeiro e em que ordem, e o que fica pra depois.</p>
     <p>Se ainda não marcou o seu horário, é só responder a mesma conversa do WhatsApp em
     que você recebeu este arquivo. <b>Não custa nada</b>, e cada consultor abre poucos
@@ -303,7 +303,7 @@ def build_html(lead, hoje=None):
   </div>
 
   <footer>
-    Raio-X da Base · VDE Tribunais · diagnóstico de {_esc(lead.nome or 'lead sem nome')}
+    Raio-X da Base · VDE Carreiras Jurídicas · diagnóstico de {_esc(lead.nome or 'lead sem nome')}
     <code>{_esc(lead.code())}</code>
   </footer>
 

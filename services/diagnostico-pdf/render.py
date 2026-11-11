@@ -30,8 +30,8 @@ from playwright.async_api import async_playwright
 # pequeno o bastante pra não chamar atenção).
 FOOTER_TEMPLATE = """
 <div style="width:100%;font-size:8.5px;font-family:system-ui,-apple-system,sans-serif;
-  color:#7C86A6;padding:0 15mm;display:flex;justify-content:space-between;">
-  <span>Diagnóstico da Base · VDE Tribunais</span>
+  color:#8A88A0;padding:0 15mm;display:flex;justify-content:space-between;">
+  <span>Diagnóstico da Base · VDE Carreiras Jurídicas</span>
   <span class="pageNumber"></span>
 </div>
 """

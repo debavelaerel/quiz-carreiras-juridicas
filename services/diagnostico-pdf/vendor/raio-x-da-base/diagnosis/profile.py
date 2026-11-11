@@ -5,32 +5,29 @@ resposta só, calculada no mesmo lugar que escreve o laudo.
 """
 from .questions import TEST
 
-# Cronograma oficial do VDE, igual nos dois cursos: 2h/dia = 12 meses,
-# 3h/dia = 8 meses (recomendado), 4h/dia = 6 meses.
+# Mesmo texto de lib/perfil.ts (RITMOS). PENDENTE: prazos reais do cronograma de Carreiras.
 RITMOS = {
-    "h0": "abaixo do cronograma mínimo; com 2h por dia, base em 12 meses",
-    "h1": "base em 12 meses, no ritmo de 2h por dia",
-    "h2": "base entre 8 e 12 meses",
-    "h3": "base entre 6 e 8 meses",
-    "h4": "base em 6 meses",
+    "h0": "abaixo do cronograma mínimo; o ideal é chegar a 2h por dia",
+    "h1": "cronograma padrão, desenhado pra quem trabalha",
+    "h2": "acima do padrão: a base fecha antes",
+    "h3": "ritmo forte: a base fecha bem antes do padrão",
+    "h4": "ritmo intensivo: o cronograma mais curto",
 }
-NIVEIS = {0: "inicial", 1: "inicial", 2: "intermediário", 3: "avançado", 4: "avançado"}
+NIVEIS = {0: "inicial", 1: "inicial", 2: "intermediário", 3: "intermediário", 4: "avançado", 5: "avançado"}
 
-ALVOS = {"tj": "TJ", "trf": "TRF", "trt": "TRT",
-         "fe": "Defensoria, MP ou Procuradoria", "any": "qualquer tribunal"}
+ALVOS = {"juiz": "Magistratura", "mp": "Ministério Público", "defensoria": "Defensoria Pública",
+         "procuradoria": "Advocacia Pública", "delegado": "Polícia", "any": "qualquer carreira jurídica"}
 MOMENTOS = {"zero": "Começo do zero", "sembase": "Estudo sem base",
             "plato": "Veterano travado no corte", "improviso": "Ciclo do improviso",
-            "servidor": "Servidor em ascensão"}
+            "servidor": "Do Direito na prática pra carreira"}
 
 
 def points(lead):
     pts = 0
     cargo, alvo = lead.get("cargo"), lead.get("alvo")
-    if cargo in ("analista", "oficial"):
+    if cargo in ("estadual", "federal", "trabalho", "municipal"):
         pts += 2
     elif cargo in ("any", "unsure"):
-        pts += 1
-    elif cargo == "tecnico" and alvo != "tj":
         pts += 1
     pts += 2 if lead.get("formacao") == "direito" else 1
     horas = lead.get("horas")
@@ -43,7 +40,7 @@ def points(lead):
         pts += 2
     elif edital == "nao":
         pts += 1
-    if lead.get("dor") in ("base", "improviso", "banca", "todas"):
+    if lead.get("dor") in ("base", "improviso", "juris", "todas"):
         pts += 1
     return pts
 
@@ -51,13 +48,11 @@ def points(lead):
 def profile(lead):
     """Tudo o que o consultor precisa ver em uma linha, e o laudo no cabeçalho."""
     pts = points(lead)
-    trt = lead.get("alvo") == "trt"
     return {
         "pontos": pts,
         "classe": "A" if pts >= 7 else "B",
-        "curso_cod": "C1-TRT" if trt else "C2-TJTRF",
-        "curso": ("Curso 1 · Analista de TRT (168 temas)" if trt
-                  else "Curso 2 · Analista de TJ e TRF (231 temas)"),
+        "curso_cod": "CJ-BASE",
+        "curso": "Formação de Base · Carreiras Jurídicas (23 disciplinas, 420+ temas)",
         "ritmo": RITMOS.get(lead.get("horas"), ""),
         "acertos": lead.score,
         "nivel": NIVEIS[lead.score],

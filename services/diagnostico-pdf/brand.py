@@ -48,7 +48,7 @@ from urllib.parse import quote
 
 SERVICE_DIR = Path(__file__).resolve().parent
 FONTS_DIR = SERVICE_DIR / "vendor/raio-x-da-base/assets/fonts/Poppins"
-LOGO_PATH = SERVICE_DIR / "vendor/brand/versao01-color0.svg"
+LOGO_PATH = SERVICE_DIR / "vendor/brand/vde-concursos-branco.png"
 
 
 class PacoteMudou(RuntimeError):
@@ -85,13 +85,14 @@ LATIN = ("U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
 # ficam literalmente em cima do fundo --creme — mesma cor em cima da mesma
 # cor come a borda inteira.
 PALETTE = {
-    "--bg": "#FFFFFF", "--creme": "#EEF1F8", "--card": "#FFFFFF",
-    "--ink": "#203C7C", "--ink-soft": "#5B6478", "--ink-dim": "#7C86A6",
-    "--line": "#E7E7EA", "--line-strong": "#C9C9CE",
-    "--lav": "#C89B18", "--lav-soft": "#FBF3D6", "--purple": "#8A6A0C",
-    "--navy": "#16305F", "--gold": "#F9E08A", "--gold-deep": "#C89B18",
-    "--gold-soft": "#FBF3D6", "--gold-text": "#8A6A0C",
-    "--green": "#2FB367", "--red": "#C92A2A",
+    # Black Friday VDE Carreiras Jurídicas — mesmos tokens do quiz (app/globals.css).
+    "--bg": "#0B0B0F", "--creme": "#15151C", "--card": "#1A1A22",
+    "--ink": "#F4F3F8", "--ink-soft": "#B9B7C6", "--ink-dim": "#8A88A0",
+    "--line": "#2A2A35", "--line-strong": "#3A3A48",
+    "--lav": "#B7ADFD", "--lav-soft": "#1E1B33", "--purple": "#B7ADFD",
+    "--navy": "#1E1B33", "--gold": "#F5CF4A", "--gold-deep": "#E0B43A",
+    "--gold-soft": "#2A2410", "--gold-text": "#F5CF4A",
+    "--green": "#5BD69A", "--red": "#F2777A",
 }
 
 
@@ -129,13 +130,9 @@ def logo_svg_override(size=None) -> str:
     que report.py monta ao lado do logo original (removido à parte, ver
     `remover_marca_duplicada` — é literal no HTML, não dá pra sobrescrever
     aqui)."""
-    svg = LOGO_PATH.read_text(encoding="utf-8").strip()
-    largura = size or 130
-    # Redimensiona width/height do SVG (a arte é uma wordmark larga, não um
-    # ícone quadrado — troca só os atributos de tamanho, mantém o viewBox.
-    svg = re.sub(r'width="[\d.]+"', f'width="{largura}"', svg, count=1)
-    svg = re.sub(r'height="[\d.]+"', 'height="auto"', svg, count=1)
-    return svg
+    # Logo do Método VDE Concursos (versão branca, pro fundo escuro), embutido como PNG.
+    b64 = base64.b64encode(LOGO_PATH.read_bytes()).decode()
+    return f'<img src="data:image/png;base64,{b64}" alt="Método VDE Concursos" style="width:150px;height:auto">'
 
 
 _HEX_RE = re.compile(r"#[0-9A-Fa-f]{3,6}")
@@ -166,6 +163,11 @@ def css_com_paleta_do_app(css_original: str) -> str:
     # (logo_svg_override) sai espremida num quadrado de 38px, cortada.
     _confirmar(css.count(_MARCA_SVG_38PX) == 1, "CSS de report.py mudou: regra .marca svg não encontrada — logo sairia do tamanho errado")
     css = css.replace(_MARCA_SVG_38PX, ".marca svg{width:130px;height:auto}")
+
+    # Tema escuro: o fundo de body não pinta a faixa de margem da página impressa
+    # (fica branca). O fundo no próprio @page pinta a folha inteira, margens incluídas.
+    _confirmar(css.count("@page{size:A4}") == 1, "CSS de report.py mudou: regra @page não encontrada — margens do PDF sairiam brancas")
+    css = css.replace("@page{size:A4}", "@page{size:A4;background:" + PALETTE["--bg"] + "}")
 
     return css
 

@@ -1,77 +1,78 @@
 """O diagnóstico principal, escolhido pela última pergunta do quiz.
 
-`ordem` só entra no laudo se o lead pediu na tela 22.
+GERADO por scripts/gerar-dados-pdf.mts a partir de lib/quizContent.ts e lib/data/blocos.json.
+Não editar à mão: mude o conteúdo no quiz e rode o gerador de novo.
 """
 
 DIAGNOSES = {
     "zero": {
         "titulo": "Você está no melhor momento pra fazer a coisa certa desde o início.",
         "texto": [
-            "Quem começa sem base pula de videoaula em videoaula e, daqui a dois anos, responde este mesmo quiz marcando “estudo há um tempo e fico perdido”. Eu vejo isso todo dia.",
-            "O que decide o seu caso é ordem. Uma base comum bem construída, Português, Constitucional e Administrativo, vem antes de qualquer matéria específica, porque é essa base que cai em todo tribunal do país."
+            "Quem começa carreira jurídica sem ordem passa um ano lendo manual de mil páginas e, no primeiro edital, descobre que não sabe resolver questão de banca. Eu vejo isso todo dia.",
+            "O que decide o seu caso é sequência. As disciplinas que se repetem em toda carreira, Constitucional, Administrativo, Penal, Processo Penal, Civil e Processo Civil, vêm antes de qualquer matéria específica do cargo."
         ],
-        "prescricao": "escolher um ritmo de cronograma que caiba no seu dia real, começar por Língua Portuguesa e Direito Constitucional, e resolver questões de FGV e FCC desde a primeira semana, mesmo errando.",
+        "prescricao": "escolher um ritmo de cronograma que caiba no seu dia real, começar pelas disciplinas comuns a toda carreira e resolver questões de FGV, Cebraspe e FCC desde a primeira semana, mesmo errando.",
         "ordem": [
-            "Base comum: Português, Constitucional e Administrativo, nessa ordem.",
+            "Disciplinas comuns: Constitucional, Administrativo, Penal, Processo Penal, Civil e Processo Civil.",
             "Questões da banca desde a primeira semana, com caderno de erros.",
-            "Só depois as específicas do seu tribunal.",
-            "Revisão programada, não revisão quando der."
+            "Lei seca e informativos junto com a teoria, não depois.",
+            "Só depois as específicas da sua carreira."
         ]
     },
     "sembase": {
         "titulo": "Você já pagou o preço de estudar sem estrutura.",
         "texto": [
-            "Horas investidas e a sensação de que nada fixa. Falta sequência, e esforço sozinho não compra sequência. A cada edital você recomeça, porque nenhum alicerce sobreviveu do concurso anterior.",
-            "Fonte nova só adia. O que resolve é fechar um único caminho e medir o seu avanço por questão resolvida em cada matéria, com número na mão."
+            "Horas investidas e a sensação de que nada fixa. São mais de 20 disciplinas, e sem uma ordem clara cada uma puxa você pra um lado. A cada edital você recomeça, porque nenhum alicerce sobreviveu do concurso anterior.",
+            "Mais um manual só adia. O que resolve é fechar um único caminho e medir o seu avanço por questão resolvida em cada disciplina, com número na mão."
         ],
-        "prescricao": "parar de acumular fontes, fechar um único cronograma de formação de base e medir o progresso por questões acertadas por matéria, semana a semana.",
+        "prescricao": "parar de acumular fontes, fechar um único cronograma de formação de base e medir o progresso por questões acertadas por disciplina, semana a semana.",
         "ordem": [
-            "Escolher uma fonte por matéria e abandonar as outras.",
-            "Fechar a base comum em sequência, sem pular.",
-            "Questões comentadas da FGV e da FCC como termômetro semanal.",
-            "Específicas do seu tribunal só com a base fechada."
+            "Escolher uma fonte por disciplina e abandonar as outras.",
+            "Fechar as disciplinas comuns em sequência, sem pular.",
+            "Questões comentadas de FGV, Cebraspe e FCC como termômetro semanal.",
+            "Específicas da sua carreira só com a base fechada."
         ]
     },
     "plato": {
         "titulo": "O seu ponto vaza sempre no mesmo lugar.",
         "texto": [
-            "Quem para a três questões do corte não sabe menos que o aprovado. Erra em lugares específicos e repete os mesmos lugares em toda prova. Enquanto esses lugares não têm nome, a nota fica parada.",
-            "Mais horas costumam ir justamente pro que você já domina, e por isso a nota fica onde está. Abrir as suas provas e tratar o vazamento onde ele acontece é o que destrava."
+            "Quem para perto do corte, ou passa da objetiva e cai na discursiva, não sabe menos que o aprovado. Erra em lugares específicos e repete os mesmos lugares em toda prova. Enquanto esses lugares não têm nome, a nota fica parada.",
+            "Mais horas costumam ir justamente pro que você já domina. Abrir as suas provas, separar o que vazou na objetiva do que vazou na escrita e tratar cada vazamento onde ele acontece é o que destrava."
         ],
-        "prescricao": "abrir o espelho da sua última prova e separar o que você errou por não saber o conteúdo do que errou por ler o enunciado errado. São dois problemas diferentes, e tratar os dois do mesmo jeito é o que sustenta o platô.",
+        "prescricao": "abrir o espelho da sua última prova e separar o que você errou por não saber o conteúdo do que errou na leitura do enunciado ou na escrita. São problemas diferentes, e tratar todos do mesmo jeito é o que sustenta o platô.",
         "ordem": [
-            "Separar erro de conteúdo de erro de leitura de enunciado.",
+            "Separar erro de conteúdo, erro de leitura e erro de escrita.",
             "Erro de conteúdo: teoria curta e questão da mesma banca, no assunto exato.",
-            "Erro de leitura: treino cronometrado, não mais teoria.",
+            "Erro de escrita: uma discursiva por semana, corrigida pelo espelho.",
             "Matéria forte entra só em revisão, nunca em reestudo."
         ]
     },
     "improviso": {
         "titulo": "Você estuda no modo edital.",
         "texto": [
-            "Sai o concurso, corre, faz a prova, para. O curso de reta final é ótimo pra quem já tem base, e péssimo pra quem ainda está construindo. Enquanto o ciclo não quebrar, cada edital vai te encontrar no mesmo lugar.",
-            "A boa notícia: tribunal abre o ano inteiro. São 27 TJs, 6 TRFs e 24 TRTs em rodízio, e a base de matérias é a mesma. Quem constrói essa base uma vez aproveita em todos."
+            "Sai o concurso, corre, faz a prova, para. Na carreira jurídica, entre o edital e a prova há poucos meses, e ninguém forma em poucos meses a base que a banca cobra. Enquanto o ciclo não quebrar, cada edital vai te encontrar no mesmo lugar.",
+            "A boa notícia: carreira jurídica abre o ano inteiro. São 27 Tribunais de Justiça, 27 Ministérios Públicos, 27 Defensorias, 27 Procuradorias e 27 Polícias Civis, mais a esfera federal, e a base de disciplinas é a mesma. Quem constrói essa base uma vez aproveita em todos."
         ],
-        "prescricao": "estudar agora, sem edital publicado, a base comum que cai em todo tribunal, pra que o próximo edital te encontre revisando, e não começando.",
+        "prescricao": "estudar agora, sem edital publicado, a base comum que cai em toda carreira jurídica, pra que o próximo edital te encontre revisando, e não começando.",
         "ordem": [
             "Cronograma de base independente de edital, com data de fim.",
-            "Base comum primeiro: Português, Constitucional, Administrativo.",
+            "Base comum primeiro: Constitucional, Administrativo, Penal e Civil.",
             "Questões da banca como rotina, não como véspera.",
             "Quando o edital sair, só ajustar as específicas e revisar."
         ]
     },
     "servidor": {
-        "titulo": "Você já provou que sabe passar.",
+        "titulo": "Você já tem o Direito na prática. Falta transformar em prova.",
         "texto": [
-            "O salto de técnico pra analista é de profundidade jurídica. A prova cobra Civil, Processo Civil, Penal e Processo Penal num nível que a prova de técnico não cobrava, e a FGV e a FCC gostam de caso concreto.",
-            "Recomeçar do zero seria desperdício. O seu caso pede um cronograma que aproveite o que já está de pé e concentre o esforço nas específicas de analista."
+            "Quem advoga, assessora ou já é servidor conhece o Direito que usa todo dia, e é justamente aí que mora a armadilha: a prova cobra o que você não usa, na profundidade da banca, com doutrina e jurisprudência dos tribunais superiores.",
+            "Recomeçar do zero seria desperdício. O seu caso pede um cronograma que trate o que você já domina como revisão e concentre as horas onde a base ainda tem buraco."
         ],
-        "prescricao": "manter as matérias que já sustentam a sua nota com revisão leve e montar um cronograma focado nas específicas de analista, resolvendo questões de analista desde a primeira semana.",
+        "prescricao": "mapear por questões o que você já domina, manter isso em revisão leve e montar o cronograma em cima das disciplinas que você não pratica no trabalho.",
         "ordem": [
-            "Diagnóstico do que já está sólido da base comum.",
-            "Específicas de analista em sequência: Civil, Processo Civil, Penal, Processo Penal.",
-            "Questões de analista da banca, não de técnico.",
-            "Revisão leve das matérias já dominadas."
+            "Diagnóstico por questões em cada disciplina comum.",
+            "O que você usa no trabalho entra só em revisão.",
+            "Horas concentradas nas disciplinas que você não pratica.",
+            "Atividade jurídica documentada desde já, pra inscrição definitiva."
         ]
     }
 }

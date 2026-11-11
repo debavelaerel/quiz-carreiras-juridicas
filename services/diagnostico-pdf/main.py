@@ -73,7 +73,7 @@ class RespostaTeste(BaseModel):
     # espera antes de montar o dict. Fora desse intervalo não é erro de
     # Lead._check() (que só valida os 13 campos do perfil, não o teste) —
     # sem o limite aqui, num=0 vira o índice -1 e Lead aceita em silêncio.
-    num: int = Field(ge=1, le=4)
+    num: int = Field(ge=1, le=5)
     escolhida: str = ""
 
 

@@ -1,98 +1,77 @@
 """Perguntas, opções e editais do quiz.
 
-GERADO por _build/gen-questions.py a partir de _build/index.src.html.
-Não editar à mão: rode o gerador depois de mexer nas perguntas.
+GERADO por scripts/gerar-dados-pdf.mts a partir de lib/quizContent.ts e lib/data/blocos.json.
+Não editar à mão: mude o conteúdo no quiz e rode o gerador de novo.
 """
 
 QUESTIONS = {
     "alvo": {
         "tipo": "single",
-        "titulo": "Qual concurso é a sua prioridade hoje?",
+        "titulo": "Qual carreira é a sua prioridade hoje?",
         "opcoes": [
             [
-                "tj",
-                "Tribunal de Justiça (TJ)",
-                "o tribunal estadual"
+                "juiz",
+                "Magistratura",
+                "juiz de direito, juiz federal ou juiz do trabalho"
             ],
             [
-                "trf",
-                "Tribunal Regional Federal (TRF)"
+                "mp",
+                "Ministério Público",
+                "promotor de justiça ou procurador da República"
             ],
             [
-                "trt",
-                "Tribunal Regional do Trabalho (TRT)"
+                "defensoria",
+                "Defensoria Pública",
+                "defensor público estadual ou federal"
             ],
             [
-                "fe",
-                "Defensoria, Ministério Público ou Procuradoria",
-                "cargo de analista ou técnico, servidor de apoio"
+                "procuradoria",
+                "Advocacia Pública",
+                "procurador do estado, AGU ou procurador do município"
+            ],
+            [
+                "delegado",
+                "Delegado de Polícia",
+                "Polícia Civil ou Polícia Federal"
             ],
             [
                 "any",
-                "Qualquer tribunal, o que abrir primeiro"
-            ],
-            [
-                "juridica",
-                "Carreira jurídica",
-                "juiz, promotor, defensor ou procurador"
+                "Qualquer carreira jurídica, a que abrir primeiro"
             ],
             [
                 "outro",
-                "Outro concurso, fora dos tribunais"
+                "Outro concurso, fora das carreiras jurídicas",
+                "servidor de tribunal, OAB ou outra área"
             ]
         ]
     },
     "cargo": {
         "tipo": "single",
-        "titulo": "Qual cargo você mira?",
+        "titulo": "E em qual esfera?",
         "opcoes": [
             [
-                "analista",
-                "Analista judiciário"
+                "estadual",
+                "estadual"
             ],
             [
-                "oficial",
-                "Oficial de justiça"
+                "federal",
+                "federal"
             ],
             [
-                "tecnico",
-                "Técnico judiciário"
-            ],
-            [
-                "escrevente",
-                "Escrevente"
+                "trabalho",
+                "trabalho"
             ],
             [
                 "any",
-                "O que vier, quero entrar no tribunal"
+                "any"
             ],
             [
                 "unsure",
-                "Ainda não sei a diferença entre eles"
-            ]
-        ]
-    },
-    "cargo_fe": {
-        "tipo": "single",
-        "titulo": "Qual cargo você mira?",
-        "opcoes": [
-            [
-                "analista",
-                "Analista",
-                "nível superior"
+                "unsure"
             ],
             [
-                "tecnico",
-                "Técnico",
-                "nível médio"
-            ],
-            [
-                "any",
-                "O que vier, quero entrar no órgão"
-            ],
-            [
-                "unsure",
-                "Ainda não sei a diferença entre eles"
+                "municipal",
+                "municipal"
             ]
         ]
     },
@@ -154,11 +133,11 @@ QUESTIONS = {
     },
     "provas": {
         "tipo": "single",
-        "titulo": "Quantas provas de tribunal você já fez, e como foi?",
+        "titulo": "Quantas provas de carreira jurídica você já fez, e como foi?",
         "opcoes": [
             [
                 "p0",
-                "Nunca fiz uma prova de tribunal"
+                "Nunca fiz uma prova de carreira jurídica"
             ],
             [
                 "p1",
@@ -170,11 +149,11 @@ QUESTIONS = {
             ],
             [
                 "p3",
-                "Fico perto do corte, mas não passo"
+                "Fico perto do corte, ou passo da objetiva e caio na discursiva"
             ],
             [
                 "p4",
-                "Já fui aprovado(a) em algum tribunal e quero subir de cargo"
+                "Já fui aprovado(a) em concurso jurídico e quero subir de carreira"
             ]
         ]
     },
@@ -278,16 +257,6 @@ QUESTIONS = {
             ]
         ]
     },
-    "editais": {
-        "tipo": "multi",
-        "titulo": "Estes são os concursos que estão na fila pra sair. Em qual deles você quer estar pronto?",
-        "opcoes": [
-            [
-                "qualquer",
-                "Qualquer um, quero estar pronto quando abrir"
-            ]
-        ]
-    },
     "dor": {
         "tipo": "single",
         "titulo": "Qual é o seu maior gargalo hoje?",
@@ -305,16 +274,16 @@ QUESTIONS = {
                 "Pouco tempo: concilio estudo com trabalho"
             ],
             [
-                "naojur",
-                "Medo das matérias não jurídicas: Português, RLM, Informática"
+                "discursiva",
+                "Travo na discursiva, na peça ou na sentença"
             ],
             [
                 "fixar",
                 "Leio muito e resolvo pouco: não fixo"
             ],
             [
-                "banca",
-                "Não sei o que a FGV e a FCC cobram de verdade"
+                "juris",
+                "Não dou conta de acompanhar jurisprudência e informativos"
             ],
             [
                 "emocional",
@@ -336,7 +305,7 @@ QUESTIONS = {
             ],
             [
                 "sembase",
-                "Estudo há um tempo, mas sem base sólida: fico perdido no meio das matérias"
+                "Estudo há um tempo, mas sem base sólida: fico perdido no meio das disciplinas"
             ],
             [
                 "plato",
@@ -348,38 +317,38 @@ QUESTIONS = {
             ],
             [
                 "servidor",
-                "Já sou servidor(a) e quero subir pra analista"
+                "Já trabalho com Direito e quero migrar pra uma carreira jurídica"
             ]
         ]
     },
     "dinheiro": {
         "tipo": "single",
-        "titulo": "Quanto você receberia a mais por mês se fosse aprovado(a) hoje no cargo que você mira?",
+        "titulo": "Quanto você receberia a mais por mês se fosse aprovado(a) hoje na carreira que você mira?",
         "opcoes": [
-            [
-                "60",
-                "Uns R$ 5 mil a mais por mês",
-                "R$ 60 mil por ano"
-            ],
-            [
-                "96",
-                "Uns R$ 8 mil a mais por mês",
-                "R$ 96 mil por ano"
-            ],
             [
                 "120",
                 "Uns R$ 10 mil a mais por mês",
                 "R$ 120 mil por ano"
             ],
             [
-                "156",
-                "Uns R$ 13 mil a mais por mês",
-                "R$ 156 mil por ano"
+                "180",
+                "Uns R$ 15 mil a mais por mês",
+                "R$ 180 mil por ano"
             ],
             [
-                "192",
-                "R$ 16 mil ou mais a mais por mês",
-                "R$ 192 mil por ano"
+                "240",
+                "Uns R$ 20 mil a mais por mês",
+                "R$ 240 mil por ano"
+            ],
+            [
+                "300",
+                "Uns R$ 25 mil a mais por mês",
+                "R$ 300 mil por ano"
+            ],
+            [
+                "360",
+                "R$ 30 mil ou mais a mais por mês",
+                "R$ 360 mil por ano"
             ]
         ]
     },
@@ -399,144 +368,218 @@ QUESTIONS = {
     }
 }
 
+CARGO_POR_ALVO = {
+    "juiz": {
+        "estadual": "juiz de direito",
+        "federal": "juiz federal",
+        "trabalho": "juiz do trabalho",
+        "any": "juiz",
+        "unsure": "juiz"
+    },
+    "mp": {
+        "estadual": "promotor de justiça",
+        "federal": "procurador da República",
+        "any": "membro do MP",
+        "unsure": "membro do MP"
+    },
+    "defensoria": {
+        "estadual": "defensor público estadual",
+        "federal": "defensor público federal",
+        "any": "defensor público",
+        "unsure": "defensor público"
+    },
+    "procuradoria": {
+        "estadual": "procurador do estado",
+        "federal": "advogado público federal",
+        "municipal": "procurador do município",
+        "any": "procurador",
+        "unsure": "procurador"
+    },
+    "delegado": {
+        "estadual": "delegado de Polícia Civil",
+        "federal": "delegado de Polícia Federal",
+        "any": "delegado",
+        "unsure": "delegado"
+    },
+    "any": {
+        "estadual": "carreira estadual",
+        "federal": "carreira federal",
+        "any": "o cargo que vier",
+        "unsure": "um cargo ainda a definir"
+    }
+}
+
 EDITAIS = {
-    "tj": [
+    "juiz": [
         {
-            "id": "tjpb",
-            "label": "TJ PB",
-            "sub": "edital publicado para analista judiciário (banca FGV); 50 vagas"
-        },
-        {
-            "id": "tjsp",
-            "label": "TJ SP",
-            "sub": "edital publicado para escrevente e oficial de justiça (banca Vunesp)"
-        },
-        {
-            "id": "tjgo",
-            "label": "TJ GO",
-            "sub": "concurso autorizado para analista judiciário, área judiciária e de apoio"
-        },
-        {
-            "id": "tjam",
-            "label": "TJ AM",
-            "sub": "cerca de 400 vagas anunciadas pelo tribunal"
-        },
-        {
-            "id": "tjto",
-            "label": "TJ TO",
-            "sub": "banca em contratação; 331 cargos vagos, 117 de analista"
-        },
-        {
-            "id": "tjal",
-            "label": "TJ AL",
-            "sub": "comissão formada para analista, oficial de justiça avaliador"
+            "id": "tjsc",
+            "label": "TJ SC",
+            "sub": "edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 26/11",
+            "aberto": True
         },
         {
             "id": "tjrs",
             "label": "TJ RS",
-            "sub": "comissão formada para analista do Poder Judiciário"
+            "sub": "edital publicado para juiz substituto (banca FGV); 30 vagas, prova em 13/12",
+            "aberto": True
+        },
+        {
+            "id": "tjap",
+            "label": "TJ AP",
+            "sub": "edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 13/11",
+            "aberto": True
+        },
+        {
+            "id": "tjdft",
+            "label": "TJDFT",
+            "sub": "banca definida para juiz substituto (Cebraspe); 20 vagas previstas"
+        },
+        {
+            "id": "tjpb",
+            "label": "TJ PB",
+            "sub": "concurso para juiz substituto em preparação; 6 vagas previstas"
+        },
+        {
+            "id": "tjac",
+            "label": "TJ AC",
+            "sub": "regulamento publicado para juiz substituto; banca a definir"
+        },
+        {
+            "id": "trfs",
+            "label": "TRFs (juiz federal)",
+            "sub": "concursos previstos no orçamento de 2027 nos seis TRFs"
         }
     ],
-    "trf": [
+    "mp": [
         {
-            "id": "trf3",
-            "label": "TRF3 (SP e MS)",
-            "sub": "edital publicado para analista e técnico (banca Vunesp)"
+            "id": "mpap",
+            "label": "MP AP",
+            "sub": "banca definida para promotor substituto (FCC); 5 vagas previstas"
         },
         {
-            "id": "trf2",
-            "label": "TRF2 (RJ e ES)",
-            "sub": "previsto no PLOA 2027, sem cronograma"
+            "id": "mppe",
+            "label": "MP PE",
+            "sub": "regulamento publicado para promotor substituto; 15 vagas"
+        },
+        {
+            "id": "mpsp",
+            "label": "MP SP",
+            "sub": "novo concurso para promotor em estudo; contratação da banca iniciada"
+        },
+        {
+            "id": "mprj",
+            "label": "MP RJ",
+            "sub": "novo regulamento em preparação para o XL concurso de promotor"
         }
     ],
-    "trt": [
+    "defensoria": [
         {
-            "id": "trt8",
-            "label": "TRT8 (PA e AP)",
-            "sub": "edital publicado para técnico e analista (banca FCC)"
+            "id": "dpesp",
+            "label": "DPE SP",
+            "sub": "edital publicado para defensor público (banca FCC); 70 vagas, prova em 10/01/2027",
+            "aberto": True
         },
         {
-            "id": "trt4",
-            "label": "TRT4 (RS)",
-            "sub": "edital publicado para técnico e analista (banca FCC)"
+            "id": "dpern",
+            "label": "DPE RN",
+            "sub": "banca definida para defensor público (Cebraspe); 10 vagas previstas"
         },
         {
-            "id": "trt23",
-            "label": "TRT23 (MT)",
-            "sub": "banca definida (FCC), edital esperado ainda em 2026"
+            "id": "dpego",
+            "label": "DPE GO",
+            "sub": "regulamento publicado para defensor público; edital previsto"
         },
-        {
-            "id": "trt3",
-            "label": "TRT3 (MG)",
-            "sub": "autorizado, edital previsto para 2027, com até 444 vacâncias"
-        },
-        {
-            "id": "trt5",
-            "label": "TRT5 (BA)",
-            "sub": "previsto no PLOA 2027"
-        },
-        {
-            "id": "trt22",
-            "label": "TRT22 (PI)",
-            "sub": "previsto após dezembro de 2026"
-        }
-    ],
-    "fe": [
         {
             "id": "dpu",
             "label": "DPU",
-            "sub": "810 vagas previstas na LOA 2026, analista e técnico"
-        },
-        {
-            "id": "dpema",
-            "label": "DPE MA",
-            "sub": "primeiro concurso de servidores, previsto para 2026"
-        },
+            "sub": "comissão formada para contratar a banca do concurso de defensor federal"
+        }
+    ],
+    "procuradoria": [
         {
             "id": "pgeba",
             "label": "PGE BA",
-            "sub": "banca definida, 115 vagas de analista e assistente"
+            "sub": "banca contratada para procurador do estado (FCC); 20 vagas"
         },
         {
-            "id": "pgerj",
-            "label": "PGE RJ",
-            "sub": "autorizado para analista"
+            "id": "agu",
+            "label": "AGU",
+            "sub": "concurso unificado autorizado; 170 vagas, banca em definição"
+        },
+        {
+            "id": "pgers",
+            "label": "PGE RS",
+            "sub": "comissão formada para o 16º concurso de procurador do estado"
+        }
+    ],
+    "delegado": [
+        {
+            "id": "pcpe",
+            "label": "PC PE",
+            "sub": "edital publicado para delegado (banca Cebraspe); 45 vagas, inscrições até 16/12",
+            "aberto": True
+        },
+        {
+            "id": "pcac",
+            "label": "PC AC",
+            "sub": "edital publicado para delegado (banca Idecan); 8 vagas, inscrições até 14/12",
+            "aberto": True
+        },
+        {
+            "id": "pcap",
+            "label": "PC AP",
+            "sub": "edital publicado para delegado (banca Cesgranrio); prova em 06/12",
+            "aberto": True
+        },
+        {
+            "id": "pcrj",
+            "label": "PC RJ",
+            "sub": "banca definida para delegado (Cesgranrio); 85 vagas"
+        },
+        {
+            "id": "pcto",
+            "label": "PC TO",
+            "sub": "concurso autorizado para delegado; comissão definida, 60 vagas"
         }
     ]
 }
 
 TEST = [
     {
-        "disc": "Língua Portuguesa",
-        "fonte": "FGV · TJ RR 2024 · Analista Judiciário",
-        "gabarito": "C",
-        "comentario": "Só a C dá o nome certo à relação: \"quando\" marca tempo. A é condição, B é oposição, D e E são comparação."
-    },
-    {
         "disc": "Direito Constitucional",
-        "fonte": "FGV · TJ RR 2024 · Analista Judiciário",
-        "gabarito": "C",
-        "comentario": "GLP é energia, e energia é competência privativa da União. A roupagem de defesa do consumidor não transfere a competência."
-    },
-    {
-        "disc": "Direito Processual Civil",
-        "fonte": "FGV · TJ RR 2024 · Analista Judiciário",
+        "fonte": "FGV · TJ MT 2024 · Juiz Substituto",
         "gabarito": "B",
-        "comentario": "Averbada a execução no registro do imóvel, a alienação posterior presume-se em fraude. O carro de trabalho é impenhorável, o de lazer não, e o prazo para pagar é de 3 dias."
+        "comentario": "Criar vínculo de trabalho com ajuda de custo, fora da lei federal do estágio, é legislar sobre direito do trabalho: competência privativa da União (art. 22, I). Falar em adolescente e educação não torna a competência concorrente."
     },
     {
-        "disc": "Raciocínio Lógico",
-        "fonte": "FCC · TRF4 2019 · Oficial de Justiça Avaliador Federal",
+        "disc": "Direito Administrativo",
+        "fonte": "FGV · DPE RJ 2023 · Defensor Público",
+        "gabarito": "E",
+        "comentario": "O Estado limitando a atividade do particular em nome do interesse coletivo (a calçada livre) é poder de polícia. Hierárquico e disciplinar só valem pra quem tem vínculo com a Administração, e autotutela é a Administração revendo os próprios atos."
+    },
+    {
+        "disc": "Direito Penal",
+        "fonte": "FGV · PC MG 2025 · Delegado de Polícia Substituto",
         "gabarito": "A",
-        "comentario": "A morena não é Ana nem Beatriz, então é Carla. Ana não é ruiva, logo é loira. E a loira não é de Jaime nem de Jairo: sobra José."
+        "comentario": "Ajudar o autor a fugir da polícia é favorecimento pessoal (art. 348), e o irmão que presta o auxílio fica isento de pena (§2º). Favorecimento real seria guardar o proveito do crime, e tergiversação é crime de advogado."
+    },
+    {
+        "disc": "Direito Processual Penal",
+        "fonte": "Cebraspe · DPE AC 2024 · Defensor Público",
+        "gabarito": "E",
+        "comentario": "O art. 240, §1º, do CPP permite a busca pra achar o que é necessário \"à prova de infração ou à defesa do réu\". As pegadinhas: cartas \"abertas ou não\", CPI não determina busca domiciliar (reserva de jurisdição), busca pessoal durante a domiciliar dispensa mandado e, com consentimento do morador, a busca pode ser à noite."
+    },
+    {
+        "disc": "Direito Civil",
+        "fonte": "FGV · TJ SC 2024 · Juiz Substituto",
+        "gabarito": "E",
+        "comentario": "É o \"contrato consigo mesmo\": sem permissão da lei ou do representado, é anulável (art. 117 do CC). Não é nulo nem inexistente: o vício protege Leonardo, que pode confirmar o negócio se quiser."
     }
 ]
 
 CONFIG = {
-    "quizName": "Raio-X da Base",
+    "quizName": "Diagnóstico da Base",
     "whatsapp": "5500000000000",
-    "videoSrc": "",
-    "leadEndpoint": "",
-    "editaisAtualizadosEm": "3 de setembro de 2026",
+    "editaisAtualizadosEm": "11 de novembro de 2026",
     "instagram": "https://www.instagram.com/vdeconcursos/"
 }
