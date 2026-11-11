@@ -25,7 +25,7 @@ export function criarHandlerStart(repo: SessionRepo) {
     }
 
     const {
-      nome, whatsapp, email, session_token: sessionToken, fluxo,
+      nome, whatsapp, email, session_token: sessionToken, fluxo, refazer_token: refazerToken,
       utm_source: utmSource, utm_medium: utmMedium, utm_campaign: utmCampaign,
       utm_content: utmContent, utm_term: utmTerm,
     } = (corpo ?? {}) as Record<string, unknown>
@@ -53,6 +53,7 @@ export function criarHandlerStart(repo: SessionRepo) {
     try {
       const resultado = await iniciarSessao(repo, {
         nome, whatsapp: whatsapp as string, email, sessionToken, evento: EVENTO, fluxo: fluxoValido,
+        refazerToken: typeof refazerToken === 'string' && isUuid(refazerToken) ? refazerToken : undefined,
         utmSource: utmValido(utmSource), utmMedium: utmValido(utmMedium), utmCampaign: utmValido(utmCampaign),
         utmContent: utmValido(utmContent), utmTerm: utmValido(utmTerm),
       })

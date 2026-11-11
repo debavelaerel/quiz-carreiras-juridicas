@@ -76,6 +76,11 @@ export type IniciarSessaoInput = {
   // Opcional (default 'padrao' em iniciarSessao) pra não forçar todo call
   // site de teste a especificar algo irrelevante pro que cada um cobre.
   fluxo?: 'padrao' | 'final'
+  // Botão "Refazer o quiz": o session_token da sessão que a pessoa acabou de
+  // ver no MESMO navegador. Se bater com o da sessão achada por contato, ela
+  // é zerada e o resultado novo substitui o antigo. Sem ele (ou se não
+  // bater), vale a regra de segurança de sempre: nada é apagado.
+  refazerToken?: string
   // Opcionais — ausentes quando a pessoa entrou sem UTM na URL (a maioria).
   // Só usadas na criação; ver comentário de utmSource em QuizSession.
   utmSource?: string

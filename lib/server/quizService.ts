@@ -17,8 +17,40 @@ export async function iniciarSessao(repo: SessionRepo, input: IniciarSessaoInput
   let existente = await repo.buscarPorEmail(input.evento, emailNormalizado)
   if (!existente) existente = await repo.buscarPorWhatsapp(input.evento, whatsappNormalizado)
 
+  if (existente && input.refazerToken && input.refazerToken === existente.sessionToken) {
+    // Refazer pedido por quem tem o token da própria sessão (ver
+    // IniciarSessaoInput.refazerToken): zera tudo o que o funil produz,
+    // inclusive os PDFs, que seriam do diagnóstico antigo. Contato, UTMs,
+    // startedAt e o clique no WhatsApp (sinal comercial) ficam.
+    await repo.atualizar(existente.id, {
+      sessionToken: input.sessionToken,
+      nome: input.nome,
+      email: input.email,
+      emailNormalizado,
+      whatsapp: input.whatsapp,
+      whatsappNormalizado,
+      fluxo,
+      status: 'em_andamento',
+      respostas: [],
+      areas: {},
+      scoreGeralPct: null,
+      acertos: null,
+      total: null,
+      areaPrioritaria: null,
+      perfil: {},
+      perfilCalculado: null,
+      blocos: null,
+      laudoPdfS3Key: null,
+      laudoPdfErro: null,
+      apresentacaoPdfS3Key: null,
+      apresentacaoPdfErro: null,
+      completedAt: null,
+    })
+    return { sessionToken: input.sessionToken, retomando: false, respostasSalvas: [], jaConcluida: false }
+  }
+
   if (existente) {
-    // NUNCA reseta uma sessão já existente, concluída ou não — achado do
+    // NUNCA reseta (salvo o refazer acima, que exige o token da sessão) uma sessão já existente, concluída ou não — achado do
     // /security-review, deixado pendente até agora: qualquer um que soubesse
     // o e-mail ou WhatsApp de um lead conseguia, batendo aqui, apagar o
     // diagnóstico já concluído dele (perfil/respostas voltavam pra vazio) e

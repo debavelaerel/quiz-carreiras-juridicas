@@ -385,6 +385,10 @@ export default function Quiz() {
   // Trava síncrona: `enviando` só vale a partir do próximo render, então um duplo
   // clique no mesmo tick passaria pelo `disabled` e chamaria setAtual duas vezes.
   const emVooRef = useRef(false)
+  // Token da sessão concluída que a pessoa acabou de ver, guardado ao clicar
+  // em "Refazer o quiz" — vai no próximo /start como refazer_token, e o
+  // servidor só substitui o resultado antigo se ele bater (ver quizService).
+  const refazerTokenRef = useRef<string | null>(null)
 
   // Trava + fila dos POSTs de persistirPerfil — nunca deixa 2 em voo ao mesmo
   // tempo. `registrarPerfil` no servidor é ler-mesclar-gravar (lê `perfil`
@@ -538,6 +542,7 @@ export default function Quiz() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           nome, whatsapp, email, session_token: criarNovoSessionToken(), fluxo: fluxoFinal ? 'final' : 'padrao',
+          refazer_token: refazerTokenRef.current ?? undefined,
           ...utmsDaUrl(),
         }),
       })
@@ -551,6 +556,7 @@ export default function Quiz() {
         setErro('Resposta inesperada do servidor. Tente novamente.')
         return
       }
+      refazerTokenRef.current = null
       const novoEstado: EstadoQuiz = { sessionToken: token, nome, whatsapp, email }
       if (jaConcluidaNaResposta(json)) {
         if (await mostrarResultadoExistente(token, novoEstado)) return
@@ -640,11 +646,11 @@ export default function Quiz() {
 
   // Botão "Refazer o diagnóstico" na tela de resultado — sem confirmação
   // (decisão explícita: o link já é discreto o bastante pra não ser
-  // clicado sem querer). Não reseta a sessão concluída no servidor (ela
-  // continua lá, intacta) — só limpa o estado local e o cache pra começar
-  // um funil novo do zero, com um session_token novo quando a pessoa
-  // preencher o contato de novo.
+  // clicado sem querer). Limpa o estado local e guarda o token da sessão
+  // concluída em refazerTokenRef: se a pessoa preencher o mesmo contato, o
+  // /start zera aquela sessão e o resultado novo substitui o antigo.
   function refazerQuiz() {
+    refazerTokenRef.current = estado?.sessionToken ?? null
     limparEstado()
     setEstado(null)
     setResultado(null)
@@ -856,12 +862,13 @@ export default function Quiz() {
     const resStart = await fetch('/api/quiz/start', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ nome, whatsapp, email, session_token: token, fluxo: 'final', ...utmsDaUrl() }),
+      body: JSON.stringify({ nome, whatsapp, email, session_token: token, fluxo: 'final', refazer_token: refazerTokenRef.current ?? undefined, ...utmsDaUrl() }),
     })
     if (!resStart.ok) return null
     const jsonStart: RespostaStart = await resStart.json()
     const sessionToken = tokenDaResposta(jsonStart)
     if (!sessionToken) return null
+    refazerTokenRef.current = null
 
     sessaoJaConcluidaRef.current = jaConcluidaNaResposta(jsonStart)
     const novoEstado: EstadoQuiz = { sessionToken, nome, whatsapp, email }
