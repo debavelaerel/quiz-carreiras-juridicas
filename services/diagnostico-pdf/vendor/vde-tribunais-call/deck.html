@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=1920" />
-<title>VDE Tribunais — Apresentação do consultor</title>
+<title>VDE Carreiras Jurídicas — Apresentação do consultor</title>
 
 <style>
 
@@ -33,48 +33,55 @@
 
 <style>
 
-  /* ============ TOKENS DO TEMA — vde-tribunais ============ */
+  /* ============ TOKENS DO TEMA — VDE Carreiras Jurídicas (Black Friday, escuro) ============
+     Mesmos tokens do quiz (app/globals.css). Os nomes antigos (--bg-*, --gold,
+     --lav, --card-ink...) continuam, só apontam pros valores novos — assim o
+     resto do CSS do deck não precisa ser reescrito regra por regra. */
   :root{
-    --bg-0:#010B24;
-    --bg-1:#01123A;
-    --bg-2:#022053;
-    --bg-3:#0A2B66;
-    --bg-4:#123577;
-    --line:rgba(195,190,249,0.16);
-    --line-soft:rgba(195,190,249,0.08);
-    --line-strong:rgba(195,190,249,0.30);
+    --bg-0:#0B0B0F;
+    --bg-1:#0B0B0F;
+    --bg-2:#15151C;
+    --bg-3:#1A1A22;
+    --bg-4:#1E1B33;
+    --card:#15151C;
+    --card-2:#1A1A22;
+    --tint:#1E1B33;
+    --line:#2A2A35;
+    --line-soft:rgba(42,42,53,.6);
+    --line-strong:#3A3A48;
 
-    --paper:#ffffff;
-    --ink-soft:#D9DEF2;
-    --ink-dim:#9FAACF;
-    --ink-faint:#6E7BA6;
+    --paper:#F4F3F8;
+    --ink-soft:#B9B7C6;
+    --ink-dim:#8A88A0;
+    --ink-faint:#8A88A0;
 
-    --gold:#F9E08A;
-    --gold-bright:#FFEDAD;
-    --gold-deep:#C89B18;
-    --gold-glow:rgba(249,224,138,0.12);
+    --gold:#F5CF4A;
+    --gold-bright:#FFE07A;
+    --gold-deep:#E0B43A;
+    --gold-glow:rgba(245,207,74,0.08);
+    --gold-ink:#1A1608;
 
-    --lav:#C3BEF9;
-    --lav-bright:#DDD9FC;
-    --lav-deep:#8F87E8;
-    --lav-glow:rgba(195,190,249,0.14);
+    --lav:#B7ADFD;
+    --lav-bright:#D6D0FE;
+    --lav-deep:#8F82D6;
+    --lav-glow:rgba(183,173,253,0.12);
 
-    --navy:#324F8A;
-    --steel:#6179AC;
-    --purple:#5421A1;
-    --purple-bright:#7A3BD6;
+    --navy:#2B2550;
+    --steel:#8F82D6;
+    --purple:#5B4FB0;
+    --purple-bright:#8F82D6;
 
-    --red:#E03131;
-    --red-bright:#FF5A5A;
+    --red:#E25555;
+    --red-bright:#F2777A;
     --red-deep:#A31212;
 
-    --sand:#E1D9C8;
-    --sand-soft:#EFECE9;
-    --green:#2FB367;
+    --sand:#1A1A22;
+    --sand-soft:#15151C;
+    --green:#5BD69A;
 
-    /* tinta escura para superfícies claras (cards/tabelas brancos) */
-    --card-ink:#1C2540;
-    --card-ink-soft:#4A5578;
+    /* tinta dos cartões: agora cartões escuros, então tinta clara */
+    --card-ink:#F4F3F8;
+    --card-ink-soft:#B9B7C6;
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -104,9 +111,9 @@
   /* ============ FUNDOS DO TEMA (backgrounds.css copiado) ============ */
   .slide{
     background:
-      radial-gradient(ellipse 75% 60% at 50% 8%, rgba(18,53,119,0.55), transparent 62%),
-      radial-gradient(ellipse 60% 50% at 88% 96%, rgba(2,32,83,0.9), transparent 65%),
-      linear-gradient(158deg, var(--bg-1) 0%, var(--bg-2) 52%, var(--bg-1) 100%);
+      radial-gradient(ellipse 70% 55% at 50% 0%, rgba(183,173,253,0.10), transparent 62%),
+      radial-gradient(ellipse 60% 50% at 88% 100%, rgba(30,27,51,0.9), transparent 65%),
+      linear-gradient(158deg, #0B0B0F 0%, #111117 52%, #0B0B0F 100%);
     color:var(--paper);
   }
   /* Decorações de fundo — cada slide escolhe a sua (nem todas levam o olho):
@@ -123,11 +130,11 @@
   }
   .slide.bg-eye::before{
     opacity:.55;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'><g fill='none' stroke='%230A2B66' stroke-linecap='round'><path d='M -180 520 A 430 430 0 1 1 250 950' stroke-width='120'/><path d='M 90 -160 A 300 300 0 1 0 390 140' stroke-width='96'/><path d='M 1700 1240 A 360 360 0 0 1 1340 880' stroke-width='110'/><path d='M 2010 620 A 300 300 0 0 0 1710 920' stroke-width='96'/></g><path d='M 208 250 l 34 78 78 34 -78 34 -34 78 -34 -78 -78 -34 78 -34 z' fill='%230A2B66'/></svg>");
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'><g fill='none' stroke='%231E1B33' stroke-linecap='round'><path d='M -180 520 A 430 430 0 1 1 250 950' stroke-width='120'/><path d='M 90 -160 A 300 300 0 1 0 390 140' stroke-width='96'/><path d='M 1700 1240 A 360 360 0 0 1 1340 880' stroke-width='110'/><path d='M 2010 620 A 300 300 0 0 0 1710 920' stroke-width='96'/></g><path d='M 208 250 l 34 78 78 34 -78 34 -34 78 -34 -78 -78 -34 78 -34 z' fill='%231E1B33'/></svg>");
   }
   .slide.bg-spark::before{
     opacity:.8;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'><g fill='%23F9E08A'><path opacity='.30' d='M 230 170 l 15 34 34 15 -34 15 -15 34 -15 -34 -34 -15 34 -15 z'/><path opacity='.14' d='M 950 100 l 9 21 21 9 -21 9 -9 21 -9 -21 -21 -9 21 -9 z'/><path opacity='.22' d='M 1585 780 l 18 41 41 18 -41 18 -18 41 -18 -41 -41 -18 41 -18 z'/></g><g fill='%23C3BEF9'><path opacity='.30' d='M 1660 220 l 12 27 27 12 -27 12 -12 27 -12 -27 -27 -12 27 -12 z'/><path opacity='.20' d='M 350 850 l 14 32 32 14 -32 14 -14 32 -14 -32 -32 -14 32 -14 z'/><path opacity='.12' d='M 700 620 l 8 18 18 8 -18 8 -8 18 -8 -18 -18 -8 18 -8 z'/></g></svg>");
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'><g fill='%23F5CF4A'><path opacity='.30' d='M 230 170 l 15 34 34 15 -34 15 -15 34 -15 -34 -34 -15 34 -15 z'/><path opacity='.14' d='M 950 100 l 9 21 21 9 -21 9 -9 21 -9 -21 -21 -9 21 -9 z'/><path opacity='.22' d='M 1585 780 l 18 41 41 18 -41 18 -18 41 -18 -41 -41 -18 41 -18 z'/></g><g fill='%23B7ADFD'><path opacity='.30' d='M 1660 220 l 12 27 27 12 -27 12 -12 27 -12 -27 -27 -12 27 -12 z'/><path opacity='.20' d='M 350 850 l 14 32 32 14 -32 14 -14 32 -14 -32 -32 -14 32 -14 z'/><path opacity='.12' d='M 700 620 l 8 18 18 8 -18 8 -8 18 -8 -18 -18 -8 18 -8 z'/></g></svg>");
   }
   .slide.deep{
     background:
@@ -138,8 +145,8 @@
   /* deep sem olho: brilho central + (opcional) .bg-spark */
   .slide.offer{
     background:
-      radial-gradient(ellipse 70% 55% at 82% 6%, rgba(195,190,249,0.16), transparent 58%),
-      radial-gradient(ellipse 65% 55% at 12% 100%, rgba(249,224,138,0.10), transparent 60%),
+      radial-gradient(ellipse 70% 55% at 82% 6%, rgba(183,173,253,0.16), transparent 58%),
+      radial-gradient(ellipse 65% 55% at 12% 100%, rgba(245,207,74,0.10), transparent 60%),
       linear-gradient(150deg, var(--bg-2) 0%, var(--bg-1) 55%, var(--bg-0) 100%);
     color:var(--paper);
   }
@@ -147,8 +154,8 @@
   .grid-floor::before{
     content:'';position:absolute;left:-50%;right:-50%;bottom:-40%;top:-10%;
     background-image:
-      linear-gradient(rgba(195,190,249,0.10) 1.5px,transparent 1.5px),
-      linear-gradient(90deg,rgba(195,190,249,0.10) 1.5px,transparent 1.5px);
+      linear-gradient(rgba(183,173,253,0.10) 1.5px,transparent 1.5px),
+      linear-gradient(90deg,rgba(183,173,253,0.10) 1.5px,transparent 1.5px);
     background-size:150px 150px;
     transform:rotateX(73deg) scaleY(1.5);transform-origin:center bottom;
     mask-image:linear-gradient(to bottom,transparent 0%,#000 35%,#000 100%);
@@ -158,35 +165,35 @@
      boa para slides de dados/tabelas. */
   .slide.light{
     background:
-      radial-gradient(ellipse 60% 50% at 90% 0%, rgba(195,190,249,.20), transparent 60%),
-      radial-gradient(ellipse 55% 45% at 6% 100%, rgba(249,224,138,.16), transparent 60%),
-      linear-gradient(160deg, #FFFFFF 0%, var(--sand-soft) 100%);
+      radial-gradient(ellipse 60% 50% at 90% 0%, rgba(183,173,253,.10), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 6% 100%, rgba(245,207,74,.06), transparent 60%),
+      linear-gradient(160deg, #101016 0%, #0B0B0F 100%);
     color:var(--card-ink);
   }
   /* light: limpo, faíscas discretas — longe do canto da logo (topo-direito) */
   .slide.light::before{
     opacity:.9;
-    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'><path d='M 150 210 l 14 32 32 14 -32 14 -14 32 -14 -32 -32 -14 32 -14 z' fill='%23DDD9FC'/><path d='M 1770 910 l 12 27 27 12 -27 12 -12 27 -12 -27 -27 -12 27 -12 z' fill='%23EFE6C8'/></svg>");
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1920 1080' preserveAspectRatio='none'><path d='M 150 210 l 14 32 32 14 -32 14 -14 32 -14 -32 -32 -14 32 -14 z' fill='%232A2540'/><path d='M 1770 910 l 12 27 27 12 -27 12 -12 27 -12 -27 -27 -12 27 -12 z' fill='%23332C14'/></svg>");
   }
   .slide.light .slide-title{color:var(--card-ink);}
   .slide.light .lead{color:var(--card-ink-soft);}
   .slide.light .lead strong, .slide.light strong{color:var(--card-ink);}
-  .slide.light .gold{color:var(--gold-deep);}
+  .slide.light .gold{color:var(--gold);}
   .slide.light .bullets li{color:var(--card-ink-soft);}
   .slide.light .bullets li strong{color:var(--card-ink);}
   /* em-gold vira gradiente dourado ESCURO no fundo claro (contraste) */
-  .slide.light .em-gold{background:linear-gradient(135deg, #D4A81C 0%, #9C7810 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .slide.light .brand-olho{background-image:url("assets/img/logo-olho-navy.svg");}
-  .slide.light .fnote{color:#7A83A8;}
-  .slide.light .fnote .fico{background:rgba(84,33,161,.07);border-color:#E3E6F2;color:var(--purple);}
+  .slide.light .em-gold{background:linear-gradient(135deg, var(--gold-bright) 0%, var(--gold) 45%, var(--gold-deep) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  
+  .slide.light .fnote{color:var(--ink-dim);}
+  .slide.light .fnote .fico{background:rgba(183,173,253,.10);border-color:var(--line);color:var(--lav);}
 
   /* ---- canvas ---- */
   .canvas{position:relative;width:100%;height:100%;padding:96px 132px;display:flex;flex-direction:column;z-index:2;}
   .canvas.center{justify-content:center;}
 
   /* ---- brand-olho (logo VDE, topo-direito, obrigatória em slide de conteúdo) ---- */
-  .brand-olho{position:absolute;top:52px;right:120px;width:68px;height:68px;z-index:4;
-    background-image:url("assets/img/logo-olho-branca.svg");background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;}
+  .brand-olho{position:absolute;top:50px;right:110px;width:164px;height:70px;z-index:4;
+    background-image:url("assets/img/vde-olho-branco.png");background-size:contain;background-repeat:no-repeat;background-position:center;pointer-events:none;}
 
   /* ---- tipografia base ---- */
   h1,h2,h3{font-family:'Poppins',sans-serif;color:var(--paper);line-height:1.06;letter-spacing:-.025em;font-weight:800;}
@@ -226,7 +233,7 @@
     background:
       url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>") center/26px 26px no-repeat,
       linear-gradient(135deg, var(--lav-deep) 0%, var(--purple) 100%);
-    box-shadow:0 8px 22px rgba(84,33,161,.45);
+    box-shadow:0 8px 22px rgba(91,79,176,.45);
   }
   .bullets.cols2{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;row-gap:34px;max-width:none;}
 
@@ -235,7 +242,7 @@
 
   /* ---- card informativo sobre navy (info-card) ---- */
   .icard{
-    background:linear-gradient(160deg, rgba(18,53,119,.55), rgba(2,32,83,.35));
+    background:linear-gradient(160deg, rgba(30,27,51,.55), rgba(21,21,28,.35));
     border:1.5px solid var(--line);
     border-left:10px solid var(--lav-deep);
     border-radius:22px;
@@ -247,13 +254,13 @@
   .icard .hl{color:var(--gold);font-weight:700;}
   .icard + .icard{margin-top:28px;}
   .comp-card{
-    background:#fff;
-    border:1.5px solid #E6E9F2;border-radius:22px;overflow:hidden;
-    display:flex;flex-direction:column;box-shadow:0 20px 48px rgba(28,37,64,.13);
+    background:var(--card);
+    border:1.5px solid var(--line);border-radius:22px;overflow:hidden;
+    display:flex;flex-direction:column;box-shadow:0 20px 48px rgba(0,0,0,.13);
   }
-  .comp-head{display:flex;align-items:baseline;gap:16px;padding:24px 38px 18px;border-bottom:2px solid #EEF0F6;}
+  .comp-head{display:flex;align-items:baseline;gap:16px;padding:24px 38px 18px;border-bottom:2px solid var(--line);}
   .comp-head .ct{font-size:35px;font-weight:800;letter-spacing:-.015em;color:var(--card-ink);}
-  .comp-head .ct .u{color:var(--gold-deep);}
+  .comp-head .ct .u{color:var(--gold);}
   .comp-head .cc{margin-left:auto;font-size:19px;font-weight:700;white-space:nowrap;color:var(--ink-faint);}
   .comp-list{list-style:none;padding:20px 32px 24px;display:flex;flex-direction:column;gap:3px;}
   .comp-list li{
@@ -262,14 +269,14 @@
   }
   .comp-list li::before{
     content:'';position:absolute;left:14px;top:.6em;width:12px;height:12px;border-radius:50%;
-    background:#C4C9DC;
+    background:var(--line-strong);
   }
-  .comp-list li.hl{color:var(--gold-deep);font-weight:700;background:rgba(201,155,24,.11);}
+  .comp-list li.hl{color:var(--gold);font-weight:700;background:rgba(245,207,74,.10);}
   .comp-list li.hl::before{
     left:12px;top:.42em;width:18px;height:18px;border-radius:50%;
     background:
-      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>") center/12px 12px no-repeat,
-      linear-gradient(135deg, #E0B429, var(--gold-deep));
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231A1608' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>") center/12px 12px no-repeat,
+      linear-gradient(135deg, #F5CF4A, var(--gold-deep));
   }
 
   /* ---- fine print com ícone (nunca asterisco) ---- */
@@ -281,23 +288,23 @@
   .fnote .fico{
     flex:none;width:52px;height:52px;border-radius:14px;
     display:flex;align-items:center;justify-content:center;
-    background:rgba(195,190,249,.12);border:1px solid var(--line);color:var(--lav);
+    background:rgba(183,173,253,.12);border:1px solid var(--line);color:var(--lav);
   }
   .fnote .fico svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
   /* ícone lucide inline helper */
   .ico{width:1.05em;height:1.05em;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-.14em;}
-  .course{background:#fff;border:1.5px solid #E6E9F2;border-radius:28px;overflow:hidden;
-    box-shadow:0 22px 52px rgba(28,37,64,.13);display:flex;flex-direction:column;}
+  .course{background:var(--card);border:1.5px solid var(--line);border-radius:28px;overflow:hidden;
+    box-shadow:0 22px 52px rgba(0,0,0,.13);display:flex;flex-direction:column;}
   .course-head{display:flex;align-items:center;gap:20px;padding:32px 46px;}
   .course-head .ch-ico{flex:none;width:56px;height:56px;border-radius:16px;background:rgba(255,255,255,.16);
     display:flex;align-items:center;justify-content:center;}
   .course-head .cn{font-size:44px;font-weight:800;color:#fff;letter-spacing:-.015em;line-height:1;}
-  .course.trt .course-head{background:linear-gradient(120deg,#3A5896,#1B2E5A);}
-  .course.trf .course-head{background:linear-gradient(120deg,var(--purple-bright),#3B1874);}
+  .course.trt .course-head{background:linear-gradient(120deg,#2B2550,#1E1B33);border-bottom:1.5px solid var(--line);}
+  .course.trf .course-head{background:linear-gradient(120deg,#2B2550,#1E1B33);}
   .course-body{padding:8px 46px 22px;}
   .trow{display:flex;align-items:center;justify-content:space-between;gap:24px;
-    padding:28px 20px;border-radius:16px;border-bottom:1.6px solid #EEF0F6;}
+    padding:28px 20px;border-radius:16px;border-bottom:1.6px solid var(--line);}
   .trow:last-child{border-bottom:none;}
   .trow .hrs{font-size:36px;font-weight:600;color:var(--card-ink-soft);}
   .trow .hrs b{color:var(--card-ink);font-weight:800;}
@@ -305,43 +312,43 @@
   .trow .mo .n{font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:70px;line-height:.9;color:var(--card-ink);letter-spacing:.01em;}
   .trow .mo .u{font-size:28px;font-weight:600;color:var(--ink-faint);}
   /* linha recomendada de cada curso: destaque dourado */
-  .trow.rec{background:rgba(201,155,24,.10);}
-  .trow.rec .mo .n{color:var(--gold-deep);}
-  .trow.rec .hrs b{color:var(--gold-deep);}
+  .trow.rec{background:rgba(224,180,58,.10);}
+  .trow.rec .mo .n{color:var(--gold);}
+  .trow.rec .hrs b{color:var(--gold);}
   .rec-badge{display:inline-flex;align-items:center;margin-left:16px;vertical-align:middle;
-    background:linear-gradient(135deg,#E0B429,var(--gold-deep));color:#fff;
+    background:linear-gradient(135deg,#F5CF4A,var(--gold-deep));color:var(--gold-ink);
     font-size:19px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;
-    padding:6px 15px;border-radius:999px;box-shadow:0 6px 16px rgba(200,155,24,.34);}
+    padding:6px 15px;border-radius:999px;box-shadow:0 6px 16px rgba(224,180,58,.34);}
 
   /* ===== BLOCO MÉTODO (slides 24-38) ===== */
   /* chip de passo: assinatura do bloco método */
   .step-tag{display:inline-flex;align-items:center;gap:16px;align-self:flex-start;
     background:linear-gradient(135deg,var(--lav-deep),var(--purple));border-radius:999px;
-    padding:10px 34px 10px 12px;box-shadow:0 12px 34px rgba(84,33,161,.5);margin-bottom:26px;}
+    padding:10px 34px 10px 12px;box-shadow:0 12px 34px rgba(91,79,176,.5);margin-bottom:26px;}
   .step-tag .n{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.16);
     display:flex;align-items:center;justify-content:center;
     font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:36px;color:#fff;}
   .step-tag .t{font-size:27px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#fff;}
   /* card de screenshot (produto) */
-  .shot{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 70px rgba(0,4,18,.55);}
+  .shot{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55);}
   .shot img{display:block;width:100%;height:auto;}
   /* layout 2 colunas do bloco método */
   .split{display:grid;gap:70px;align-items:center;width:100%;}
   /* card branco genérico sobre navy */
-  .wcard{background:#fff;border-radius:22px;box-shadow:0 24px 56px rgba(0,4,18,.5);}
+  .wcard{background:var(--card);border:1.5px solid var(--line);border-radius:22px;box-shadow:0 24px 56px rgba(0,0,0,.5);}
   /* callout dourado (avisos "Importante!") */
   .gold-note{align-self:center;max-width:1460px;display:flex;align-items:center;gap:26px;
-    background:linear-gradient(160deg, rgba(249,224,138,.14), rgba(249,224,138,.05));
-    border:1.5px solid rgba(249,224,138,.4);border-left:10px solid var(--gold);
+    background:linear-gradient(160deg, rgba(245,207,74,.14), rgba(245,207,74,.05));
+    border:1.5px solid rgba(245,207,74,.4);border-left:10px solid var(--gold);
     border-radius:20px;padding:30px 44px;font-size:34px;line-height:1.4;color:var(--ink-soft);}
   .gold-note b{color:var(--gold);}
   /* slide 24: cards de cronograma */
-  .plan-head{display:flex;align-items:center;gap:16px;padding:24px 36px 18px;border-bottom:2px solid #EEF0F6;
+  .plan-head{display:flex;align-items:center;gap:16px;padding:24px 36px 18px;border-bottom:2px solid var(--line);
     font-size:31px;font-weight:800;color:var(--card-ink);letter-spacing:-.01em;}
   .plan-head .ico{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
     background:linear-gradient(135deg,var(--lav-deep),var(--purple));flex:none;}
   .plan-rows{padding:10px 36px 18px;}
-  .plan-rows .pr{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1.5px solid #F0F2F8;}
+  .plan-rows .pr{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1.5px solid var(--line);}
   .plan-rows .pr:last-child{border-bottom:none;}
   .plan-rows .pr .h{font-size:28px;font-weight:700;color:var(--card-ink-soft);}
   .plan-rows .pr .m{font-size:25px;font-weight:600;color:var(--ink-faint);}
@@ -352,7 +359,7 @@
     background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round'><path d='M5 12.5l4.5 4.5L19 7.5'/></svg>") center/15px 15px no-repeat,
     linear-gradient(135deg,var(--lav-deep),var(--purple));}
   .plan-list li b{color:var(--card-ink);}
-  .plan-list li.gd b{color:var(--gold-deep);}
+  .plan-list li.gd b{color:var(--gold);}
   /* colagem de materiais (passo 1 / passo 2) */
   .collage{position:relative;}
   .collage .shot{position:absolute;}
@@ -376,51 +383,51 @@
   .price-list{display:flex;flex-direction:column;gap:24px;width:100%;max-width:1460px;align-self:center;}
   .price-list .pi{display:flex;align-items:baseline;gap:22px;font-size:35px;line-height:1.25;color:var(--ink-soft);}
   .price-list .pi .k strong{color:var(--paper);}
-  .price-list .pi .dots{flex:1;border-bottom:3px dotted rgba(195,190,249,.28);transform:translateY(-8px);min-width:60px;}
+  .price-list .pi .dots{flex:1;border-bottom:3px dotted rgba(183,173,253,.28);transform:translateY(-8px);min-width:60px;}
   .price-list .pi .v{font-family:'DegularDemo','Poppins',sans-serif;font-weight:700;font-size:38px;color:var(--red-bright);white-space:nowrap;}
   .price-list .pi .v.im{font-family:'Poppins',sans-serif;font-weight:800;font-size:32px;}
   .offer-foot{font-size:36px;font-weight:700;color:var(--ink-soft);line-height:1.35;}
   .offer-foot strong{color:var(--paper);}
   .price-tag{position:relative;transform:rotate(-2.5deg);
-    background:linear-gradient(135deg,#FFEDAD 0%,#F9E08A 42%,#E3BC45 100%);
+    background:linear-gradient(135deg,#FFE07A 0%,#F5CF4A 42%,#E0B43A 100%);
     border-radius:36px;padding:64px 120px 60px 190px;
-    box-shadow:0 60px 140px rgba(249,224,138,.3), 0 30px 80px rgba(0,4,18,.55);}
+    box-shadow:0 60px 140px rgba(245,207,74,.3), 0 30px 80px rgba(0,0,0,.55);}
   .pt-eyelet{position:absolute;left:66px;top:50%;transform:translateY(-50%);
     width:52px;height:52px;border-radius:50%;background:var(--bg-1);
     box-shadow:inset 0 0 0 9px #B8922F, 0 3px 10px rgba(0,0,0,.3);}
   .pt-body{display:flex;flex-direction:column;align-items:center;text-align:center;}
-  .pt-k{font-size:31px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#7A5E10;}
-  .pt-old{position:relative;display:inline-block;font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:76px;line-height:1;color:rgba(16,27,62,.5);margin-top:30px;}
+  .pt-k{font-size:31px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#4A3B08;}
+  .pt-old{position:relative;display:inline-block;font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:76px;line-height:1;color:rgba(26,22,8,.5);margin-top:30px;}
   .pt-old::after{content:'';position:absolute;left:-5%;right:-5%;top:52%;height:7px;border-radius:9px;
     background:linear-gradient(90deg,var(--red-bright),var(--red));transform:rotate(-5deg);}
-  .pt-new{font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:200px;line-height:.95;letter-spacing:.01em;color:#101B3E;margin-top:8px;}
-  .pt-sub{margin-top:24px;font-size:58px;font-weight:800;color:rgba(16,27,62,.82);}
+  .pt-new{font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:200px;line-height:.95;letter-spacing:.01em;color:var(--gold-ink);margin-top:8px;}
+  .pt-sub{margin-top:24px;font-size:58px;font-weight:800;color:rgba(26,22,8,.85);}
   /* quebra de objeção: SIM gigante (tela 17) */
   .yes-hero{font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:300px;line-height:.92;letter-spacing:.01em;
     background:linear-gradient(135deg,var(--gold-bright),var(--gold) 45%,var(--gold-deep));
     -webkit-background-clip:text;background-clip:text;color:transparent;
-    filter:drop-shadow(0 20px 60px rgba(249,224,138,.25));}
+    filter:drop-shadow(0 20px 60px rgba(245,207,74,.25));}
   .obj-q{font-size:54px;font-weight:700;color:var(--lav);line-height:1.25;}
   .obj-q::before{content:'“';}
   .obj-q::after{content:'”';}
   .yes-chips{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
-  .yes-chips .yc{font-size:29px;font-weight:700;color:var(--paper);border:1.5px solid rgba(195,190,249,.35);
-    background:rgba(195,190,249,.08);padding:14px 32px;border-radius:999px;}
+  .yes-chips .yc{font-size:29px;font-weight:700;color:var(--paper);border:1.5px solid rgba(183,173,253,.35);
+    background:rgba(183,173,253,.08);padding:14px 32px;border-radius:999px;}
 
   /* overrides do bloco método em fundo claro */
-  .slide.light .wcard{border:1.5px solid #E6E9F2;box-shadow:0 18px 44px rgba(28,37,64,.12);}
-  .slide.light .shot{border:1.5px solid #E9ECF5;box-shadow:0 22px 52px rgba(28,37,64,.18);}
-  .slide.light .gold-note{background:rgba(201,155,24,.08);border-color:rgba(200,155,24,.35);
-    border-left-color:var(--gold-deep);color:var(--card-ink-soft);}
-  .slide.light .gold-note b{color:var(--gold-deep);}
+  .slide.light .wcard{border:1.5px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.12);}
+  .slide.light .shot{border:1.5px solid var(--line);box-shadow:0 22px 52px rgba(0,0,0,.18);}
+  .slide.light .gold-note{background:rgba(224,180,58,.08);border-color:rgba(224,180,58,.35);
+    border-left-color:var(--gold);color:var(--card-ink-soft);}
+  .slide.light .gold-note b{color:var(--gold);}
   .gold-note .gn-ico{flex:none;width:44px;height:44px;color:var(--gold);}
   .gold-note .gn-ico svg{width:100%;height:100%;}
-  .slide.light .gold-note .gn-ico{color:var(--gold-deep);}
-  .slide.light .step-tag{box-shadow:0 12px 30px rgba(84,33,161,.3);}
+  .slide.light .gold-note .gn-ico{color:var(--gold);}
+  .slide.light .step-tag{box-shadow:0 12px 30px rgba(91,79,176,.3);}
 
   /* ---- nav ---- */
   .nav{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:18px;
-    background:rgba(1,11,36,.8);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:10px 18px;
+    background:rgba(11,11,15,.8);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:999px;padding:10px 18px;
     opacity:0;transition:opacity .3s ease;pointer-events:none;}
   body.show-nav .nav{opacity:1;pointer-events:auto;}
   .nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--paper);cursor:pointer;display:flex;align-items:center;justify-content:center;}
@@ -435,42 +442,42 @@
 
   /* ---- capa: nome do lead como herói (substitui a cover-img do lançamento) ---- */
   .capa{align-items:center;text-align:center;justify-content:center;}
-  .capa .mark{width:104px;height:104px;background:url("assets/img/logo-olho-branca.svg") center/contain no-repeat;margin-bottom:44px;}
+  .capa .mark{width:440px;height:127px;background:url("assets/img/vde-concursos-branco.png") center/contain no-repeat;margin-bottom:52px;}
   .capa .kick{font-size:23px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--lav);}
   .capa h1{margin-top:28px;font-size:150px;line-height:1;}
   .capa .capsub{margin-top:30px;font-size:44px;font-weight:600;color:var(--ink-soft);}
   .capa .capsub b{color:var(--gold);font-weight:700;}
   .capmeta{display:flex;gap:18px;margin-top:64px;}
   .capmeta > div{min-width:300px;display:flex;flex-direction:column;gap:9px;padding:26px 34px;border-radius:20px;
-    background:rgba(195,190,249,.07);border:1.5px solid var(--line);}
+    background:rgba(183,173,253,.07);border:1.5px solid var(--line);}
   .capmeta .k{font-size:18px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);}
   .capmeta .v{font-size:30px;font-weight:700;color:var(--paper);}
 
   /* ---- assinatura do bloco 1: tudo aqui vem das respostas do quiz ---- */
   .pz-tag{display:inline-flex;align-items:center;gap:15px;align-self:flex-start;margin-bottom:26px;
-    background:linear-gradient(135deg,rgba(249,224,138,.16),rgba(249,224,138,.06));
+    background:linear-gradient(135deg,rgba(245,207,74,.16),rgba(245,207,74,.06));
     border:2px solid var(--gold);border-radius:999px;padding:11px 30px 11px 14px;
-    box-shadow:0 10px 30px rgba(249,224,138,.12);}
+    box-shadow:0 10px 30px rgba(245,207,74,.12);}
   .pz-tag .n{flex:none;width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,#E0B429,var(--gold-deep));}
-  .pz-tag .n svg{width:25px;height:25px;stroke:#fff;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
-  .pz-tag .t{font-size:24px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gold-bright);}
-  .slide.light .pz-tag{background:rgba(201,155,24,.09);border-color:var(--gold-deep);box-shadow:none;}
-  .slide.light .pz-tag .t{color:var(--gold-deep);}
+    background:linear-gradient(135deg,#F5CF4A,var(--gold-deep));}
+  .pz-tag .n svg{width:25px;height:25px;stroke:var(--gold-ink);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+  .pz-tag .t{font-size:24px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);}
+  .slide.light .pz-tag{background:rgba(245,207,74,.08);border-color:var(--gold);box-shadow:none;}
+  .slide.light .pz-tag .t{color:var(--gold);}
 
   /* ---- ficha das respostas (tela 1) ---- */
   .kv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;width:100%;max-width:1660px;align-self:center;margin-top:16px;}
-  .kv{background:#fff;border:1.5px solid #E6E9F2;border-radius:20px;border-top:7px solid var(--lav-deep);
-    padding:28px 30px 30px;box-shadow:0 16px 40px rgba(28,37,64,.10);display:flex;flex-direction:column;gap:12px;}
+  .kv{background:var(--card);border:1.5px solid var(--line);border-radius:20px;border-top:7px solid var(--lav-deep);
+    padding:28px 30px 30px;box-shadow:0 16px 40px rgba(0,0,0,.10);display:flex;flex-direction:column;gap:12px;}
   .kv .k{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);}
-  .kv .k svg{width:22px;height:22px;stroke:var(--purple);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
+  .kv .k svg{width:22px;height:22px;stroke:var(--lav);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;}
   .kv .v{font-size:31px;font-weight:700;line-height:1.24;color:var(--card-ink);letter-spacing:-.01em;}
-  .kv.hot{border-top-color:var(--gold-deep);}
-  .kv.hot .v{color:var(--gold-deep);}
+  .kv.hot{border-top-color:var(--gold);}
+  .kv.hot .v{color:var(--gold);}
 
   /* ---- cartão do diagnóstico (tela 2) ---- */
   .diag{display:flex;align-items:stretch;gap:0;margin:64px auto 0;max-width:1580px;width:100%;
-    background:rgba(195,190,249,.07);border:1.5px solid var(--line);border-radius:24px;overflow:hidden;}
+    background:rgba(183,173,253,.07);border:1.5px solid var(--line);border-radius:24px;overflow:hidden;}
   .diag > div{flex:1;padding:28px 34px;display:flex;flex-direction:column;gap:10px;justify-content:center;}
   .diag > div + div{border-left:1.5px solid var(--line);}
   .diag .k{font-size:18px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);}
@@ -484,35 +491,41 @@
   .plan-lg .plan-list li{font-size:31px;line-height:1.34;padding-left:52px;}
   .plan-lg .plan-list li::before{width:34px;height:34px;background-size:19px 19px,100%;}
 
+  /* ---- painel de ritmo (tela 4): descrição no lugar dos meses ---- */
+  .trow.rt{flex-direction:column;align-items:flex-start;gap:2px;padding:11px 18px;}
+  .trow.rt .hrs{font-size:28px;}
+  .trow.rt .desc{font-size:21px;line-height:1.3;color:var(--ink-dim);}
+  .trow.rt.you .desc{color:var(--card-ink-soft);}
+
   /* ---- "a sua linha" no painel de cronograma (tela 4) ---- */
-  .trow.you{background:rgba(84,33,161,.09);border-radius:16px;}
-  .trow.you .hrs b,.trow.you .mo .n{color:var(--purple);}
+  .trow.you{background:rgba(183,173,253,.10);border-radius:16px;}
+  .trow.you .hrs b,.trow.you .mo .n{color:var(--lav);}
   .you-badge{display:inline-flex;align-items:center;margin-left:16px;vertical-align:middle;
     background:linear-gradient(135deg,var(--lav-deep),var(--purple));color:#fff;
     font-size:18px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
-    padding:6px 15px;border-radius:999px;box-shadow:0 6px 16px rgba(84,33,161,.3);}
+    padding:6px 15px;border-radius:999px;box-shadow:0 6px 16px rgba(91,79,176,.3);}
 
   /* ---- o passo a passo em um slide (visão geral do método) ---- */
   .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;width:100%;max-width:1680px;align-self:center;margin-top:52px;}
-  .stp{background:linear-gradient(165deg,rgba(18,53,119,.5),rgba(2,32,83,.3));border:1.5px solid var(--line);
+  .stp{background:linear-gradient(165deg,rgba(30,27,51,.5),rgba(21,21,28,.3));border:1.5px solid var(--line);
     border-radius:22px;padding:32px 28px 30px;display:flex;flex-direction:column;gap:16px;}
   .stp .n{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--lav-deep),var(--purple));box-shadow:0 10px 26px rgba(84,33,161,.45);
+    background:linear-gradient(135deg,var(--lav-deep),var(--purple));box-shadow:0 10px 26px rgba(91,79,176,.45);
     font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:36px;color:#fff;}
   .stp .t{font-size:30px;font-weight:800;color:var(--paper);line-height:1.16;letter-spacing:-.01em;}
   .stp .d{font-size:24px;line-height:1.38;color:var(--ink-dim);}
-  .stp.gd{border-color:rgba(249,224,138,.42);}
-  .stp.gd .n{background:linear-gradient(135deg,#E0B429,var(--gold-deep));box-shadow:0 10px 26px rgba(200,155,24,.4);}
-  .stp.gd .t{color:var(--gold-bright);}
+  .stp.gd{border-color:rgba(245,207,74,.42);}
+  .stp.gd .n{color:var(--gold-ink);background:linear-gradient(135deg,#F5CF4A,var(--gold-deep));box-shadow:0 10px 26px rgba(224,180,58,.4);}
+  .stp.gd .t{color:var(--gold);}
 
   /* ---- retorno declarado x investimento (fechamento) ---- */
   .roi{display:grid;grid-template-columns:1fr auto 1fr;gap:56px;align-items:center;width:100%;max-width:1620px;align-self:center;margin-top:64px;}
   .roi-card{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;
-    border:1.5px solid var(--line);border-radius:28px;padding:48px 44px;background:rgba(195,190,249,.06);}
+    border:1.5px solid var(--line);border-radius:28px;padding:48px 44px;background:rgba(183,173,253,.06);}
   .roi-card .k{font-size:22px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);}
   .roi-card .n{font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:110px;line-height:1;color:var(--paper);}
   .roi-card .u{font-size:28px;color:var(--ink-dim);}
-  .roi-card.gd{border-color:rgba(249,224,138,.45);background:linear-gradient(160deg,rgba(249,224,138,.12),rgba(249,224,138,.03));}
+  .roi-card.gd{border-color:rgba(245,207,74,.45);background:linear-gradient(160deg,rgba(245,207,74,.12),rgba(245,207,74,.03));}
   .roi-card.gd .n{background:linear-gradient(135deg,var(--gold-bright),var(--gold) 45%,var(--gold-deep));
     -webkit-background-clip:text;background-clip:text;color:transparent;padding:.04em .02em;}
   .roi .vs{font-size:40px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);}
@@ -521,7 +534,7 @@
   .nx{display:flex;flex-direction:column;gap:26px;width:100%;max-width:1460px;align-self:center;margin-top:52px;}
   .nx li{list-style:none;display:flex;align-items:flex-start;gap:26px;font-size:36px;line-height:1.34;color:var(--ink-soft);}
   .nx li .n{flex:none;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-    background:linear-gradient(135deg,var(--lav-deep),var(--purple));box-shadow:0 8px 22px rgba(84,33,161,.45);
+    background:linear-gradient(135deg,var(--lav-deep),var(--purple));box-shadow:0 8px 22px rgba(91,79,176,.45);
     font-family:'DegularDemo','Poppins',sans-serif;font-weight:900;font-size:32px;color:#fff;}
   .nx li strong{color:var(--paper);}
 
@@ -533,7 +546,7 @@
   .notes{display:none;}
   body.show-notes .slide.active .notes{
     display:block;position:absolute;left:0;right:0;bottom:0;z-index:30;
-    background:rgba(1,11,36,.94);border-top:3px solid var(--gold);
+    background:rgba(11,11,15,.94);border-top:3px solid var(--gold);
     padding:34px 132px 36px;text-align:left;
   }
   body.show-notes .slide.active .notes .nk{
@@ -550,22 +563,22 @@
 
   <!-- ==========================================================
        BLOCO 1 — O CASO DELA (capa a 4). Todo texto com data-var sai
-       das respostas do quiz (quiz-tribunais/). Tecle "v" pra ver quais.
+       das respostas do quiz (Diagnóstico da Base, Carreiras Jurídicas). Tecle "v" pra ver quais.
        ========================================================== -->
 
   <!-- ===== capa ===== -->
   <section class="slide bg-eye active" data-slide="capa">
     <div class="canvas center capa">
       <span class="mark" aria-hidden="true"></span>
-      <span class="kick">Plano de ação · VDE Tribunais</span>
+      <span class="kick">Plano de ação · VDE Carreiras Jurídicas</span>
       <h1><span class="em-gold" data-var="nome">Rafael</span></h1>
-      <p class="capsub"><span data-var="cargo">Analista judiciário</span> · <span data-var="alvo">TRT</span> · <b data-var="edital">edital previsto pros próximos meses</b></p>
+      <p class="capsub"><span data-var="cargo">Juiz de direito</span> · <span data-var="alvo">Magistratura</span> · <b data-var="edital">edital previsto pros próximos meses</b></p>
       <div class="capmeta">
         <div><span class="k">Diagnóstico da Base</span><span class="v">já enviado no WhatsApp</span></div>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Abra pelo nome, pelo cargo e pelo tribunal. Confirme que ela recebeu e leu o raio-X: <b>"você conseguiu ler o documento que eu te mandei?"</b></p>
+      <p>Abra pelo nome, pelo cargo e pela carreira. Confirme que ela recebeu e leu o raio-X: <b>"você conseguiu ler o documento que eu te mandei?"</b></p>
       <p>Não comece falando de curso nem de preço. As quatro primeiras telas são sobre ela.</p>
     </div>
   </section>
@@ -577,14 +590,14 @@
       <div class="pz-tag"><span class="n"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t">Das suas respostas</span></div>
       <h2 class="slide-title" style="font-size:62px;"><span data-var="nome">Rafael</span>, isto foi o que você me contou.</h2>
       <div class="kv-grid" style="margin-top:44px;">
-        <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Alvo</span><span class="v" data-var="alvo_full">Tribunal Regional do Trabalho</span></div>
-        <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Cargo</span><span class="v" data-var="cargo">Analista judiciário</span></div>
+        <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Alvo</span><span class="v" data-var="alvo_full">Magistratura</span></div>
+        <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 21v-2a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Cargo</span><span class="v" data-var="cargo">Juiz de direito</span></div>
         <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg>Formação</span><span class="v" data-var="formacao">Bacharel em Direito</span></div>
         <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>Estudando há</span><span class="v" data-var="tempo">2 a 4 anos</span></div>
-        <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>Provas já feitas</span><span class="v" data-var="provas">Fica perto do corte e não passa</span></div>
+        <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg>Provas já feitas</span><span class="v" data-var="provas">Fica perto do corte ou cai na discursiva</span></div>
         <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg>Tempo por dia</span><span class="v" data-var="horas">Entre 2 e 3 horas</span></div>
         <div class="kv"><span class="k"><svg viewBox="0 0 24 24"><path d="M14 3v5h5"/><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9l5 5v13Z"/></svg>Edital na mira</span><span class="v" data-var="edital_curto">Previsto pros próximos meses</span></div>
-        <div class="kv hot"><span class="k"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>Maior gargalo</span><span class="v" data-var="dor">Não sabe o que a FGV e a FCC cobram</span></div>
+        <div class="kv hot"><span class="k"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>Maior gargalo</span><span class="v" data-var="dor">Trava na discursiva, na peça ou na sentença</span></div>
       </div>
       <div class="fnote" style="margin-top:38px;">
         <span class="fico"><svg viewBox="0 0 24 24"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/></svg></span>
@@ -605,14 +618,14 @@
       <div class="statement" style="margin:0 auto;" data-var="diagnostico">O que está entre você e a posse é a <span class="em-gold">formação de base</span>.</div>
       <div class="diag">
         <div><span class="k">Momento</span><span class="v" data-var="momento">Veterano travado no corte</span></div>
-        <div><span class="k">Nível no teste</span><span class="v" data-var="nivel">3 de 4 acertos, nível avançado</span></div>
-        <div><span class="k">Curso indicado</span><span class="v gd" data-var="curso">Curso TRT</span></div>
-        <div><span class="k">Prazo da base</span><span class="v gd" data-var="prazo">Entre 8 e 12 meses</span></div>
+        <div><span class="k">Nível no teste</span><span class="v" data-var="nivel">3 de 5 acertos, nível intermediário</span></div>
+        <div><span class="k">Curso indicado</span><span class="v gd" data-var="curso">Formação de Base</span></div>
+        <div><span class="k">Seu ritmo</span><span class="v gd" data-var="prazo">Acima do padrão: a base fecha antes</span></div>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
       <p>Leia a frase do diagnóstico e <b>pare</b>. Pergunte "faz sentido pra você?" e espere a resposta. É aqui que ela concorda com o problema, e sem isso nada do resto vende.</p>
-      <p>Os quatro campos de baixo são a sua cola: momento, nível, curso e prazo. Não precisa ler todos em voz alta.</p>
+      <p>Os quatro campos de baixo são a sua cola: momento, nível, curso e ritmo. Não precisa ler todos em voz alta.</p>
     </div>
   </section>
 
@@ -621,19 +634,16 @@
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
       <div class="pz-tag"><span class="n"><svg viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 2.4 17.5A2 2 0 0 0 4.1 20.5h15.8a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg></span><span class="t">O seu gargalo</span></div>
-      <h2 class="slide-title" style="font-size:62px;" data-var="dor_titulo">Você disse que não sabe o que a <span class="ul">FGV e a FCC cobram</span> de verdade.</h2>
+      <h2 class="slide-title" style="font-size:62px;" data-var="dor_titulo">Você disse que <span class="ul">trava na discursiva</span>, na peça ou na sentença.</h2>
       <div style="margin-top:46px;" data-var="dor_texto">
         <div class="icard" style="font-size:34px;">
-          Isso se resolve dentro do material. No <b>Caderno de Leis e Informativos</b> cada artigo vem com a <span class="hl">análise de incidência nas últimas provas</span>: quantas vezes o dispositivo já foi cobrado, por qual banca e em qual cargo.
+          Quem trava na discursiva quase nunca sabe menos. Sabe de um jeito que serve pra marcar alternativa, e a segunda fase cobra outra coisa: fundamentar, organizar e escrever no tempo da prova.
         </div>
         <div class="icard" style="font-size:34px;">
-          Logo depois da leitura vêm as <b>questões comentadas do mesmo tema</b>. Você lê o artigo sabendo o peso dele e resolve no mesmo dia, com o gabarito explicado.
+          Escrita jurídica é treino. Uma questão discursiva por semana, corrigida pelo espelho da banca, já muda a sua segunda fase daqui a um ano.
         </div>
       </div>
-      <div class="gold-note" style="margin-top:38px;align-self:flex-start;" data-var="dor_nota">
-        <span class="gn-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z"/></svg></span>
-        <span><b>É assim que a banca deixa de ser adivinhação:</b> você estuda pelo que ela já cobrou.</span>
-      </div>
+      <div class="gold-note" style="margin-top:38px;align-self:flex-start;" data-var="dor_nota"></div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
       <p>Este slide troca de conteúdo conforme o gargalo que ela marcou no quiz. Leia o título, confirme com ela (<b>"é isso que mais te incomoda hoje?"</b>) e só então mostre a solução.</p>
@@ -646,32 +656,26 @@
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
       <div class="pz-tag"><span class="n"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span><span class="t">O seu tempo</span></div>
-      <h2 class="slide-title" style="font-size:60px;" data-var="prazo_titulo">Com <span class="ul">2 a 3 horas por dia</span>, a sua base fecha entre 8 e 12 meses.</h2>
-      <div class="split" style="grid-template-columns:1fr 1fr;margin-top:44px;align-items:start;gap:56px;">
-        <div class="course trt" data-var="curso_painel">
-          <div class="course-head">
-            <span class="ch-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
-            <span class="cn">Curso TRT</span>
-          </div>
-          <div class="course-body">
-            <div class="trow you"><span class="hrs"><b>2h</b> por dia<span class="you-badge">o seu hoje</span></span><span class="mo"><span class="n">12</span><span class="u">meses</span></span></div>
-            <div class="trow rec"><span class="hrs"><b>3h</b> por dia<span class="rec-badge">recomendado</span></span><span class="mo"><span class="n">8</span><span class="u">meses</span></span></div>
-            <div class="trow"><span class="hrs"><b>4h</b> por dia</span><span class="mo"><span class="n">6</span><span class="u">meses</span></span></div>
-          </div>
-        </div>
+      <h2 class="slide-title" style="font-size:52px;max-width:1650px;" data-var="prazo_titulo">Com <span class="ul">2 a 3 horas</span> por dia, o cronograma se ajusta ao seu tempo.</h2>
+      <div class="split" style="grid-template-columns:1fr 1fr;margin-top:34px;align-items:start;gap:56px;">
+        <!-- PENDENTE: confirmar prazos (meses de base por horas/dia) do cronograma de
+             Carreiras Jurídicas. Enquanto não houver número oficial, o painel mostra só
+             o ritmo (RITMOS de diagnosis/profile.py), sem meses. Preenchido por
+             apresentacao._curso_painel_html. -->
+        <div class="course trt" data-var="curso_painel"></div>
         <div style="display:flex;flex-direction:column;gap:30px;">
-          <div class="icard" style="font-size:33px;background:#fff;border-color:#E6E9F2;border-left-color:var(--purple);color:var(--card-ink-soft);">
+          <div class="icard" style="font-size:33px;border-left-color:var(--lav-deep);">
             Você não precisa de muito tempo por dia. Precisa de <b style="color:var(--card-ink);">constância</b>. O cronograma nasce dimensionado pelo tempo real que você tem e diz, todo dia, qual tema estudar.
           </div>
           <div class="gold-note" style="font-size:31px;padding:26px 36px;">
         <span class="gn-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z"/></svg></span>
-        <span><b>Uma hora a mais por dia tira quatro meses do caminho.</b> É a conta que a gente faz junto na hora de escolher o cronograma.</span>
+        <span><b>Cada hora a mais por dia encurta o caminho.</b> A conta exata é a que a gente faz junto na hora de gerar o seu cronograma.</span>
       </div>
         </div>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>A linha roxa é o tempo que ela declarou no quiz. A dourada é o recomendado. Mostre a diferença <b>sem cobrar</b>: a decisão é dela.</p>
+      <p>A linha destacada é o tempo que ela declarou no quiz. Mostre as outras faixas <b>sem cobrar</b>: a decisão é dela. Não cite número de meses: o prazo exato sai do cronograma gerado na plataforma.</p>
       <p>Se ela marcou menos de 1 hora por dia, não venda prazo. Trate do realismo primeiro: onde cabe a segunda hora na rotina dela.</p>
     </div>
   </section>
@@ -687,55 +691,34 @@
     <div class="grid-floor"></div>
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <div class="statement" style="margin:0 auto;font-size:84px;">O plano de ação para você concretizar o <span class="em-gold">sonho da posse</span> nos concursos de tribunais com o VDE&nbsp;Concursos.</div>
+      <div class="statement" style="margin:0 auto;font-size:84px;">O plano de ação para você concretizar o <span class="em-gold">sonho da posse</span> na carreira jurídica com o VDE&nbsp;Concursos.</div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
       <p>Leia a frase inteira, devagar, e use o nome dela no meio: <b>"é isso que eu quero montar com você"</b>. É a tela que dá nome ao que vem depois, e a única coisa que ela tem que fazer é ser dita bem.</p>
-      <p>Duas coisas pra dizer em voz alta aqui, que saíram da tela pra não poluir: são <b>12 meses de acesso com tudo atualizado</b>, e <b>quem estuda pra analista cobre também o que cai pra técnico</b>, o contrário não acontece.</p>
+      <p>Duas coisas pra dizer em voz alta aqui, que saíram da tela pra não poluir: são <b>30 meses de acesso com tudo atualizado</b> (2 anos + 6 meses de bônus, só até 16/11 às 23h59), e a <b>Formação de Base é a mesma pra Juiz, Promotor, Procurador, Defensor e Delegado</b>: se o alvo mudar, a base continua valendo.</p>
     </div>
   </section>
 
   <!-- ===== 6 — o curso dele, com a grade ===== -->
-  <!-- A grade abaixo é a do curso TRT. Para um lead de TJ ou TRF, trocar o
-       cabeçalho por "Curso TJ / TRF · 16 disciplinas · 257 temas" e a lista por:
-       Língua Portuguesa · Raciocínio Lógico · Informática · Ética no Serviço
-       Público · Constitucional · Administrativo · Civil · Processo Civil ·
-       [hl] Penal · Processo Penal · Tributário e Financeiro (TRF) · Direitos
-       Humanos (TRF) · Previdenciário (TRF) · Difusos e Coletivos (TRF) ·
-       ECA (TRF) · Ambiental e Urbanístico (TRF). -->
+  <!-- Grade preenchida por apresentacao._curso_grade_html. A lista mostra
+       disciplinas que têm professor na página oficial do produto; o curso tem
+       23 disciplinas e mais de 420 temas. PENDENTE: confirmar a lista
+       completa das 23 (8 principais + 15 complementares). -->
   <section class="slide light" data-slide="6">
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
       <div class="pz-tag"><span class="n"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span class="t">O seu curso</span></div>
-      <h2 class="slide-title" style="font-size:60px;" data-var="curso_titulo">Você quer <span class="ul">TRT</span>, então o seu é o curso de TRT.</h2>
+      <h2 class="slide-title" style="font-size:60px;" data-var="curso_titulo">Você quer <span class="ul">Magistratura</span>, e a base é a mesma de toda carreira jurídica.</h2>
       <div class="comp-card trt" data-var="curso_grade" style="margin-top:40px;max-width:1660px;align-self:center;width:100%;">
-        <div class="comp-head" style="padding:26px 44px 20px;">
-          <span class="ct" style="font-size:40px;">Curso <span class="u">TRT</span></span>
-          <span class="cc" style="font-size:26px;">12 disciplinas · 179 temas</span>
-        </div>
-        <ul class="comp-list" style="display:grid;grid-template-columns:repeat(3,1fr);column-gap:44px;row-gap:2px;padding:26px 40px 30px;">
-          <li>Língua Portuguesa.</li>
-          <li>Raciocínio Lógico.</li>
-          <li>Informática.</li>
-          <li>Ética no Serviço Público.</li>
-          <li>Constitucional.</li>
-          <li>Administrativo.</li>
-          <li>Civil.</li>
-          <li>Processo Civil.</li>
-          <li>Previdenciário.</li>
-          <li>Direitos Humanos.</li>
-          <li class="hl">Trabalho.</li>
-          <li class="hl">Processo do Trabalho.</li>
-        </ul>
       </div>
       <div class="fnote" style="margin-top:36px;">
         <span class="fico"><svg viewBox="0 0 24 24"><path d="M12 8v8M8 12h8"/><circle cx="12" cy="12" r="9"/></svg></span>
-        <span>A matrícula é em um curso. Se o alvo mudar depois, o que você já estudou de base continua valendo, porque as duas grades têm a mesma espinha.</span>
+        <span>São 23 disciplinas (8 principais, comuns a todas as carreiras, e 15 complementares). Se o alvo mudar depois, a base que você já estudou continua valendo.</span>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Só o curso dela aparece. Diga por que, em uma frase (<b>"você quer TRT, então é este"</b>), aponte as duas disciplinas em dourado e siga. Não leia a lista inteira.</p>
-      <p>Se ela marcou "qualquer tribunal", pergunte com qual matéria tem mais afinidade, Trabalho ou Penal, decida na conversa e troque a grade antes da call.</p>
+      <p>Diga em uma frase que a Formação de Base é a mesma pra Juiz, Promotor, Procurador, Defensor e Delegado, aponte as disciplinas em dourado e siga. Não leia a lista inteira. A lista na tela é parte das 23: se ela perguntar por uma específica, confirme na plataforma.</p>
+      <p>Se ela marcou "qualquer carreira", não há curso pra escolher: a matrícula é a mesma, e a base serve pra todas.</p>
     </div>
   </section>
 
@@ -749,7 +732,7 @@
         <div class="stp gd">
           <span class="n">0</span>
           <span class="t">Cronograma</span>
-          <span class="d">Base ou personalizado, dimensionado pelas suas horas por dia.</span>
+          <span class="d">Dimensionado pelas suas horas por dia e pela carreira que você mira.</span>
         </div>
         <div class="stp">
           <span class="n">1</span>
@@ -764,11 +747,11 @@
         <div class="stp">
           <span class="n">3</span>
           <span class="t">Questões</span>
-          <span class="d">Questões comentadas do mesmo tema, no mesmo dia.</span>
+          <span class="d">Questões comentadas do mesmo tema, por banca e nível, no mesmo dia.</span>
         </div>
         <div class="stp">
           <span class="n">4</span>
-          <span class="t">Anotações</span>
+          <span class="t">Anotações &amp; Revisão</span>
           <span class="d">O que você errou vira caderno próprio, pra revisar depois.</span>
         </div>
       </div>
@@ -788,17 +771,18 @@
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
       <div class="step-tag"><span class="n"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h13"/><path d="M12 6l6 6-6 6"/></svg></span><span class="t">Passo zero</span></div>
-      <h2 class="slide-title" style="font-size:60px;">Gere o seu <span class="ul">cronograma de estudo</span>, base ou personalizado</h2>
+      <h2 class="slide-title" style="font-size:60px;">Gere o seu <span class="ul">cronograma de estudo</span> pelo seu tempo</h2>
       <div class="split" style="grid-template-columns:1.15fr 1fr;margin-top:44px;">
         <div class="shot"><img src="assets/img/metodo/app-cronograma.png" alt="Tela de cronograma da plataforma VDE"></div>
         <div style="display:flex;flex-direction:column;gap:26px;">
           <div class="wcard">
+            <!-- PENDENTE: confirmar prazos (meses por horas/dia) do cronograma base de Carreiras. -->
             <div class="plan-head"><span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="17" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/></svg></span>Cronograma base</div>
-            <div class="plan-rows">
-              <div class="pr"><span class="h">4h de estudo por dia</span><span class="m"><b>6</b>meses</span></div>
-              <div class="pr"><span class="h">3h de estudo por dia</span><span class="m"><b>8</b>meses</span></div>
-              <div class="pr"><span class="h">2h de estudo por dia</span><span class="m"><b>12</b>meses</span></div>
-            </div>
+            <ul class="plan-list">
+              <li>Você informa <b>quantas horas por dia</b> tem;</li>
+              <li>Ele distribui os <b>420+ temas</b> na ordem certa;</li>
+              <li>Você abre a plataforma sabendo <b>o tema do dia</b>.</li>
+            </ul>
           </div>
           <div class="wcard">
             <div class="plan-head"><span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>Cronograma personalizado</div>
@@ -813,7 +797,7 @@
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Mostre a tela antes de explicar. Depois diga qual linha do cronograma base é a dela, a mesma que apareceu na tela 4.</p>
+      <p>Mostre a tela antes de explicar. Depois lembre do tempo que ela declarou (tela 4): é com ele que o cronograma é gerado.</p>
       <p>O cronograma personalizado é a resposta pronta pra <b>"e se sair um edital agora?"</b>.</p>
     </div>
   </section>
@@ -828,7 +812,7 @@
         <ul class="bullets" style="margin-top:16px;gap:38px;">
           <li style="font-size:38px;">Material elaborado pelo <strong>nosso time de professores</strong>;</li>
           <li style="font-size:38px;">Engloba <strong>doutrina, jurisprudência, letra da lei</strong>, pegadinhas das bancas, tabelas e esquemas;</li>
-          <li style="font-size:38px;">Também das <strong>disciplinas não jurídicas</strong>;</li>
+          <li style="font-size:38px;">Cobre as <strong>23 disciplinas</strong> da Formação de Base;</li>
           <li style="font-size:38px;">Organizado <strong>por tema</strong>, na ordem do cronograma;</li>
         </ul>
         <div class="collage" style="height:700px;">
@@ -838,7 +822,7 @@
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>O ponto aqui é <b>aprofundamento</b>. Quem vem de resumo e de caderno de cursinho vai perguntar o tamanho: cada tema tem de 30 a 50 páginas.</p>
+      <p>O ponto aqui é <b>aprofundamento</b>. Quem vem de resumo e de caderno de cursinho vai perguntar o tamanho: mostre uma página na plataforma em vez de citar número.</p>
     </div>
   </section>
 
@@ -846,12 +830,12 @@
   <section class="slide" data-slide="10">
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <h2 class="slide-title" style="font-size:66px;">É material <span class="ul">completo e aprofundado</span>, feito pra tribunais.</h2>
+      <h2 class="slide-title" style="font-size:66px;">É material <span class="ul">completo e aprofundado</span>, feito pra carreiras jurídicas.</h2>
       <ul class="bullets" style="margin-top:48px;gap:32px;">
-        <li style="font-size:37px;">De <strong>30 a 50 páginas por tema</strong>, com a profundidade que a prova de analista pede;</li>
+        <li style="font-size:37px;"><strong>Mais de 420 temas</strong>, com a profundidade que a prova de carreira jurídica pede;</li>
         <li style="font-size:37px;"><strong>Jurisprudência na medida</strong> do que as bancas cobram, sem excesso;</li>
         <li style="font-size:37px;">Linguagem <strong>simples e direta</strong>, com tabelas e esquemas de memorização;</li>
-        <li style="font-size:37px;"><strong>Atualizações mensais</strong> durante todo o período de acesso: o último dia útil de cada mês do cronograma é reservado pra ler as novidades de lei e de jurisprudência.</li>
+        <li style="font-size:37px;"><strong>Atualizações jurídicas mensais</strong> durante todo o período de acesso, com as novidades de lei e de jurisprudência.</li>
       </ul>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
@@ -891,14 +875,14 @@
       <h2 class="slide-title" style="font-size:60px;">Resolução de <span class="ul">questões</span></h2>
       <div class="split" style="grid-template-columns:640px 1fr;margin-top:48px;">
         <div class="qhero" style="text-align:center;">
-          <span class="qn">+75<span style="font-size:.5em;">mil</span></span>
+          <span class="qn">+100<span style="font-size:.5em;">mil</span></span>
           <div class="ql">questões comentadas<br>no banco do VDE</div>
         </div>
         <ul class="bullets" style="margin-top:0;gap:36px;">
           <li style="font-size:36px;">Banco de questões <strong>próprio, dentro da plataforma</strong>;</li>
           <li style="font-size:36px;">Você <strong class="gold">não precisa pagar assinatura</strong> de outra plataforma de questões;</li>
-          <li style="font-size:36px;">Todas com <strong>gabarito comentado</strong> e espaço de comentários dos alunos;</li>
-          <li style="font-size:36px;">A meta se guia pelo tempo: <strong>30 minutos a 1 hora por dia</strong>, com mínimo de 20 questões.</li>
+          <li style="font-size:36px;">Comentadas <strong>alternativa por alternativa</strong>;</li>
+          <li style="font-size:36px;">Filtros por <strong>banca, tema e nível</strong>, pra treinar no padrão da sua prova.</li>
         </ul>
       </div>
     </div>
@@ -907,29 +891,28 @@
     </div>
   </section>
 
-  <!-- ===== 13 — videoaulas ===== -->
+  <!-- ===== 13 — vic.IA ===== -->
   <section class="slide bg-eye" data-slide="13">
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <h2 class="slide-title" style="font-size:64px;">As videoaulas são das <span class="ul">disciplinas não jurídicas</span>.</h2>
-      <p class="lead" style="font-size:38px;">Quem quer velocidade com qualidade não passa o dia assistindo vídeo. Por isso o VDE Tribunais concentra a videoaula onde ela realmente resolve:</p>
+      <h2 class="slide-title" style="font-size:64px;">A sua dúvida tem resposta na hora: a <span class="ul">vic.IA</span>.</h2>
+      <p class="lead" style="font-size:38px;">Quem estuda sozinho perde tempo travado numa dúvida. A vic.IA é a inteligência artificial do VDE, dentro da plataforma:</p>
       <div class="split" style="grid-template-columns:1fr 1fr;margin-top:46px;align-items:start;gap:56px;">
         <div>
           <ul class="bullets" style="margin-top:0;gap:30px;">
-            <li style="font-size:40px;"><strong>Português</strong></li>
-            <li style="font-size:40px;"><strong>Raciocínio Lógico</strong></li>
-            <li style="font-size:40px;"><strong>Informática</strong></li>
-            <li style="font-size:40px;"><strong>Ética no Serviço Público</strong></li>
+            <li style="font-size:40px;"><strong>Responde dúvidas</strong></li>
+            <li style="font-size:40px;"><strong>Cria resumos e tabelas</strong></li>
+            <li style="font-size:40px;"><strong>Faz revisões com você</strong></li>
           </ul>
         </div>
         <div class="icard" style="font-size:33px;border-left-color:var(--gold);">
-          São as disciplinas que <b>todo edital de tribunal cobra</b> e que pesam muito na nota de corte. Quem vem de outra área começa <span class="hl">do zero</span> nelas, e a videoaula existe justamente pra isso.
+          Ela foi treinada nos <b>materiais do VDE, na legislação e na jurisprudência</b>. A resposta vem no mesmo padrão do material que você está estudando, <span class="hl">no momento em que a dúvida aparece</span>.
         </div>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Slide obrigatório pra quem marcou medo das não jurídicas ou errou Português e RLM no teste. Diga a frase com confiança: <b>"nessas quatro você tem videoaula do zero"</b>.</p>
-      <p>Se ela perguntar por videoaula de direito, explique a escolha: leitura mais questão avança mais rápido que vídeo.</p>
+      <p>Mostre a vic.IA como o "professor de plantão": a dúvida não espera fórum nem aula. Bom gancho pra quem marcou que estuda sozinho ou no improviso.</p>
+      <p><b>O curso não tem videoaula.</b> Se ela perguntar, explique a escolha (leitura mais questão avança mais rápido que vídeo) e, se ela fizer questão, as videoaulas existem como <b>upgrade opcional, vendido à parte</b>.</p>
     </div>
   </section>
 
@@ -937,29 +920,29 @@
   <section class="slide light" data-slide="14">
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <h2 class="slide-title" style="text-align:center;align-self:center;font-size:64px;">Como você <span class="ul">mede o avanço</span> todo mês.</h2>
+      <h2 class="slide-title" style="text-align:center;align-self:center;font-size:64px;">Como você <span class="ul">mede o avanço</span>.</h2>
       <div class="split" style="grid-template-columns:1.12fr 1fr;margin-top:64px;align-items:start;gap:56px;max-width:1660px;align-self:center;">
         <div class="wcard plan-lg" style="padding:0;">
-          <div class="plan-head"><span class="ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Simulados mensais</div>
+          <div class="plan-head"><span class="ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Simulados</div>
           <ul class="plan-list" style="padding-bottom:30px;">
-            <li>Todo cronograma, base ou personalizado, já vem com <b>datas de simulado definidas</b>;</li>
-            <li>No estilo das <b>bancas clássicas</b> ou reproduzindo provas anteriores;</li>
-            <li>Pode ser <b>refeito</b> quantas vezes quiser;</li>
-            <li class="gd"><b>Análise de desempenho no fim e nota registrada na plataforma.</b></li>
+            <li>No estilo das <b>grandes bancas</b> de carreira jurídica;</li>
+            <li>Com <b>gabarito comentado</b>, pra treino;</li>
+            <li class="gd"><b>A sua nota vira número de verdade, não sensação.</b></li>
           </ul>
         </div>
         <div class="wcard plan-lg" style="padding:0;">
-          <div class="plan-head"><span class="ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>Redações mensais</div>
+          <div class="plan-head"><span class="ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h16"/><path d="M7 19V9M12 19V5M17 19v-7"/></svg></span>Indicadores de desempenho</div>
           <ul class="plan-list" style="padding-bottom:30px;">
-            <li>Uma redação por mês, <b>para treino</b>, nos dois cursos;</li>
-            <li class="gd"><b>Com gabarito comentado</b>, pra você comparar o seu texto com o padrão de resposta.</li>
+            <li>O seu avanço <b>registrado na plataforma</b>;</li>
+            <li><b>Edital verticalizado</b>, pra saber o que já foi coberto;</li>
+            <li class="gd"><b>Você vê onde está forte e onde precisa voltar.</b></li>
           </ul>
         </div>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Aqui você responde <b>"como eu sei que está funcionando?"</b>. O simulado dá a nota todo mês, e a redação treina a parte que ninguém treina sozinho.</p>
-      <p><b>A redação não tem correção individual.</b> Ela vale nos dois cursos e vem com gabarito comentado. Se ela perguntar por correção de professor, diga isso com clareza: o ganho é o treino e a comparação com o padrão de resposta.</p>
+      <p>Aqui você responde <b>"como eu sei que está funcionando?"</b>. O simulado dá a nota, e os indicadores mostram o avanço por disciplina.</p>
+      <p>Não prometa correção individual de discursiva, peça ou sentença: isso não está na página do produto. PENDENTE confirmar com a coordenação o que existe de treino de segunda fase.</p>
     </div>
   </section>
 
@@ -978,7 +961,7 @@
       <p class="lead" style="text-align:center;align-self:center;max-width:1320px;margin-top:44px;">É o <strong>cronograma personalizado</strong>: você monta a reta final com a matéria do edital e o material continua o mesmo.</p>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Use quando ela disser que a prova está perto. Não prometa aprovação em reta final: prometa <b>cobertura do edital no tempo que existe</b> e base pro próximo.</p>
+      <p>(PENDENTE: confirmar que o cronograma personalizado existe em Carreiras Jurídicas.) Use quando ela disser que a prova está perto. Não prometa aprovação em reta final: prometa <b>cobertura do edital no tempo que existe</b> e base pro próximo.</p>
     </div>
   </section>
 
@@ -992,7 +975,7 @@
     <div class="grid-floor"></div>
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <div class="statement" style="font-size:80px;">Quanto custa <span class="em-gold">fazer parte</span> do VDE Tribunais?</div>
+      <div class="statement" style="font-size:80px;">Quanto custa <span class="em-gold">fazer parte</span> do VDE Carreiras Jurídicas?</div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
       <p>Só chegue aqui depois de ela concordar com o diagnóstico e ver o método. Se ainda houver dúvida do método, volte, não avance.</p>
@@ -1003,21 +986,24 @@
   <section class="slide offer bg-eye" data-slide="17">
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <h2 class="slide-title" style="text-align:center;align-self:center;font-size:56px;margin-bottom:52px;">Se cada parte fosse vendida <span class="ul">separada</span>:</h2>
+      <h2 class="slide-title" style="text-align:center;align-self:center;font-size:56px;margin-bottom:52px;">Tudo o que <span class="ul">entra junto</span> na sua matrícula:</h2>
+      <!-- PENDENTE: valores de ancoragem por item para Carreiras Jurídicas (os de
+           Tribunais somavam R$ 5.700,00 e não valem aqui). Enquanto isso, cada item
+           aparece como incluso, sem preço. -->
       <div class="price-list">
-        <div class="pi"><span class="k"><strong>Teoria Sistematizada</strong></span><span class="dots"></span><span class="v">R$ 1.500,00</span></div>
-        <div class="pi"><span class="k"><strong>Cadernos de Leis &amp; Informativos</strong></span><span class="dots"></span><span class="v">R$ 500,00</span></div>
-        <div class="pi"><span class="k"><strong>Videoaulas não jurídicas</strong></span><span class="dots"></span><span class="v">R$ 500,00</span></div>
-        <div class="pi"><span class="k"><strong>Banco com + 75 mil questões comentadas</strong></span><span class="dots"></span><span class="v">R$ 500,00</span></div>
-        <div class="pi"><span class="k"><strong>Simulados com perfis das bancas</strong></span><span class="dots"></span><span class="v">R$ 500,00</span></div>
-        <div class="pi"><span class="k"><strong>Acesso ilimitado à Vic.IA por 1 ano</strong></span><span class="dots"></span><span class="v">R$ 1.200,00</span></div>
-        <div class="pi"><span class="k"><strong>Plataforma com as ferramentas de organização</strong></span><span class="dots"></span><span class="v">R$ 1.000,00</span></div>
-        <div class="pi"><span class="k"><strong>Cronograma base e personalizado</strong></span><span class="dots"></span><span class="v im">Valor imensurável</span></div>
+        <div class="pi"><span class="k"><strong>Teoria Sistematizada das 23 disciplinas</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>Cadernos de Leis &amp; Informativos</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>Banco com + 100 mil questões comentadas</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>Simulados no estilo das grandes bancas</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>vic.IA durante todo o acesso</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>Atualizações jurídicas mensais</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>Edital verticalizado e indicadores de desempenho</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
+        <div class="pi"><span class="k"><strong>Cronograma pelo seu tempo</strong></span><span class="dots"></span><span class="v im" style="color:var(--lav);">incluso</span></div>
       </div>
-      <div class="price-hero" style="font-size:120px;color:var(--paper);align-self:center;margin-top:56px;">R$ 5.700,00</div>
+      <div class="price-hero" style="font-size:72px;color:var(--paper);align-self:center;margin-top:56px;font-family:'Poppins',sans-serif;font-weight:800;">Tudo isso por <span style="color:var(--gold);">30 meses</span></div>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Leia item por item, sem correr. A soma é a âncora: é ela que faz o preço real parecer o que é.</p>
+      <p>Leia item por item, sem correr. A lista inteira é a âncora: é ela que faz o preço real parecer o que é.</p>
       <p>Se ela paga assinatura de plataforma de questões hoje, lembre aqui do valor que ela já gasta por mês.</p>
     </div>
   </section>
@@ -1027,12 +1013,12 @@
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center" style="align-items:center;text-align:center;">
       <h2 class="slide-title" style="text-align:center;font-size:64px;">Valor oficial do curso:</h2>
-      <div class="strike" style="font-size:150px;margin-top:70px;">R$ 2.997,00</div>
-      <div class="price-hero lav" style="font-size:190px;margin-top:36px;">R$ 1.997,00</div>
-      <p class="offer-foot" style="margin-top:66px;">com <strong>12 meses de acesso</strong>, com tudo atualizado.</p>
+      <div class="strike" style="font-size:150px;margin-top:70px;">R$ 4.272,00</div>
+      <div class="price-hero lav" style="font-size:170px;margin-top:36px;">12x de R$ 233,09</div>
+      <p class="offer-foot" style="margin-top:66px;">com <strong>30 meses de acesso</strong> (2 anos + 6 meses de bônus até 16/11, às 23h59), com tudo atualizado.</p>
     </div>
     <div class="notes"><span class="nk">Roteiro</span>
-      <p>Diga o valor e <b>fique quieto</b>. Deixe ela reagir primeiro. O próximo slide é a condição de pagamento.</p>
+      <p>Diga o valor e <b>fique quieto</b>. Deixe ela reagir primeiro. O próximo slide é a condição à vista com o cupom da Black.</p>
     </div>
   </section>
 
@@ -1045,16 +1031,16 @@
       <div class="price-tag">
         <span class="pt-eyelet"></span>
         <div class="pt-body">
-          <span class="pt-k" data-var="condicao_k">+ 15% de desconto</span>
-          <span class="pt-old" data-var="condicao_old">R$ 1.997,00</span>
-          <span class="pt-new" style="font-size:168px;" data-var="condicao_new">R$ 1.697,00</span>
-          <span class="pt-sub" data-var="condicao_sub">à vista, ou 12x de R$ 000,00</span>
+          <span class="pt-k" data-var="condicao_k">Black Friday · cupom BLACKVDE</span>
+          <span class="pt-old" data-var="condicao_old">R$ 4.272,00</span>
+          <span class="pt-new" style="font-size:168px;" data-var="condicao_new">R$ 2.666,58</span>
+          <span class="pt-sub" data-var="condicao_sub">à vista, ou 12x de R$ 233,09</span>
         </div>
       </div>
     </div>
     <div class="notes"><span class="nk">Roteiro · campos a confirmar</span>
-      <p><b>Os 15% são o seu gatilho de fechamento</b>, e só entram quando você já pediu a decisão. Abrir o desconto antes disso queima a carta.</p>
-      <p><b>Confirmar com a coordenação antes da conversa:</b> o valor da parcela em 12x, se os 15% valem também no parcelado, e se existe cupom ou campanha na semana. O valor à vista aqui é R$ 1.997,00 menos 15% (R$ 1.697,00).</p>
+      <p><b>A condição é a da Black Friday no site:</b> de R$ 4.272,00 por 12x de R$ 233,09, ou R$ 2.666,58 à vista com o cupom <b>BLACKVDE</b>. Os 6 meses de bônus de acesso valem até 16/11, às 23h59: esse é o prazo real, use ele.</p>
+      <p>Garantia de 15 dias: se ela não gostar, pede o reembolso. <b>Confirmar com a coordenação</b> se a oferta mudou antes de cada conversa.</p>
     </div>
   </section>
 
@@ -1063,17 +1049,17 @@
     <div class="grid-floor"></div>
     <div class="brand-olho" aria-hidden="true"></div>
     <div class="canvas center">
-      <h2 class="slide-title" style="text-align:center;align-self:center;font-size:58px;" data-var="roi_titulo">Você me disse que passaria a ganhar <span class="em-gold">R$ 8 mil a mais por mês</span>.</h2>
+      <h2 class="slide-title" style="text-align:center;align-self:center;font-size:58px;" data-var="roi_titulo">Você me disse que passaria a ganhar <span class="em-gold">R$ 20 mil a mais por mês</span>.</h2>
       <div class="roi">
         <div class="roi-card">
           <span class="k">Investimento</span>
-          <span class="n" data-var="roi_investimento">R$ 1.697</span>
-          <span class="u">uma vez, com 12 meses de acesso</span>
+          <span class="n" data-var="roi_investimento" style="font-size:92px;white-space:nowrap;">R$ 2.666,58</span>
+          <span class="u">à vista, com 30 meses de acesso</span>
         </div>
         <span class="vs">contra</span>
         <div class="roi-card gd">
           <span class="k">Primeiro ano de posse</span>
-          <span class="n" data-var="roi_retorno">R$ 96 mil</span>
+          <span class="n" data-var="roi_retorno" style="font-size:92px;white-space:nowrap;">R$ 240 mil</span>
           <span class="u">a mais no seu bolso, por ano, pra sempre</span>
         </div>
       </div>
@@ -1094,8 +1080,8 @@
       <ul class="nx">
         <li><span class="n">1</span><span>Você recebe o acesso à plataforma e <strong>gera o seu cronograma</strong> no mesmo dia.</span></li>
         <li><span class="n">2</span><span>Começa pela primeira disciplina da ordem, com <strong>teoria, caderno de leis e questões</strong> do mesmo tema.</span></li>
-        <li><span class="n">3</span><span>No fim do primeiro mês, o <strong>simulado</strong> mostra em números o que mudou.</span></li>
-        <li><span class="n">4</span><span>Quando o edital do seu tribunal sair, você monta a <strong>reta final</strong> com a matéria já estudada.</span></li>
+        <li><span class="n">3</span><span>Os <strong>simulados e os indicadores</strong> mostram em números o que mudou.</span></li>
+        <li><span class="n">4</span><span>Quando o edital da sua carreira sair, você chega à <strong>reta final</strong> com a base já estudada.</span></li>
       </ul>
       <div class="gold-note" style="margin-top:52px;align-self:center;max-width:1400px;">
         <span class="gn-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z"/></svg></span>

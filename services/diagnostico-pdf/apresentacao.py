@@ -1,91 +1,88 @@
 """Personalização da apresentação comercial (deck de call 1:1, 22 telas) —
-vendor/vde-tribunais-call/deck.html.
+vendor/vde-tribunais-call/deck.html, hoje com o conteúdo do VDE Carreiras
+Jurídicas (a pasta manteve o nome antigo só pra não mexer em main.py).
 
-O deck é HTML fixo (design aprovado, não mexer) com ~30 pontos marcados
-`data-var="chave"` — cada um já vem preenchido com o valor de um lead de
-exemplo (Rafael). Este módulo calcula o valor de cada `data-var` a partir dos
-dados brutos do quiz, reaproveitando o MESMO pacote (diagnosis/) usado no
-diagnóstico — o deck e o diagnóstico descrevem o mesmo lead, então usam a mesma
-fonte de verdade (profile.py, blocks.py), não duas.
+O deck é HTML fixo com ~30 pontos marcados `data-var="chave"` — cada um já vem
+preenchido com o valor de um lead de exemplo (Rafael). Este módulo calcula o
+valor de cada `data-var` a partir dos dados brutos do quiz, reaproveitando o
+MESMO pacote (diagnosis/) usado no diagnóstico — o deck e o diagnóstico
+descrevem o mesmo lead, então usam a mesma fonte de verdade (profile.py,
+blocks.py), não duas.
 
-Onde o deck precisa de uma frase que não é so o rótulo cru da pergunta (ex.:
-"Fico perto do corte, mas não passo" na tela do quiz vira "Fica perto do
-corte e não passa" na boca do consultor, falando dela na 3ª pessoa), a
-transformação está numa tabela pequena e explícita por valor — nunca um
-regex genérico de conjugação (não existe isso de forma confiável em
-português) — pra ficar fácil de auditar e corrigir uma frase por vez.
+Onde o deck precisa de uma frase que não é só o rótulo cru da pergunta (ex.:
+"Fico perto do corte..." na tela do quiz vira "Fica perto do corte..." na boca
+do consultor, falando do lead na 3ª pessoa), a transformação está numa tabela
+pequena e explícita por valor — nunca um regex genérico de conjugação — pra
+ficar fácil de auditar e corrigir uma frase por vez.
 """
 from html import escape as _esc
 
 from diagnosis.answers import Lead
 from diagnosis.blocks import BLOCKS
-from diagnosis.profile import ALVOS, MOMENTOS, profile
+from diagnosis.profile import ALVOS, MOMENTOS, RITMOS, profile
+from diagnosis.questions import TEST
 
 # ---- grade do curso (tela 6) ------------------------------------------
-# Números "179"/"257" são os que o deck de vendas já usa hoje — a mesma
-# divergência contra os 168/231 do diagnosis/profile.py que o próprio
-# ENTREGA-DEV.md do pacote já registra como pendente de confirmação. Fica
-# como constante isolada aqui de propósito: trocar depois é uma linha só.
-GRADE_TRT = {
-    "temas": 179,
+# Formação de Base: 23 disciplinas e 420+ temas (página oficial do produto).
+# A página não lista as 23 por nome; a lista abaixo é só a das disciplinas que
+# têm professor na página (conferida em 11/11/2026). PENDENTE: confirmar com o
+# time a lista completa das 23 e quais são as 8 principais.
+GRADE = {
+    "disciplinas_total": 23,
+    "temas": "420+",
     "disciplinas": [
-        "Língua Portuguesa.", "Raciocínio Lógico.", "Informática.",
-        "Ética no Serviço Público.", "Constitucional.", "Administrativo.",
-        "Civil.", "Processo Civil.", "Previdenciário.", "Direitos Humanos.",
+        "Constitucional.", "Administrativo.", "Civil.", "Processo Civil.",
+        "Penal.", "Processo Penal.", "Empresarial.", "Tributário.",
+        "Financeiro.", "Consumidor.", "Ambiental.", "Trabalho.",
+        "Processo do Trabalho.", "Direitos Humanos.",
+        "Internacional.", "Criminologia.", "Eleitoral.", "ECA.",
     ],
-    "destaque": ["Trabalho.", "Processo do Trabalho."],
 }
-GRADE_TJTRF = {
-    "temas": 257,
-    "disciplinas": [
-        "Língua Portuguesa.", "Raciocínio Lógico.", "Informática.",
-        "Ética no Serviço Público.", "Constitucional.", "Administrativo.",
-        "Civil.", "Processo Civil.", "Tributário e Financeiro (TRF).",
-        "Direitos Humanos (TRF).", "Previdenciário (TRF).",
-        "Difusos e Coletivos (TRF).", "ECA (TRF).",
-        "Ambiental e Urbanístico (TRF).",
-    ],
-    "destaque": ["Penal.", "Processo Penal."],
-}
+# Disciplinas em dourado na grade, por alvo. Sem regra específica, destaca o
+# núcleo que a própria página do produto cita ("Constitucional,
+# Administrativo, Civil, Penal e mais").
+_DESTAQUE_PADRAO = ("Constitucional.", "Administrativo.", "Civil.", "Penal.")
+_DESTAQUE_DELEGADO = ("Penal.", "Processo Penal.", "Criminologia.")
+_DESTAQUE_TRABALHO = ("Trabalho.", "Processo do Trabalho.")
 
 # ---- gargalo declarado (tela 3) ----------------------------------------
-# Título: eco em 3ª pessoa da opção que o lead marcou no quiz (mesmo padrão
-# do único exemplo que o deck já trazia, "banca"). Corpo: os dois parágrafos
-# de blocks.py (grupo "O maior gargalo declarado") — a MESMA copy que já vai
-# pro diagnóstico de todo lead, só reaproveitada aqui, não reescrita.
+# Título: eco em 3ª pessoa da opção que o lead marcou no quiz. Corpo: os dois
+# parágrafos de blocks.py (grupo "O maior gargalo declarado") — a MESMA copy
+# que já vai pro diagnóstico de todo lead, só reaproveitada aqui.
 _DOR_TITULO = {
-    "base": 'Você disse que não tem base: sente que começa do zero a cada edital.',
-    "improviso": 'Você disse que estuda no improviso, sem cronograma nem ordem.',
-    "tempo": 'Você disse que tem pouco tempo: concilia estudo com trabalho.',
-    "naojur": 'Você disse que tem medo das matérias não jurídicas: Português, RLM e Informática.',
-    "fixar": 'Você disse que lê muito e resolve pouco: não fixa.',
-    "banca": 'Você disse que não sabe o que a <span class="ul">FGV e a FCC cobram</span> de verdade.',
-    "emocional": 'Você disse que o emocional sabota: ansiedade, comparação, sensação de atraso.',
-    "todas": 'Você disse que sente um pouco de tudo isso ao mesmo tempo.',
+    "base": 'Você disse que <span class="ul">não tem base</span>: sente que começa do zero a cada edital.',
+    "improviso": 'Você disse que estuda <span class="ul">no improviso</span>, sem cronograma nem ordem.',
+    "tempo": 'Você disse que tem <span class="ul">pouco tempo</span>: concilia estudo com trabalho.',
+    "discursiva": 'Você disse que <span class="ul">trava na discursiva</span>, na peça ou na sentença.',
+    "fixar": 'Você disse que <span class="ul">lê muito e resolve pouco</span>: não fixa.',
+    "juris": 'Você disse que não dá conta de acompanhar <span class="ul">jurisprudência e informativos</span>.',
+    "emocional": 'Você disse que <span class="ul">o emocional sabota</span>: ansiedade, comparação, sensação de atraso.',
+    "todas": 'Você disse que sente <span class="ul">um pouco de tudo</span> isso ao mesmo tempo.',
 }
-# Card "maior gargalo" da tela 1 — 3ª pessoa, sem "de verdade"/pontuação
-# final (o rótulo cru da pergunta é em 1ª pessoa: "Não sei...", "Estudo...").
-# Mesma ideia de _TEMPO_TELA1/_PROVAS_TELA1/_EDITAL_TELA1 mais abaixo.
+# Card "maior gargalo" da tela 1 — 3ª pessoa (o rótulo cru é em 1ª pessoa).
 _DOR_TELA1 = {
-    "base": 'Não tem base: sente que começa do zero a cada edital',
-    "improviso": 'Estuda no improviso, sem cronograma nem ordem',
-    "tempo": 'Pouco tempo: concilia estudo com trabalho',
-    "naojur": 'Medo das matérias não jurídicas: Português, RLM, Informática',
-    "fixar": 'Lê muito e resolve pouco: não fixa',
-    "banca": 'Não sabe o que a FGV e a FCC cobram',
-    "emocional": 'O emocional sabota: ansiedade, comparação, sensação de atraso',
-    "todas": 'Um pouco de tudo isso ao mesmo tempo',
+    "base": "Não tem base: sente que começa do zero a cada edital",
+    "improviso": "Estuda no improviso, sem cronograma nem ordem",
+    "tempo": "Pouco tempo: concilia estudo com trabalho",
+    "discursiva": "Trava na discursiva, na peça ou na sentença",
+    "fixar": "Lê muito e resolve pouco: não fixa",
+    "juris": "Não dá conta de acompanhar jurisprudência e informativos",
+    "emocional": "O emocional sabota: ansiedade, comparação, sensação de atraso",
+    "todas": "Um pouco de tudo isso ao mesmo tempo",
 }
-# Frase de efeito final da tela 3 — só existia pronta pra "banca" no deck
-# original. Não inventei uma pra cada uma das outras 7 (é a única peça de
-# copy nova, não reaproveitada de blocks.py) — fica em branco (o elemento
-# some, ver render._SET_VARS_JS) até alguém escrever as demais.
+_ICO_RAIO = (
+    '<span class="gn-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+    'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'
+    '<path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z"/></svg></span>'
+)
+# Frase de efeito final da tela 3. Só existe onde dá pra apoiar num item real
+# do produto (atualizações jurídicas mensais, na página oficial). Sem entrada
+# aqui, o elemento some (ver render._SET_VARS_JS).
 _DOR_NOTA = {
-    "banca": (
-        '<span class="gn-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" '
-        'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'
-        '<path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13l0-8Z"/></svg></span>'
-        '<span><b>É assim que a banca deixa de ser adivinhação:</b> você estuda pelo que ela já cobrou.</span>'
+    "juris": (
+        _ICO_RAIO
+        + '<span><b>É assim que a jurisprudência deixa de afogar:</b> você estuda o informativo junto '
+        "com o tema dele, e as atualizações jurídicas mensais trazem o que mudou.</span>"
     ),
 }
 
@@ -98,24 +95,22 @@ def _paragrafos_dor():
 _DOR_PARAGRAFOS = _paragrafos_dor()
 
 # ---- transforms 1ª -> 3ª pessoa (tela 1) --------------------------------
-# Só os campos cujo rótulo cru é uma frase em 1ª pessoa (o resto — cargo,
-# formação, horas — já é substantivo/frase neutra e não precisa de nada).
 _TEMPO_TELA1 = {
     "t0": "ainda não começou", "t1": "menos de 6 meses",
     "t2": "6 meses a 1 ano", "t3": "1 a 2 anos",
     "t4": "2 a 4 anos", "t5": "mais de 4 anos",
 }
 _PROVAS_TELA1 = {
-    "p0": "Nunca fez uma prova de tribunal",
+    "p0": "Nunca fez uma prova de carreira jurídica",
     "p1": "Fez uma ou duas e ficou longe do corte",
     "p2": "Fez várias e continua longe do corte",
-    "p3": "Fica perto do corte e não passa",
-    "p4": "Já foi aprovado(a) em algum tribunal e quer subir de cargo",
+    "p3": "Fica perto do corte ou cai na discursiva",
+    "p4": "Já foi aprovado(a) em concurso jurídico e quer subir de carreira",
 }
 _EDITAL_TELA1 = {
     "reta": "Já saiu, prova em menos de 3 meses",
     "previsto": "Previsto pros próximos meses",
-    "sem": "Sem edital específico, quer estar pronta quando abrir",
+    "sem": "Sem edital específico, quer estar pronto(a) quando abrir",
     "nao": "Não acompanha as previsões",
 }
 _EDITAL_CAPA = {
@@ -124,53 +119,110 @@ _EDITAL_CAPA = {
     "sem": "sem edital específico no momento",
     "nao": "não acompanha previsões de edital",
 }
-# Forma curta de "horas" usada só na frase da tela 4 (prazo_titulo) — a
-# própria tela 1 mantém "Entre 2 e 3 horas" (o rótulo cru) no seu data-var
-# "horas"; é só aqui, dentro da frase, que o deck já trazia "2 a 3 horas".
+# Forma curta de "horas" usada na frase da tela 4 (prazo_titulo).
 _HORAS_CURTO = {
     "h0": "menos de 1 hora", "h1": "1 a 2 horas", "h2": "2 a 3 horas",
     "h3": "3 a 4 horas", "h4": "mais de 4 horas",
 }
+# Rótulo da faixa no painel da tela 4.
+_HORAS_PAINEL = [("h0", "Menos de 1h"), ("h1", "1 a 2h"), ("h2", "2 a 3h"), ("h3", "3 a 4h"), ("h4", "Mais de 4h")]
+
+_ALVO_FULL = {
+    "juiz": "Magistratura",
+    "mp": "Ministério Público",
+    "defensoria": "Defensoria Pública",
+    "procuradoria": "Advocacia Pública",
+    "delegado": "Delegado de Polícia",
+    "any": "Qualquer carreira jurídica",
+}
+
+# ---- oferta (telas 18 a 20) ---------------------------------------------
+# Preços da página oficial (Black Friday, conferidos em 11/11/2026): de
+# R$ 4.272,00 por 12x de R$ 233,09, ou R$ 2.666,58 à vista com o cupom
+# BLACKVDE. Trocar aqui (e nas telas 18/19 do deck.html) quando a oferta mudar.
+PRECO_TABELA = 4272.00
+PRECO_A_VISTA = 2666.58
+PARCELA_12X = 233.09
+CUPOM = "BLACKVDE"
 
 
 def _reais(valor: float) -> str:
     return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
 
-def _grade(alvo: str) -> dict:
-    return GRADE_TRT if alvo == "trt" else GRADE_TJTRF
+def _primeira_maiuscula(texto: str) -> str:
+    return texto[:1].upper() + texto[1:]
 
 
-def _html_lista_disciplinas(grade: dict) -> str:
-    itens = [f"<li>{_esc(d)}</li>" for d in grade["disciplinas"]]
-    itens += [f'<li class="hl">{_esc(d)}</li>' for d in grade["destaque"]]
-    return "".join(itens)
+def _destaques(alvo: str, cargo: str) -> tuple:
+    if alvo == "delegado":
+        return _DESTAQUE_DELEGADO
+    if cargo == "trabalho":
+        return _DESTAQUE_TRABALHO
+    return _DESTAQUE_PADRAO
+
+
+def _html_lista_disciplinas(destaque: tuple) -> str:
+    return "".join(
+        f'<li class="hl">{_esc(d)}</li>' if d in destaque else f"<li>{_esc(d)}</li>"
+        for d in GRADE["disciplinas"]
+    )
 
 
 def _curso_titulo_html(alvo: str) -> str:
-    if alvo == "trt":
-        return 'Você quer <span class="ul">TRT</span>, então o seu é o curso de TRT.'
-    rotulo = ALVOS.get(alvo, "tribunais")
-    return f'Você quer <span class="ul">{_esc(rotulo)}</span>, então o seu é o curso de TJ e TRF.'
-
-
-def _curso_grade_html(alvo: str) -> str:
-    grade = _grade(alvo)
-    nome_curso = "TRT" if alvo == "trt" else "TJ / TRF"
-    n_disc = len(grade["disciplinas"]) + len(grade["destaque"])
+    if alvo == "any" or alvo not in _ALVO_FULL:
+        return 'Qualquer carreira jurídica começa pela <span class="ul">mesma base</span>.'
     return (
-        f'<div class="comp-head" style="padding:26px 44px 20px;">'
-        f'<span class="ct" style="font-size:40px;">Curso <span class="u">{_esc(nome_curso)}</span></span>'
-        f'<span class="cc" style="font-size:26px;">{n_disc} disciplinas · {grade["temas"]} temas</span>'
-        f"</div>"
-        f'<ul class="comp-list" style="display:grid;grid-template-columns:repeat(3,1fr);'
-        f'column-gap:44px;row-gap:2px;padding:26px 40px 30px;">{_html_lista_disciplinas(grade)}</ul>'
+        f'Você quer <span class="ul">{_esc(_ALVO_FULL[alvo])}</span>, '
+        "e a base é a mesma de toda carreira jurídica."
+    )
+
+
+def _curso_grade_html(alvo: str, cargo: str) -> str:
+    return (
+        '<div class="comp-head" style="padding:26px 44px 20px;">'
+        '<span class="ct" style="font-size:40px;">Formação de <span class="u">Base</span></span>'
+        f'<span class="cc" style="font-size:26px;">{GRADE["disciplinas_total"]} disciplinas · '
+        f'{GRADE["temas"]} temas · entre elas:</span>'
+        "</div>"
+        '<ul class="comp-list" style="display:grid;grid-template-columns:repeat(3,1fr);'
+        f'column-gap:44px;row-gap:2px;padding:26px 40px 30px;">{_html_lista_disciplinas(_destaques(alvo, cargo))}</ul>'
     )
 
 
 def _dor_texto_html(dor: str) -> str:
     paragrafos = _DOR_PARAGRAFOS[dor]
     return "".join(f'<div class="icard" style="font-size:34px;">{_esc(p)}</div>' for p in paragrafos)
+
+
+def _alvo_full(alvo: str) -> str:
+    return _ALVO_FULL.get(alvo, ALVOS.get(alvo, ""))
+
+
+def _curso_painel_html(horas: str) -> str:
+    # PENDENTE: confirmar prazos (meses de base por horas/dia) do cronograma de
+    # Carreiras Jurídicas. O deck de Tribunais mostrava 2h=12, 3h=8, 4h=6 meses;
+    # pra Carreiras não há número oficial, então o painel mostra só o ritmo
+    # (RITMOS de diagnosis/profile.py, o mesmo texto do quiz), sem meses.
+    corpo = []
+    for codigo, rotulo in _HORAS_PAINEL:
+        classe = "trow rt"
+        extra = ""
+        if codigo == horas:
+            classe += " you"
+            extra = '<span class="you-badge">o seu hoje</span>'
+        corpo.append(
+            f'<div class="{classe}"><span class="hrs"><b>{_esc(rotulo)}</b> por dia{extra}</span>'
+            f'<span class="desc">{_esc(_primeira_maiuscula(RITMOS.get(codigo, "")))}.</span></div>'
+        )
+    return (
+        '<div class="course-head" style="padding:18px 40px;">'
+        '<span class="ch-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" '
+        'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/>'
+        '<path d="M12 7v5l3.5 2"/></svg></span>'
+        '<span class="cn" style="font-size:34px;">O seu ritmo</span></div>'
+        f'<div class="course-body" style="padding:4px 30px 10px;">{"".join(corpo)}</div>'
+    )
 
 
 def variaveis(dados: dict) -> dict[str, str]:
@@ -180,25 +232,17 @@ def variaveis(dados: dict) -> dict[str, str]:
     perfil = profile(lead)
     primeiro_nome = lead.nome.split(" ")[0] if lead.nome else ""
     alvo = lead.get("alvo")
+    cargo = lead.get("cargo")
     horas = lead.get("horas")
     dor = lead.get("dor")
     edital = lead.get("edital")
 
-    # "base entre 8 e 12 meses" -> "Entre 8 e 12 meses" (mesma frase,
-    # maiúscula, sem o "base" que só faz sentido dentro do diagnóstico).
-    ritmo = perfil["ritmo"]
-    prazo = ritmo[len("base "):] if ritmo.startswith("base ") else ritmo
-    prazo = prazo[:1].upper() + prazo[1:]
+    # Ritmo pelo tempo declarado (RITMOS, mesmo texto do quiz). Sem meses:
+    # os prazos de base de Carreiras ainda não foram confirmados.
+    ritmo = _primeira_maiuscula(perfil["ritmo"])
 
     dinheiro = int(lead.get("dinheiro"))  # anual, em milhares — ver TELA_DINHEIRO
     mensal = dinheiro // 12
-
-    condicao_old = 1997.00
-    condicao_new = 1697.00  # ≈ 15% abaixo de condicao_old (15,02%)
-    # Parcela fixa, no valor que o gateway cobra pra R$ 1.697,00 à vista em
-    # 12x. Fixa porque a taxa de juros derivada de outro produto (2,49% a.m.)
-    # dava R$ 165,37 — centavos acima do real. Trocar se o preço ou o gateway mudar.
-    parcela = 165.34
 
     return {
         # capa
@@ -217,9 +261,9 @@ def variaveis(dados: dict) -> dict[str, str]:
         # tela 2
         "diagnostico": 'O que está entre você e a posse é a <span class="em-gold">formação de base</span>.',
         "momento": _esc(MOMENTOS.get(lead.get("momento"), "")),
-        "nivel": _esc(f'{perfil["acertos"]} de 4 acertos, nível {perfil["nivel"]}'),
-        "curso": _esc("Curso TRT" if alvo == "trt" else "Curso TJ e TRF"),
-        "prazo": _esc(prazo),
+        "nivel": _esc(f'{perfil["acertos"]} de {len(TEST)} acertos, nível {perfil["nivel"]}'),
+        "curso": "Formação de Base",
+        "prazo": _esc(ritmo),
         # tela 3
         "dor_titulo": _DOR_TITULO.get(dor, _esc(f'Você disse que "{lead.label("dor")}".')),
         "dor_texto": _dor_texto_html(dor),
@@ -227,60 +271,19 @@ def variaveis(dados: dict) -> dict[str, str]:
         # tela 4
         "prazo_titulo": (
             f'Com <span class="ul">{_esc(_HORAS_CURTO.get(horas, lead.label("horas").lower()))}</span> por dia, '
-            f'a sua base fecha {_esc(prazo.lower())}.'
+            "o cronograma se ajusta ao seu tempo."
         ),
-        "curso_painel": _curso_painel_html(alvo, horas),
+        "curso_painel": _curso_painel_html(horas),
         # tela 6
         "curso_titulo": _curso_titulo_html(alvo),
-        "curso_grade": _curso_grade_html(alvo),
-        # tela 19 — condição fixa (15%), não vem mais de preenchimento manual
-        "condicao_k": "+ 15% de desconto",
-        "condicao_old": _reais(condicao_old),
-        "condicao_new": _reais(condicao_new),
-        "condicao_sub": f"à vista, ou 12x de {_reais(parcela)}",
+        "curso_grade": _curso_grade_html(alvo, cargo),
+        # tela 19 — oferta da Black Friday (página oficial)
+        "condicao_k": f"Black Friday · cupom {CUPOM}",
+        "condicao_old": _reais(PRECO_TABELA),
+        "condicao_new": _reais(PRECO_A_VISTA),
+        "condicao_sub": f"à vista, ou 12x de {_reais(PARCELA_12X)}",
         # tela 20
         "roi_titulo": f'Você me disse que passaria a ganhar <span class="em-gold">R$ {mensal} mil a mais por mês</span>.',
-        "roi_investimento": f"R$ {round(condicao_new):,}".replace(",", "."),
+        "roi_investimento": _reais(PRECO_A_VISTA),
         "roi_retorno": f"R$ {dinheiro} mil",
     }
-
-
-def _alvo_full(alvo: str) -> str:
-    # ALVOS/label da pergunta trazem o nome comprido já pronto — só o "alvo"
-    # (o rótulo curto do profile.py) tem o parêntese "(TRT)" no fim, que a
-    # tela 1 não usa (o parêntese é redundante com o campo "alvo" da capa).
-    completos = {
-        "tj": "Tribunal de Justiça",
-        "trf": "Tribunal Regional Federal",
-        "trt": "Tribunal Regional do Trabalho",
-        "fe": "Defensoria, Ministério Público ou Procuradoria",
-        "any": "qualquer tribunal",
-    }
-    return completos.get(alvo, ALVOS.get(alvo, ""))
-
-
-def _curso_painel_html(alvo: str, horas: str) -> str:
-    nome_curso = "TRT" if alvo == "trt" else "TJ e TRF"
-    linhas = [("2h", 12, "h2"), ("3h", 8, "h3"), ("4h", 6, "h4")]
-    corpo = []
-    for label_h, meses, codigo in linhas:
-        extra = ""
-        classe = "trow"
-        if codigo == horas:
-            classe += " you"
-            extra = '<span class="you-badge">o seu hoje</span>'
-        elif codigo == "h3":
-            classe += " rec"
-            extra = '<span class="rec-badge">recomendado</span>'
-        corpo.append(
-            f'<div class="{classe}"><span class="hrs"><b>{label_h}</b> por dia{extra}</span>'
-            f'<span class="mo"><span class="n">{meses}</span><span class="u">meses</span></span></div>'
-        )
-    return (
-        '<div class="course-head">'
-        '<span class="ch-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#fff" '
-        'stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/>'
-        '<path d="M12 7v5l3.5 2"/></svg></span>'
-        f'<span class="cn">Curso {_esc(nome_curso)}</span></div>'
-        f'<div class="course-body">{"".join(corpo)}</div>'
-    )
