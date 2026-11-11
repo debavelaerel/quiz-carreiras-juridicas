@@ -22,14 +22,15 @@ type LinhaBanco = {
   total: number | null
   area_prioritaria: string | null
   perfil: QuizSession['perfil']
-  perfil_calculado: QuizSession['perfilCalculado']
+  // Além da classificação, guarda token_conclusao (prova do "Refazer") — ver
+  // lerPerfilCalculado/paraLinhaPatch. Sem coluna nova: o esquema é o do Tribunais.
+  perfil_calculado: (NonNullable<QuizSession['perfilCalculado']> & { token_conclusao?: string | null }) | null
   blocos: QuizSession['blocos']
   whatsapp_clicado_em: string | null
   laudo_pdf_s3_key: string | null
   laudo_pdf_erro: string | null
   apresentacao_pdf_s3_key: string | null
   apresentacao_pdf_erro: string | null
-  token_conclusao: string | null
   utm_source: string | null
   utm_medium: string | null
   utm_campaign: string | null
@@ -38,6 +39,12 @@ type LinhaBanco = {
   started_at: string
   updated_at: string
   completed_at: string | null
+}
+
+function lerPerfilCalculado(v: LinhaBanco['perfil_calculado']): QuizSession['perfilCalculado'] {
+  if (!v) return null
+  const { token_conclusao: _token, ...perfilCalculado } = v
+  return perfilCalculado
 }
 
 function paraSessao(linha: LinhaBanco): QuizSession {
@@ -60,12 +67,12 @@ function paraSessao(linha: LinhaBanco): QuizSession {
     total: linha.total,
     areaPrioritaria: linha.area_prioritaria,
     perfil: linha.perfil,
-    perfilCalculado: linha.perfil_calculado,
+    perfilCalculado: lerPerfilCalculado(linha.perfil_calculado),
     blocos: linha.blocos,
     whatsappClicadoEm: linha.whatsapp_clicado_em,
     laudoPdfS3Key: linha.laudo_pdf_s3_key,
     laudoPdfErro: linha.laudo_pdf_erro,
-    tokenConclusao: linha.token_conclusao ?? null,
+    tokenConclusao: linha.perfil_calculado?.token_conclusao ?? null,
     apresentacaoPdfS3Key: linha.apresentacao_pdf_s3_key,
     apresentacaoPdfErro: linha.apresentacao_pdf_erro,
     utmSource: linha.utm_source,
@@ -97,12 +104,20 @@ function paraLinhaPatch(patch: Partial<QuizSession>): Record<string, unknown> {
   if (patch.total !== undefined) linha.total = patch.total
   if (patch.areaPrioritaria !== undefined) linha.area_prioritaria = patch.areaPrioritaria
   if (patch.perfil !== undefined) linha.perfil = patch.perfil
-  if (patch.perfilCalculado !== undefined) linha.perfil_calculado = patch.perfilCalculado
+  // perfil_calculado e token_conclusao moram no mesmo jsonb, então são sempre
+  // gravados juntos (concluirSessao e o reset do "Refazer" já fazem isso).
+  if (patch.perfilCalculado !== undefined || patch.tokenConclusao !== undefined) {
+    if (patch.perfilCalculado === undefined || patch.tokenConclusao === undefined) {
+      throw new Error('perfilCalculado e tokenConclusao precisam ser gravados juntos')
+    }
+    linha.perfil_calculado = patch.perfilCalculado
+      ? { ...patch.perfilCalculado, token_conclusao: patch.tokenConclusao }
+      : null
+  }
   if (patch.blocos !== undefined) linha.blocos = patch.blocos
   if (patch.whatsappClicadoEm !== undefined) linha.whatsapp_clicado_em = patch.whatsappClicadoEm
   if (patch.laudoPdfS3Key !== undefined) linha.laudo_pdf_s3_key = patch.laudoPdfS3Key
   if (patch.laudoPdfErro !== undefined) linha.laudo_pdf_erro = patch.laudoPdfErro
-  if (patch.tokenConclusao !== undefined) linha.token_conclusao = patch.tokenConclusao
   if (patch.apresentacaoPdfS3Key !== undefined) linha.apresentacao_pdf_s3_key = patch.apresentacaoPdfS3Key
   if (patch.apresentacaoPdfErro !== undefined) linha.apresentacao_pdf_erro = patch.apresentacaoPdfErro
   if (patch.utmSource !== undefined) linha.utm_source = patch.utmSource
