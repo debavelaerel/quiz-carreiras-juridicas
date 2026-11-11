@@ -64,3 +64,25 @@ describe('iniciarSessao com refazerToken', () => {
     expect(repo.linhas[0].status).toBe('concluido')
   })
 })
+
+describe('refazer: ataque em dois passos', () => {
+  it('quem só sabe o contato não consegue zerar o resultado, mesmo rotacionando o token antes', async () => {
+    const repo = await concluida()
+    // Passo 1: atacante "retoma" pelo contato, o que troca o sessionToken para o dele.
+    const r1 = await iniciarSessao(repo, { ...CONTATO, sessionToken: 'tok-atacante' })
+    expect(r1.sessionToken).toBe('tok-atacante')
+    // Passo 2: usa o token que ele mesmo escolheu como prova de refazer.
+    const r2 = await iniciarSessao(repo, { ...CONTATO, sessionToken: 'tok-atacante-2', refazerToken: 'tok-atacante' })
+    expect(r2.jaConcluida).toBe(true)
+    expect(repo.linhas[0].status).toBe('concluido')
+    expect(repo.linhas[0].respostas).toHaveLength(QUESTIONS.length)
+  })
+
+  it('o dono continua conseguindo refazer depois que alguém rotacionou o token', async () => {
+    const repo = await concluida()
+    await iniciarSessao(repo, { ...CONTATO, sessionToken: 'tok-atacante' })
+    const r = await iniciarSessao(repo, { ...CONTATO, sessionToken: 'tok-2', refazerToken: 'tok-1' })
+    expect(r.jaConcluida).toBe(false)
+    expect(repo.linhas[0].status).toBe('em_andamento')
+  })
+})

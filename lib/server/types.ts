@@ -54,6 +54,12 @@ export type QuizSession = {
   // pela primeira vez (ver app/api/admin/leads/[token]/apresentacao/route.ts).
   apresentacaoPdfS3Key: string | null
   apresentacaoPdfErro: string | null
+  // session_token vigente no momento da conclusão. É a prova exigida pelo
+  // "Refazer" (ver iniciarSessao): diferente de sessionToken, nunca é trocado
+  // pela retomada por contato e nunca volta na resposta do /start, então quem
+  // só sabe o e-mail/WhatsApp de alguém não consegue obtê-lo. Opcional porque
+  // linhas anteriores à coluna não têm o valor (refazer fica indisponível).
+  tokenConclusao?: string | null
   // UTMs de onde o lead entrou no quiz (window.location.search na tela
   // inicial) — só preenchidas na criação da sessão (ver iniciarSessao em
   // quizService.ts), nunca sobrescritas numa retomada: é sempre first touch.

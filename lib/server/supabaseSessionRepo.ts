@@ -29,6 +29,7 @@ type LinhaBanco = {
   laudo_pdf_erro: string | null
   apresentacao_pdf_s3_key: string | null
   apresentacao_pdf_erro: string | null
+  token_conclusao: string | null
   utm_source: string | null
   utm_medium: string | null
   utm_campaign: string | null
@@ -64,6 +65,7 @@ function paraSessao(linha: LinhaBanco): QuizSession {
     whatsappClicadoEm: linha.whatsapp_clicado_em,
     laudoPdfS3Key: linha.laudo_pdf_s3_key,
     laudoPdfErro: linha.laudo_pdf_erro,
+    tokenConclusao: linha.token_conclusao ?? null,
     apresentacaoPdfS3Key: linha.apresentacao_pdf_s3_key,
     apresentacaoPdfErro: linha.apresentacao_pdf_erro,
     utmSource: linha.utm_source,
@@ -100,6 +102,7 @@ function paraLinhaPatch(patch: Partial<QuizSession>): Record<string, unknown> {
   if (patch.whatsappClicadoEm !== undefined) linha.whatsapp_clicado_em = patch.whatsappClicadoEm
   if (patch.laudoPdfS3Key !== undefined) linha.laudo_pdf_s3_key = patch.laudoPdfS3Key
   if (patch.laudoPdfErro !== undefined) linha.laudo_pdf_erro = patch.laudoPdfErro
+  if (patch.tokenConclusao !== undefined) linha.token_conclusao = patch.tokenConclusao
   if (patch.apresentacaoPdfS3Key !== undefined) linha.apresentacao_pdf_s3_key = patch.apresentacaoPdfS3Key
   if (patch.apresentacaoPdfErro !== undefined) linha.apresentacao_pdf_erro = patch.apresentacaoPdfErro
   if (patch.utmSource !== undefined) linha.utm_source = patch.utmSource

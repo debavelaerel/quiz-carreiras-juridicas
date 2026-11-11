@@ -17,9 +17,12 @@ export async function iniciarSessao(repo: SessionRepo, input: IniciarSessaoInput
   let existente = await repo.buscarPorEmail(input.evento, emailNormalizado)
   if (!existente) existente = await repo.buscarPorWhatsapp(input.evento, whatsappNormalizado)
 
-  if (existente && input.refazerToken && input.refazerToken === existente.sessionToken) {
-    // Refazer pedido por quem tem o token da própria sessão (ver
-    // IniciarSessaoInput.refazerToken): zera tudo o que o funil produz,
+  if (existente && input.refazerToken && existente.tokenConclusao && input.refazerToken === existente.tokenConclusao) {
+    // Refazer pedido por quem tem o token da própria conclusão (ver
+    // QuizSession.tokenConclusao — NÃO o sessionToken atual, que a retomada
+    // por contato logo abaixo troca pelo valor que o requisitante quiser:
+    // comparar com ele deixaria um atacante rotacionar o token e depois
+    // "refazer" a sessão de outra pessoa). Zera tudo o que o funil produz,
     // inclusive os PDFs, que seriam do diagnóstico antigo. Contato, UTMs,
     // startedAt e o clique no WhatsApp (sinal comercial) ficam.
     await repo.atualizar(existente.id, {
@@ -45,6 +48,7 @@ export async function iniciarSessao(repo: SessionRepo, input: IniciarSessaoInput
       apresentacaoPdfS3Key: null,
       apresentacaoPdfErro: null,
       completedAt: null,
+      tokenConclusao: null,
     })
     return { sessionToken: input.sessionToken, retomando: false, respostasSalvas: [], jaConcluida: false }
   }
@@ -181,6 +185,7 @@ export async function concluirSessao(repo: SessionRepo, sessionToken: string): P
     areaPrioritaria: resultado.areaPrioritaria,
     perfilCalculado,
     blocos,
+    tokenConclusao: sessao.sessionToken,
     completedAt: new Date().toISOString(),
   })
 }
