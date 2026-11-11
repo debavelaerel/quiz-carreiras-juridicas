@@ -33,8 +33,8 @@ describe('gerarEArmazenarDiagnostico', () => {
   const ENV_ORIGINAL = { ...process.env }
 
   beforeEach(() => {
-    process.env.LAUDO_SERVICE_URL = 'http://laudo-service.local'
-    process.env.LAUDO_SERVICE_SECRET = 'segredo-de-teste'
+    process.env.DIAGNOSTICO_SERVICE_URL = 'http://laudo-service.local'
+    process.env.DIAGNOSTICO_SERVICE_SECRET = 'segredo-de-teste'
   })
 
   afterEach(() => {
@@ -98,8 +98,8 @@ describe('gerarEArmazenarApresentacao', () => {
   const ENV_ORIGINAL = { ...process.env }
 
   beforeEach(() => {
-    process.env.LAUDO_SERVICE_URL = 'http://laudo-service.local'
-    process.env.LAUDO_SERVICE_SECRET = 'segredo-de-teste'
+    process.env.DIAGNOSTICO_SERVICE_URL = 'http://laudo-service.local'
+    process.env.DIAGNOSTICO_SERVICE_SECRET = 'segredo-de-teste'
   })
 
   afterEach(() => {

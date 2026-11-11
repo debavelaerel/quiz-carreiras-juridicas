@@ -68,8 +68,8 @@ describe('gerarDiagnosticoPdf', () => {
   const ENV_ORIGINAL = { ...process.env }
 
   beforeEach(() => {
-    process.env.LAUDO_SERVICE_URL = 'http://laudo-service.local'
-    process.env.LAUDO_SERVICE_SECRET = 'segredo-de-teste'
+    process.env.DIAGNOSTICO_SERVICE_URL = 'http://laudo-service.local'
+    process.env.DIAGNOSTICO_SERVICE_SECRET = 'segredo-de-teste'
   })
 
   afterEach(() => {
@@ -77,8 +77,8 @@ describe('gerarDiagnosticoPdf', () => {
     vi.unstubAllGlobals()
   })
 
-  it('sem LAUDO_SERVICE_URL/SECRET configurados: recusa antes de qualquer chamada de rede', async () => {
-    delete process.env.LAUDO_SERVICE_URL
+  it('sem DIAGNOSTICO_SERVICE_URL/SECRET configurados: recusa antes de qualquer chamada de rede', async () => {
+    delete process.env.DIAGNOSTICO_SERVICE_URL
     const fetchEspiao = vi.fn()
     vi.stubGlobal('fetch', fetchEspiao)
     await expect(gerarDiagnosticoPdf(sessaoDeExemplo(), 'intermediário')).rejects.toThrow(DiagnosticoIndisponivel)
@@ -98,7 +98,7 @@ describe('gerarDiagnosticoPdf', () => {
     const [url, init] = fetchEspiao.mock.calls[0]
     expect(url).toBe('http://laudo-service.local/laudo')
     expect(init.method).toBe('POST')
-    expect(init.headers['X-Laudo-Secret']).toBe('segredo-de-teste')
+    expect(init.headers['X-Diagnostico-Secret']).toBe('segredo-de-teste')
     const corpo = JSON.parse(init.body)
     expect(corpo.alvo).toBe('tj')
     expect(corpo.teste).toEqual([

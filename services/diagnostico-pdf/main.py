@@ -5,7 +5,7 @@ conteúdo/estrutura do diagnóstico. O pacote fica intocado; os overrides de mar
 
 POST /laudo recebe os dados da sessão (perfil + respostas + editais) e
 devolve o PDF pronto. Autenticado por segredo compartilhado (cabeçalho
-X-Laudo-Secret) — sem ele configurado, recusa tudo (falha fechada, igual ao
+X-Diagnostico-Secret) — sem ele configurado, recusa tudo (falha fechada, igual ao
 ADMIN_SESSION_SECRET do app Next.js).
 """
 import logging
@@ -118,13 +118,13 @@ class DiagnosticoRequest(BaseModel):
     )
 
 
-def verificar_segredo(x_laudo_secret: str | None = Header(default=None)) -> None:
-    segredo = os.environ.get("LAUDO_SERVICE_SECRET")
+def verificar_segredo(x_diagnostico_secret: str | None = Header(default=None)) -> None:
+    segredo = os.environ.get("DIAGNOSTICO_SERVICE_SECRET")
     # secrets.compare_digest, não `!=`: comparação de string comum vaza
     # quanto do segredo bateu pelo tempo de resposta (compara byte a byte e
     # para no primeiro que diverge) — mesmo padrão de
     # lib/server/adminAuth.ts (timingSafeEqual) do lado Next.js.
-    if not segredo or not x_laudo_secret or not secrets.compare_digest(x_laudo_secret, segredo):
+    if not segredo or not x_diagnostico_secret or not secrets.compare_digest(x_diagnostico_secret, segredo):
         raise HTTPException(status_code=401, detail="não autenticado")
 
 

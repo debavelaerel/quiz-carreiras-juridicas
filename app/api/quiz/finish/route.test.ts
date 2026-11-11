@@ -69,8 +69,8 @@ describe('POST /api/quiz/finish', () => {
 
   it('a tarefa agendada gera diagnóstico e apresentação em paralelo (Promise.all), as duas', async () => {
     const ENV_ORIGINAL = { ...process.env }
-    process.env.LAUDO_SERVICE_URL = 'http://laudo-service.local'
-    process.env.LAUDO_SERVICE_SECRET = 'segredo-de-teste'
+    process.env.DIAGNOSTICO_SERVICE_URL = 'http://laudo-service.local'
+    process.env.DIAGNOSTICO_SERVICE_SECRET = 'segredo-de-teste'
     vi.stubGlobal('fetch', vi.fn((url: string) => {
       const s3Header = url.endsWith('/apresentacao') ? 'X-Apresentacao-S3-Key' : 'X-Laudo-S3-Key'
       const s3Key = url.endsWith('/apresentacao') ? 'apresentacoes/aaaaaaaa.pdf' : 'laudos/aaaaaaaa.pdf'

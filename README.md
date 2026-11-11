@@ -259,7 +259,7 @@ baixar diagnóstico/apresentação), `analytics/page.tsx` (funil, gráficos —
 FastAPI fino em volta de `reference/raio-x-da-base/diagnosis` (pacote de
 referência de conteúdo/estrutura, mantido intocado — overrides de marca em
 `brand.py`). Autenticado por segredo compartilhado (header
-`X-Laudo-Secret`, falha fechada sem ele configurado).
+`X-Diagnostico-Secret`, falha fechada sem ele configurado).
 
 - `POST /laudo` — recebe perfil + respostas + editais, devolve o PDF do
   diagnóstico. Sobe pro S3 se `session_token` vier no
@@ -284,7 +284,7 @@ de desenvolvimento em [`.env.example`](.env.example). Em resumo:
 |---|---|---|
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | Next.js | Conexão com o Postgres (só service role) |
 | `ADMIN_PASSWORD`, `ADMIN_SESSION_SECRET` | Next.js | Senha do `/admin` e segredo do cookie (HMAC) |
-| `LAUDO_SERVICE_URL`, `LAUDO_SERVICE_SECRET` | Next.js (+ segredo no serviço) | Chamada ao `services/diagnostico-pdf` |
+| `DIAGNOSTICO_SERVICE_URL`, `DIAGNOSTICO_SERVICE_SECRET` | Next.js (+ segredo no serviço) | Chamada ao `services/diagnostico-pdf` |
 | `BUCKET_NAME`, `REGION` | Next.js **e** serviço | Bucket do S3 |
 | `ACCESS_KEY`, `SECRET_KEY`, `S3_ENDPOINT`, `S3_PUBLIC_ENDPOINT` | Next.js **e** serviço | **Só local (MinIO).** Na AWS ficam vazias: o SDK usa a IAM role |
 | `PREVIA_MEMORIA` | Next.js | `1` = banco em memória pra prévia sem Supabase. **Nunca em produção** |

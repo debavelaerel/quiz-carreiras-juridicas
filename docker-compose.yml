@@ -36,7 +36,7 @@ services:
     ports:
       - "${DIAGNOSTICO_PDF_PORT:-8100}:8000"
     environment:
-      LAUDO_SERVICE_SECRET: ${LAUDO_SERVICE_SECRET:-segredo-local}
+      DIAGNOSTICO_SERVICE_SECRET: ${DIAGNOSTICO_SERVICE_SECRET:-segredo-local}
       BUCKET_NAME: ${BUCKET_NAME:-diagnosticos-cj}
       REGION: ${REGION:-sa-east-1}
       S3_ENDPOINT: ${S3_PDF_ENDPOINT-http://minio:9000} # MinIO na rede interna; vazio = AWS

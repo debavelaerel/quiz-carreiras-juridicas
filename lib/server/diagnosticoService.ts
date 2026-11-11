@@ -138,10 +138,10 @@ export async function gerarDiagnosticoPdf(
   nivel: string,
   opts?: { salvarS3?: boolean },
 ): Promise<ResultadoDiagnostico> {
-  const baseUrl = process.env.LAUDO_SERVICE_URL
-  const segredo = process.env.LAUDO_SERVICE_SECRET
+  const baseUrl = process.env.DIAGNOSTICO_SERVICE_URL
+  const segredo = process.env.DIAGNOSTICO_SERVICE_SECRET
   if (!baseUrl || !segredo) {
-    throw new DiagnosticoIndisponivel('LAUDO_SERVICE_URL e LAUDO_SERVICE_SECRET precisam estar definidos')
+    throw new DiagnosticoIndisponivel('DIAGNOSTICO_SERVICE_URL e DIAGNOSTICO_SERVICE_SECRET precisam estar definidos')
   }
 
   const payload = montarPayload(sessao, nivel)
@@ -155,7 +155,7 @@ export async function gerarDiagnosticoPdf(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Laudo-Secret': segredo,
+      'X-Diagnostico-Secret': segredo,
     },
     body: JSON.stringify(payload),
     signal: AbortSignal.timeout(55_000),
@@ -180,10 +180,10 @@ export async function gerarApresentacaoPdf(
   nivel: string,
   opts?: { salvarS3?: boolean },
 ): Promise<ResultadoDiagnostico> {
-  const baseUrl = process.env.LAUDO_SERVICE_URL
-  const segredo = process.env.LAUDO_SERVICE_SECRET
+  const baseUrl = process.env.DIAGNOSTICO_SERVICE_URL
+  const segredo = process.env.DIAGNOSTICO_SERVICE_SECRET
   if (!baseUrl || !segredo) {
-    throw new DiagnosticoIndisponivel('LAUDO_SERVICE_URL e LAUDO_SERVICE_SECRET precisam estar definidos')
+    throw new DiagnosticoIndisponivel('DIAGNOSTICO_SERVICE_URL e DIAGNOSTICO_SERVICE_SECRET precisam estar definidos')
   }
 
   const payload = montarPayload(sessao, nivel)
@@ -193,7 +193,7 @@ export async function gerarApresentacaoPdf(
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Laudo-Secret': segredo,
+      'X-Diagnostico-Secret': segredo,
     },
     body: JSON.stringify(payload),
     signal: AbortSignal.timeout(55_000),

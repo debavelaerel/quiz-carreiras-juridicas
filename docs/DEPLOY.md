@@ -58,11 +58,11 @@ Nenhuma variável é embutida no build: todas são lidas em runtime.
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | do projeto Supabase compartilhado (o mesmo do Tribunais) |
 | `ADMIN_PASSWORD` | senha longa e aleatória do `/admin` (pode ser diferente da do Tribunais) |
 | `ADMIN_SESSION_SECRET` | `openssl rand -base64 48` — **nunca** reaproveitar o do Tribunais |
-| `LAUDO_SERVICE_URL` | URL **interna** do serviço de PDF (ex.: `http://diagnostico-pdf:8000`) |
-| `LAUDO_SERVICE_SECRET` | segredo forte (`openssl rand -hex 32`), **igual** nos dois serviços |
+| `DIAGNOSTICO_SERVICE_URL` | URL **interna** do serviço de PDF (ex.: `http://diagnostico-pdf:8000`) |
+| `DIAGNOSTICO_SERVICE_SECRET` | segredo forte (`openssl rand -hex 32`), **igual** nos dois serviços |
 | `BUCKET_NAME` / `REGION` | nome do bucket / `sa-east-1` — **as duas são obrigatórias** para o link do PDF funcionar |
 
-**Serviço de PDF**: `LAUDO_SERVICE_SECRET`, `BUCKET_NAME`, `REGION` (e `PORT`, se quiser outra porta).
+**Serviço de PDF**: `DIAGNOSTICO_SERVICE_SECRET`, `BUCKET_NAME`, `REGION` (e `PORT`, se quiser outra porta).
 
 **Nunca definir em produção:**
 - `PREVIA_MEMORIA` — liga um banco em memória só para prévia; em produção os leads seriam perdidos.

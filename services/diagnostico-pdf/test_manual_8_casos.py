@@ -7,7 +7,7 @@ import os
 import sys
 from pathlib import Path
 
-os.environ["LAUDO_SERVICE_SECRET"] = "teste-local"
+os.environ["DIAGNOSTICO_SERVICE_SECRET"] = "teste-local"
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from fastapi.testclient import TestClient  # noqa: E402
@@ -40,7 +40,7 @@ with TestClient(app) as client:
                ["alvo", "cargo", "formacao", "tempo", "provas", "metodo", "vde",
                 "horas", "edital", "dor", "momento", "dinheiro", "leitura"]},
         }
-        resp = client.post("/laudo", json=payload, headers={"X-Laudo-Secret": "teste-local"})
+        resp = client.post("/laudo", json=payload, headers={"X-Diagnostico-Secret": "teste-local"})
         if resp.status_code != 200:
             print(f"❌ {caso['id']}: HTTP {resp.status_code} — {resp.text[:300]}")
             continue
