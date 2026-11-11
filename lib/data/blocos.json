@@ -691,6 +691,87 @@
     ]
   },
   {
+    "group": "Prática jurídica",
+    "items": [
+      {
+        "id": "pj_falta_jm",
+        "when": {
+          "eq": {
+            "formacao": [
+              "direito"
+            ],
+            "pratica": [
+              "pj0",
+              "pj1",
+              "pj2"
+            ],
+            "alvo": [
+              "juiz",
+              "mp"
+            ]
+          }
+        },
+        "title": "Os 3 anos de atividade jurídica: faça esse prazo trabalhar por você",
+        "paragraphs": [
+          "Magistratura e Ministério Público exigem 3 anos de atividade jurídica depois de formado. Conta advocacia, cargo em que você usa o Direito no dia a dia, como servidor de tribunal ou do MP, assessoria jurídica e magistério em Direito.",
+          {
+            "if": {
+              "eq": {
+                "pratica": [
+                  "pj2"
+                ]
+              }
+            },
+            "then": "Você já está no meio desse caminho. O tempo que falta é o tempo de fechar a base: quem completa os 3 anos com a base pronta chega à primeira prova pra passar, não pra conhecer a banca.",
+            "else": "O tempo que falta é exatamente o tempo de formar a base. Quem completa os 3 anos com a base pronta chega à primeira prova pra passar, não pra conhecer a banca."
+          }
+        ]
+      },
+      {
+        "id": "pj_ok_jm",
+        "when": {
+          "eq": {
+            "formacao": [
+              "direito"
+            ],
+            "pratica": [
+              "pj3"
+            ],
+            "alvo": [
+              "juiz",
+              "mp"
+            ]
+          }
+        },
+        "title": "Você já cumpre os 3 anos de atividade jurídica",
+        "paragraphs": [
+          "É o requisito que segura muita gente, e pra você ele já não é problema. O que separa você da posse agora é a prova.",
+          "Um cuidado: quem trabalha com Direito domina as matérias do dia a dia e costuma deixar buracos no resto. O teste acima já mostra onde estão os seus."
+        ]
+      },
+      {
+        "id": "pj_outras",
+        "when": {
+          "eq": {
+            "formacao": [
+              "direito"
+            ],
+            "pratica": [
+              "pj0",
+              "pj1",
+              "pj2"
+            ]
+          }
+        },
+        "title": "Prática jurídica: confira a exigência do seu edital",
+        "paragraphs": [
+          "A regra única de 3 anos de atividade jurídica é da magistratura e do Ministério Público. Nas outras carreiras, cada edital define se pede tempo de prática e quanto, então vale conferir no edital do concurso que você mira antes de se inscrever.",
+          "Enquanto isso, a base é a mesma pra todas: o tempo que você investe nela agora vale pra qualquer carreira que abrir."
+        ]
+      }
+    ]
+  },
+  {
     "group": "Relação com o VDE",
     "items": [
       {

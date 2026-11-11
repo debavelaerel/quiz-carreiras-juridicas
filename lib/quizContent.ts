@@ -270,10 +270,12 @@ export const DIAG: Record<string, Diagnostico> = {
 export type Opcao = [valor: string, texto: string, sub?: string]
 
 export type TelaPerfil =
-  | { type: 'single'; key: keyof RespostasPerfil; title: string; hint?: string | ((r: RespostasPerfil) => string); opts: Opcao[] | ((r: RespostasPerfil) => Opcao[]); after?: (r: RespostasPerfil) => 'desqualificado' | null }
-  | { type: 'multi'; key: keyof RespostasPerfil; title: string; hint?: string | ((r: RespostasPerfil) => string); opts: Opcao[] | ((r: RespostasPerfil) => Opcao[]) }
+  | { type: 'single'; key: keyof RespostasPerfil; title: string; hint?: string | ((r: RespostasPerfil) => string); opts: Opcao[] | ((r: RespostasPerfil) => Opcao[]); after?: (r: RespostasPerfil) => 'desqualificado' | null; quando?: (r: RespostasPerfil) => boolean }
+  | { type: 'multi'; key: keyof RespostasPerfil; title: string; hint?: string | ((r: RespostasPerfil) => string); opts: Opcao[] | ((r: RespostasPerfil) => Opcao[]); quando?: (r: RespostasPerfil) => boolean }
 
-// Mesmas 12 telas, na mesma ordem, do quiz do Tribunais.
+// As 12 telas do Tribunais, na mesma ordem, mais a de prática jurídica logo
+// depois da formação. `quando` esconde uma tela que não faz sentido pra pessoa
+// (ver telasVisiveis): a de prática só aparece pra quem já é bacharel.
 export const PERFIL_SCREENS: TelaPerfil[] = [
   {
     type: 'single', key: 'alvo', title: 'Qual carreira é a sua prioridade hoje?',
@@ -304,9 +306,6 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
   },
   {
     type: 'single', key: 'formacao', title: 'Qual é a sua formação hoje?',
-    hint: (r) => (r.alvo === 'juiz' || r.alvo === 'mp'
-      ? 'Magistratura e Ministério Público exigem 3 anos de atividade jurídica depois de formado. Dá pra formar a base enquanto cumpre esse prazo.'
-      : 'Toda carreira jurídica exige o bacharelado em Direito, e algumas pedem também tempo de prática jurídica. Dá pra formar a base enquanto isso.'),
     opts: [
       ['direito', 'Bacharel em Direito'],
       ['cursando_direito', 'Cursando Direito'],
@@ -316,6 +315,17 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
     ],
     // Toda carreira jurídica exige bacharelado em Direito.
     after: (r) => (r.formacao === 'direito' || r.formacao === 'cursando_direito' ? null : 'desqualificado'),
+  },
+  {
+    type: 'single', key: 'pratica', title: 'Quanto tempo de prática jurídica você tem, depois de formado?',
+    hint: (r) => `Conta advocacia, cargo ou emprego em que você usa o Direito no dia a dia (servidor de tribunal ou do MP, assessor, analista jurídico) e magistério em Direito.${r.alvo === 'juiz' || r.alvo === 'mp' ? ' Magistratura e Ministério Público exigem 3 anos.' : ''}`,
+    opts: [
+      ['pj0', 'Nenhuma ainda'],
+      ['pj1', 'Menos de 1 ano'],
+      ['pj2', 'Entre 1 e 3 anos'],
+      ['pj3', '3 anos ou mais'],
+    ],
+    quando: (r) => r.formacao === 'direito',
   },
   {
     type: 'single', key: 'tempo', title: 'Há quanto tempo você estuda pra concursos?',
@@ -449,6 +459,28 @@ export const TELA_LEITURA: TelaPerfil = {
 export function comNome(nome: string, frase: string): string {
   if (!nome) return frase
   return `${nome}, ${frase.charAt(0).toLowerCase()}${frase.slice(1)}`
+}
+
+// Telas que a pessoa de fato vê, dadas as respostas até aqui (ver `quando`).
+export function telaVisivel(t: TelaPerfil, r: RespostasPerfil): boolean {
+  return !t.quando || t.quando(r)
+}
+
+// Frase da ficha sobre o requisito de prática (só juiz e MP têm a regra única
+// de 3 anos de atividade jurídica, CF arts. 93, I, e 129, § 3º). Vazia quando
+// não há o que dizer.
+export function fraseRequisitoPratica(r: RespostasPerfil): string {
+  const exige3 = r.alvo === 'juiz' || r.alvo === 'mp'
+  if (r.formacao === 'cursando_direito') {
+    return exige3 ? 'Os 3 anos de atividade jurídica só começam a contar depois da formatura, e esse é o tempo de formar a base. ' : ''
+  }
+  if (r.formacao !== 'direito') return ''
+  if (exige3) {
+    return r.pratica === 'pj3'
+      ? 'Você já cumpre os 3 anos de atividade jurídica: o que falta é a prova. '
+      : 'Você ainda está cumprindo os 3 anos de atividade jurídica, e esse é o tempo de formar a base. '
+  }
+  return ''
 }
 
 export function labelCargo(r: RespostasPerfil): string {

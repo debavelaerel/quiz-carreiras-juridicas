@@ -75,6 +75,7 @@ export const ROTULOS_PERFIL: Record<string, Record<string, string>> = {
   alvo: L.alvo,
   cargo: { estadual: 'Estadual', federal: 'Federal', trabalho: 'Trabalho', municipal: 'Municipal', any: 'O que abrir primeiro', unsure: 'Não sabe a diferença' },
   formacao: FORMACAO,
+  pratica: { pj0: 'Nenhuma', pj1: 'Menos de 1 ano', pj2: '1 a 3 anos', pj3: '3 anos ou mais' },
   tempo: TEMPO,
   provas: PROVAS,
   metodo: METODO,

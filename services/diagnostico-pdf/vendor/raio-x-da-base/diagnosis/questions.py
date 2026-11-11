@@ -101,6 +101,28 @@ QUESTIONS = {
             ]
         ]
     },
+    "pratica": {
+        "tipo": "single",
+        "titulo": "Quanto tempo de prática jurídica você tem, depois de formado?",
+        "opcoes": [
+            [
+                "pj0",
+                "Nenhuma ainda"
+            ],
+            [
+                "pj1",
+                "Menos de 1 ano"
+            ],
+            [
+                "pj2",
+                "Entre 1 e 3 anos"
+            ],
+            [
+                "pj3",
+                "3 anos ou mais"
+            ]
+        ]
+    },
     "tempo": {
         "tipo": "single",
         "titulo": "Há quanto tempo você estuda pra concursos?",

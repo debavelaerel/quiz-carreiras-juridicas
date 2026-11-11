@@ -30,6 +30,8 @@ def points(lead):
     elif cargo in ("any", "unsure"):
         pts += 1
     pts += 2 if lead.get("formacao") == "direito" else 1
+    if lead.get("formacao") == "direito" and lead.get("pratica") == "pj3":
+        pts += 1
     horas = lead.get("horas")
     if horas == "h1":
         pts += 1

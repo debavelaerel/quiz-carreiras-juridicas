@@ -29,6 +29,14 @@ export function validarSessaoParaDiagnostico(sessao: QuizSession): string[] {
   const perfil = sessao.perfil
   const problemas: string[] = []
 
+  // Prática jurídica só é obrigatória pra quem já é bacharel (a tela some pra
+  // quem está cursando); quando vem, tem que ser uma opção válida.
+  if (perfil.formacao === 'direito' && !perfil.pratica) problemas.push('falta responder "pratica"')
+  const telaPratica = PERFIL_SCREENS.find((t) => t.key === 'pratica')
+  if (perfil.pratica && telaPratica && Array.isArray(telaPratica.opts) && !telaPratica.opts.some((o) => o[0] === perfil.pratica)) {
+    problemas.push(`"${perfil.pratica}" não é uma opção válida de "pratica"`)
+  }
+
   for (const campo of CAMPOS_OBRIGATORIOS) {
     const valor = perfil[campo]
     if (!valor || typeof valor !== 'string') {
@@ -59,6 +67,7 @@ type PayloadDiagnostico = {
   alvo: string
   cargo: string
   formacao: string
+  pratica: string
   tempo: string
   provas: string
   metodo: string
@@ -94,6 +103,7 @@ function montarPayload(sessao: QuizSession, nivel: string): PayloadDiagnostico {
     alvo: perfil.alvo ?? '',
     cargo: perfil.cargo ?? '',
     formacao: perfil.formacao ?? '',
+    pratica: perfil.formacao === 'direito' ? perfil.pratica ?? '' : '',
     tempo: perfil.tempo ?? '',
     provas: perfil.provas ?? '',
     metodo: perfil.metodo ?? '',

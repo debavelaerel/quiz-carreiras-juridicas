@@ -84,6 +84,7 @@ class DiagnosticoRequest(BaseModel):
     alvo: str
     cargo: str
     formacao: str
+    pratica: str = ""
     tempo: str
     provas: str
     metodo: str
@@ -139,6 +140,7 @@ async def gerar_diagnostico(req: DiagnosticoRequest, _auth: None = Depends(verif
         "editais": req.editais,
         "teste": {r.num - 1: r.escolhida for r in req.teste if r.escolhida},
         **{campo: getattr(req, campo) for campo in CAMPOS},
+        "pratica": req.pratica,
     }
 
     try:
@@ -200,6 +202,7 @@ async def gerar_apresentacao(req: DiagnosticoRequest, _auth: None = Depends(veri
         "editais": req.editais,
         "teste": {r.num - 1: r.escolhida for r in req.teste if r.escolhida},
         **{campo: getattr(req, campo) for campo in CAMPOS},
+        "pratica": req.pratica,
     }
 
     try:

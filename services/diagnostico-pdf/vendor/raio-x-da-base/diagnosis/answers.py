@@ -51,6 +51,11 @@ class Lead:
                 raise LeadInvalido(f"falta a resposta de '{campo}'")
             if valor not in _validos(campo, self.raw.get("alvo")):
                 raise LeadInvalido(f"'{valor}' não é uma resposta válida de '{campo}'")
+        # Prática jurídica: opcional (só bacharel responde) e fora de CAMPOS de
+        # propósito, pra não mudar o formato do código RX1. Vazia = não se aplica.
+        pratica = self.raw.get("pratica") or ""
+        if pratica and pratica not in _validos("pratica"):
+            raise LeadInvalido(f"'{pratica}' não é uma resposta válida de 'pratica'")
 
     def get(self, campo):
         return self.raw.get(campo)

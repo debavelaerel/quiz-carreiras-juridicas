@@ -7,6 +7,9 @@ export type RespostasPerfil = {
   alvo?: string
   cargo?: string
   formacao?: string
+  // Só pra quem já é bacharel (a tela some pra quem está cursando; ver
+  // `quando` em PERFIL_SCREENS). pj0 nenhuma, pj1 < 1 ano, pj2 1 a 3, pj3 3+.
+  pratica?: string
   tempo?: string
   provas?: string
   metodo?: string
@@ -56,6 +59,8 @@ export function calcularPerfil(r: RespostasPerfil, acertosTeste: number): Perfil
 
   if (r.formacao === 'direito') pontos += 2
   else pontos += 1
+
+  if (r.formacao === 'direito' && r.pratica === 'pj3') pontos += 1
 
   if (r.horas === 'h1') pontos += 1
   else if (r.horas === 'h2' || r.horas === 'h3' || r.horas === 'h4') pontos += 2

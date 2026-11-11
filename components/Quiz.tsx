@@ -7,6 +7,8 @@ import { carregarEstado, salvarEstado, limparEstado, criarNovoSessionToken, type
 import {
   CONFIG,
   PERFIL_SCREENS,
+  telaVisivel,
+  fraseRequisitoPratica,
   TELA_DINHEIRO,
   TELA_LEITURA,
   DIAG,
@@ -681,7 +683,10 @@ export default function Quiz() {
         return
       }
     }
-    const proximoPasso = passoPerfil + 1
+    // Pula telas que não se aplicam (`quando`), ex.: prática jurídica pra
+    // quem ainda está cursando Direito.
+    let proximoPasso = passoPerfil + 1
+    while (proximoPasso < PERFIL_SCREENS.length && !telaVisivel(PERFIL_SCREENS[proximoPasso], proximasRespostas)) proximoPasso++
     if (proximoPasso >= PERFIL_SCREENS.length) {
       setTela('mirror')
       return
@@ -702,7 +707,8 @@ export default function Quiz() {
   // multi já respondida antes (ver comentário acima).
   function voltarPerfil() {
     if (passoPerfil === 0) return
-    const passoAnterior = passoPerfil - 1
+    let passoAnterior = passoPerfil - 1
+    while (passoAnterior > 0 && !telaVisivel(PERFIL_SCREENS[passoAnterior], respostasPerfil)) passoAnterior--
     setPassoPerfil(passoAnterior)
     const telaAnterior = PERFIL_SCREENS[passoAnterior]
     const jaEscolhido = telaAnterior.type === 'multi' ? respostasPerfil[telaAnterior.key] : undefined
@@ -1150,7 +1156,7 @@ export default function Quiz() {
         <Header progresso={progresso} />
         <main className="flex flex-1 items-start justify-center px-6 py-8">
           <div className="w-full max-w-md">
-            <p className="text-sm text-brand-ink-dim">Pergunta {passoPerfil + 1} de {PERFIL_SCREENS.length}</p>
+            <p className="text-sm text-brand-ink-dim">Pergunta {PERFIL_SCREENS.slice(0, passoPerfil + 1).filter((t) => telaVisivel(t, respostasPerfil)).length} de {PERFIL_SCREENS.filter((t) => telaVisivel(t, respostasPerfil)).length}</p>
             <h1 className="mt-2 text-2xl font-bold leading-tight tracking-[-0.01em] text-brand-ink">{titulo}</h1>
             {hint && <p className="mt-2 text-[15px] text-brand-ink-dim">{hint}</p>}
 
@@ -1382,11 +1388,11 @@ export default function Quiz() {
     const alvoLongo = respostasPerfil.alvo ? L.alvoLongo[respostasPerfil.alvo] : ''
     const escolhidos = editaisEscolhidos(respostasPerfil)
     const provaNaMira = escolhidos[0]
-    const edFrase = provaNaMira
+    const edFrase = (provaNaMira
       ? provaNaMira.aberto
-        ? `O ${provaNaMira.label} está com ${provaNaMira.sub}, então o seu tempo tem dono. `
-        : `O ${provaNaMira.label} já está na fila (${provaNaMira.sub}), então o seu tempo tem dono. `
-      : ''
+        ? `${provaNaMira.label}: ${provaNaMira.sub}. O seu tempo tem dono. `
+        : `${provaNaMira.label}: ${provaNaMira.sub}. Já está na fila, então o seu tempo tem dono. `
+      : '') + fraseRequisitoPratica(respostasPerfil)
     const progresso = Math.round((PERFIL_SCREENS.length / PASSOS_POS_INTRO) * 100)
     return (
       <div className="flex min-h-screen flex-col">

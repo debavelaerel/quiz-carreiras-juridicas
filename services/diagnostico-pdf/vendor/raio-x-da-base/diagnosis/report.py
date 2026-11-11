@@ -16,7 +16,7 @@ from .rules import selected_blocks
 MESES = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
          "agosto", "setembro", "outubro", "novembro", "dezembro"]
 
-FICHA = [("alvo", "Carreira"), ("cargo", "Cargo"), ("formacao", "Formação"),
+FICHA = [("alvo", "Carreira"), ("cargo", "Cargo"), ("formacao", "Formação"), ("pratica", "Prática jurídica"),
          ("tempo", "Tempo de estudo"), ("provas", "Provas de carreira jurídica"),
          ("metodo", "Como estudou até aqui"), ("vde", "Conhece o Método VDE"),
          ("horas", "Horas por dia"), ("edital", "Edital na mira"),
