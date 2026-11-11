@@ -1113,7 +1113,7 @@ export default function Quiz() {
               Os próximos 12 meses vão ser das carreiras jurídicas.
             </h1>
             <p className="mt-3 text-[13.5px] leading-normal text-brand-ink-soft sm:mt-4 sm:text-[17px] sm:leading-relaxed">
-              TJ SC, TJ RS, DPE SP, PC PE e PC AC já com edital publicado. TJDFT, MP AP, PGE BA, DPE RN e PC RJ com banca definida. AGU com 170 vagas autorizadas, e os TRFs, o MP SP e a DPU na fila.
+              Juiz no TJ SC e no TJ RS, defensor na DPE SP e delegado na PC PE e na PC AC: editais já publicados. Juiz no TJDFT, promotor no MP AP, procurador na PGE BA e delegado na PC RJ com banca definida. AGU com 170 vagas autorizadas, e juiz federal, MP SP e DPU na fila.
             </p>
             <p className="mt-3 text-[13.5px] leading-normal text-brand-ink-soft sm:mt-4 sm:text-[17px] sm:leading-relaxed">
               Não dá pra desperdiçar essas oportunidades. Quem chega despreparado não perde só uma prova: perde o ciclo inteiro, porque o próximo edital da mesma carreira no mesmo estado pode demorar anos.
@@ -1219,8 +1219,8 @@ export default function Quiz() {
       ]
     } else if (motivoDesqualificacao === 'juridica') {
       paragrafos = [
-        'Juiz, promotor, defensor e procurador são carreiras jurídicas, e a preparação é outra: mais profundidade, mais fases, outro tipo de prova. O VDE Tribunais foi feito pra servidor de tribunal, então não é o curso certo pro seu objetivo.',
-        'Pra carreiras jurídicas o VDE tem outra formação de base, o VDE Carreiras Jurídicas. Se fizer sentido, me chama no Instagram que eu te aponto o caminho.',
+        'Pelo que você me contou, o seu foco hoje não é uma carreira jurídica. E o VDE Carreiras Jurídicas foi feito sob medida pra juiz, promotor, defensor, procurador e delegado.',
+        'Prefiro te dizer isso agora e você chegar no seu concurso pelo caminho certo.',
       ]
     } else {
       paragrafos = [
@@ -1733,7 +1733,7 @@ export default function Quiz() {
   const cargo = labelCargo(respostasPerfil)
   const alvoLabel = respostasPerfil.alvo ? L.alvo[respostasPerfil.alvo] : ''
   const link = resultado
-    ? waLink(nome || estado?.nome || '', respostasPerfil, perfilCalculado?.classe ?? 'B', perfilCalculado?.cursoCod ?? 'C2-TJTRF', nivel, resultado.acertos, resultado.total)
+    ? waLink(nome || estado?.nome || '', respostasPerfil, perfilCalculado?.classe ?? 'B', perfilCalculado?.cursoCod ?? 'CJ-BASE', nivel, resultado.acertos, resultado.total)
     : '#'
 
   return (

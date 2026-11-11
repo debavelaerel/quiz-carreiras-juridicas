@@ -16,45 +16,59 @@ export const CONFIG = {
 }
 
 // `aberto`: o edital já saiu (inscrições abertas ou prova marcada).
+// `esfera`: casa com a resposta da tela "E em qual esfera?" (cargo).
+// `semPrevisao`: a esfera não tem concurso aberto nem previsto; a tela mostra
+// esse item e, embaixo, os outros concursos da mesma carreira (ver editaisDisponiveis).
+// O rótulo sempre começa pelo cargo ("Juiz · TJ SC"): só a sigla do órgão
+// confunde com concurso de servidor.
 // Pesquisa de 11/11/2026 — fontes no relatório editais-carreiras.md.
-export type Edital = { id: string; label: string; sub: string; aberto?: boolean }
+export type Esfera = 'estadual' | 'federal' | 'trabalho'
+export type Edital = { id: string; label: string; sub: string; esfera: Esfera; aberto?: boolean; semPrevisao?: boolean }
 
 export const EDITAIS: Record<string, Edital[]> = {
   juiz: [
-    { id: 'tjsc', label: 'TJ SC', sub: 'edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 26/11', aberto: true },
-    { id: 'tjrs', label: 'TJ RS', sub: 'edital publicado para juiz substituto (banca FGV); 30 vagas, prova em 13/12', aberto: true },
-    { id: 'tjap', label: 'TJ AP', sub: 'edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 13/11', aberto: true },
-    { id: 'tjdft', label: 'TJDFT', sub: 'banca definida para juiz substituto (Cebraspe); 20 vagas previstas' },
-    { id: 'tjpb', label: 'TJ PB', sub: 'concurso para juiz substituto em preparação; 6 vagas previstas' },
-    { id: 'tjac', label: 'TJ AC', sub: 'regulamento publicado para juiz substituto; banca a definir' },
-    { id: 'trfs', label: 'TRFs (juiz federal)', sub: 'concursos previstos no orçamento de 2027 nos seis TRFs' },
+    { id: 'tjsc', label: 'Juiz · TJ SC', sub: 'edital publicado (FGV); 15 vagas, inscrições até 26/11', esfera: 'estadual', aberto: true },
+    { id: 'tjrs', label: 'Juiz · TJ RS', sub: 'edital publicado (FGV); 30 vagas, prova em 13/12', esfera: 'estadual', aberto: true },
+    { id: 'tjap', label: 'Juiz · TJ AP', sub: 'edital publicado (FGV); 15 vagas, inscrições até 13/11', esfera: 'estadual', aberto: true },
+    { id: 'tjdft', label: 'Juiz · TJDFT', sub: 'banca definida (Cebraspe); 20 vagas previstas', esfera: 'estadual' },
+    { id: 'tjpb', label: 'Juiz · TJ PB', sub: 'concurso em preparação; 6 vagas previstas', esfera: 'estadual' },
+    { id: 'tjac', label: 'Juiz · TJ AC', sub: 'regulamento publicado; banca a definir', esfera: 'estadual' },
+    { id: 'tjrr', label: 'Juiz · TJ RR', sub: 'comissão do concurso formada; banca a definir', esfera: 'estadual' },
+    { id: 'trf5', label: 'Juiz federal · TRF 5', sub: 'edital publicado (FGV); 11 vagas, inscrições já encerradas', esfera: 'federal', aberto: true },
+    { id: 'trfs', label: 'Juiz federal · TRFs 1 a 6', sub: 'concursos previstos no orçamento de 2027', esfera: 'federal' },
+    { id: 'trt', label: 'Juiz do trabalho · concurso nacional unificado', sub: 'sem edital nem previsão oficial; ainda há aprovados do concurso anterior', esfera: 'trabalho', semPrevisao: true },
   ],
   mp: [
-    { id: 'mpap', label: 'MP AP', sub: 'banca definida para promotor substituto (FCC); 5 vagas previstas' },
-    { id: 'mppe', label: 'MP PE', sub: 'regulamento publicado para promotor substituto; 15 vagas' },
-    { id: 'mpsp', label: 'MP SP', sub: 'novo concurso para promotor em estudo; contratação da banca iniciada' },
-    { id: 'mprj', label: 'MP RJ', sub: 'novo regulamento em preparação para o XL concurso de promotor' },
+    { id: 'mpap', label: 'Promotor · MP AP', sub: 'banca definida (FCC); 5 vagas previstas', esfera: 'estadual' },
+    { id: 'mppe', label: 'Promotor · MP PE', sub: 'regulamento publicado; 15 vagas', esfera: 'estadual' },
+    { id: 'mpsp', label: 'Promotor · MP SP', sub: 'novo concurso em estudo; contratação da banca iniciada', esfera: 'estadual' },
+    { id: 'mprj', label: 'Promotor · MP RJ', sub: 'regulamento em preparação para o XL concurso', esfera: 'estadual' },
+    { id: 'mpf', label: 'Procurador da República · MPF', sub: 'o 31º concurso terminou em julho; o 32º ainda não foi anunciado', esfera: 'federal', semPrevisao: true },
   ],
   defensoria: [
-    { id: 'dpesp', label: 'DPE SP', sub: 'edital publicado para defensor público (banca FCC); 70 vagas, prova em 10/01/2027', aberto: true },
-    { id: 'dpern', label: 'DPE RN', sub: 'banca definida para defensor público (Cebraspe); 10 vagas previstas' },
-    { id: 'dpego', label: 'DPE GO', sub: 'regulamento publicado para defensor público; edital previsto' },
-    { id: 'dpu', label: 'DPU', sub: 'comissão formada para contratar a banca do concurso de defensor federal' },
+    { id: 'dpesp', label: 'Defensor · DPE SP', sub: 'edital publicado (FCC); 70 vagas, prova em 10/01/2027', esfera: 'estadual', aberto: true },
+    { id: 'dpern', label: 'Defensor · DPE RN', sub: 'banca definida (Cebraspe); 10 vagas previstas', esfera: 'estadual' },
+    { id: 'dpego', label: 'Defensor · DPE GO', sub: 'regulamento publicado; edital previsto', esfera: 'estadual' },
+    { id: 'dpu', label: 'Defensor federal · DPU', sub: 'comissão formada para contratar a banca; 183 cargos no orçamento de 2027', esfera: 'federal' },
   ],
   procuradoria: [
-    { id: 'pgeba', label: 'PGE BA', sub: 'banca contratada para procurador do estado (FCC); 20 vagas' },
-    { id: 'agu', label: 'AGU', sub: 'concurso unificado autorizado; 170 vagas, banca em definição' },
-    { id: 'pgers', label: 'PGE RS', sub: 'comissão formada para o 16º concurso de procurador do estado' },
+    { id: 'pgeba', label: 'Procurador do estado · PGE BA', sub: 'banca contratada (FCC); 20 vagas, edital iminente', esfera: 'estadual' },
+    { id: 'pgers', label: 'Procurador do estado · PGE RS', sub: 'comissão formada para o 16º concurso', esfera: 'estadual' },
+    { id: 'pgema', label: 'Procurador do estado · PGE MA', sub: 'regulamento publicado; banca em negociação', esfera: 'estadual' },
+    { id: 'agu', label: 'AGU · Advogado da União, PFN e Procurador Federal', sub: 'concurso unificado autorizado; 170 vagas, edital previsto até jan/2027', esfera: 'federal' },
   ],
   delegado: [
-    { id: 'pcpe', label: 'PC PE', sub: 'edital publicado para delegado (banca Cebraspe); 45 vagas, inscrições até 16/12', aberto: true },
-    { id: 'pcac', label: 'PC AC', sub: 'edital publicado para delegado (banca Idecan); 8 vagas, inscrições até 14/12', aberto: true },
-    { id: 'pcap', label: 'PC AP', sub: 'edital publicado para delegado (banca Cesgranrio); prova em 06/12', aberto: true },
-    { id: 'pcrj', label: 'PC RJ', sub: 'banca definida para delegado (Cesgranrio); 85 vagas' },
-    { id: 'pcto', label: 'PC TO', sub: 'concurso autorizado para delegado; comissão definida, 60 vagas' },
+    { id: 'pcpe', label: 'Delegado · PC PE', sub: 'edital publicado (Cebraspe); 45 vagas, inscrições até 16/12', esfera: 'estadual', aberto: true },
+    { id: 'pcac', label: 'Delegado · PC AC', sub: 'edital publicado (Idecan); 8 vagas, inscrições até 14/12', esfera: 'estadual', aberto: true },
+    { id: 'pcap', label: 'Delegado · PC AP', sub: 'edital publicado (Cesgranrio); prova em 06/12', esfera: 'estadual', aberto: true },
+    { id: 'pcrj', label: 'Delegado · PC RJ', sub: 'banca definida (Cesgranrio); 85 vagas', esfera: 'estadual' },
+    { id: 'pcto', label: 'Delegado · PC TO', sub: 'concurso autorizado; comissão definida, 60 vagas', esfera: 'estadual' },
+    { id: 'pcmt', label: 'Delegado · PC MT', sub: 'comissão formada; banca a definir', esfera: 'estadual' },
+    { id: 'pf', label: 'Delegado federal · PF', sub: 'sem novo edital; um concurso em 2027 ainda depende de autorização', esfera: 'federal', semPrevisao: true },
   ],
 }
-EDITAIS.any = [EDITAIS.juiz[0], EDITAIS.delegado[0], EDITAIS.juiz[3], EDITAIS.mp[0], EDITAIS.defensoria[1], EDITAIS.procuradoria[1]]
+// "Qualquer carreira": uma vitrine com o que está mais perto de cada carreira.
+EDITAIS.any = ['tjsc', 'pcpe', 'dpesp', 'tjdft', 'mpap', 'pgeba', 'agu', 'trf5'].map((id) => Object.values(EDITAIS).flat().find((e) => e.id === id)!)
 
 export const L = {
   alvo: { juiz: 'Magistratura', mp: 'Ministério Público', defensoria: 'Defensoria Pública', procuradoria: 'Advocacia Pública', delegado: 'Polícia', any: 'qualquer carreira jurídica', outro: 'outro concurso' } as Record<string, string>,
@@ -290,7 +304,9 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
   },
   {
     type: 'single', key: 'formacao', title: 'Qual é a sua formação hoje?',
-    hint: 'Magistratura e Ministério Público exigem 3 anos de atividade jurídica depois de formado. Dá pra formar a base enquanto cumpre esse prazo.',
+    hint: (r) => (r.alvo === 'juiz' || r.alvo === 'mp'
+      ? 'Magistratura e Ministério Público exigem 3 anos de atividade jurídica depois de formado. Dá pra formar a base enquanto cumpre esse prazo.'
+      : 'Toda carreira jurídica exige o bacharelado em Direito, e algumas pedem também tempo de prática jurídica. Dá pra formar a base enquanto isso.'),
     opts: [
       ['direito', 'Bacharel em Direito'],
       ['cursando_direito', 'Cursando Direito'],
@@ -365,7 +381,7 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
   },
   {
     type: 'multi', key: 'editais', title: 'Estes são os concursos abertos e os que estão por vir. Em qual deles você quer estar pronto?',
-    hint: (r) => `Pode marcar mais de um. Situação em ${CONFIG.editaisAtualizadosEm}.`,
+    hint: (r) => `${editaisAviso(r)}Pode marcar mais de um. Situação em ${CONFIG.editaisAtualizadosEm}.`,
     opts: (r) => {
       const lista = editaisDisponiveis(r)
       return [...lista.map((e): Opcao => [e.id, e.label, e.sub]), ['qualquer', 'Qualquer um, quero estar pronto quando abrir']]
@@ -396,10 +412,20 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
   },
 ]
 
+// Subsídio inicial por carreira, faixa dos editais da pesquisa de 11/11/2026.
+const SUBSIDIO_POR_ALVO: Record<string, string> = {
+  juiz: 'Juiz substituto começa entre R$ 30 mil e R$ 38 mil por mês, conforme o tribunal.',
+  mp: 'Promotor substituto começa entre R$ 32 mil e R$ 38 mil por mês, conforme o estado.',
+  defensoria: 'Defensor público começa entre R$ 23 mil e R$ 38 mil por mês, conforme o estado; na DPU, perto de R$ 28 mil.',
+  procuradoria: 'Procurador do estado começa entre R$ 23 mil e R$ 36 mil por mês, conforme o estado; na AGU, a partir de uns R$ 25 mil.',
+  delegado: 'Delegado começa entre R$ 13 mil e R$ 31 mil por mês, conforme o estado.',
+  any: 'Juiz, promotor e defensor começam entre R$ 23 mil e R$ 38 mil por mês; procurador do estado, entre R$ 23 mil e R$ 36 mil; delegado, entre R$ 13 mil e R$ 31 mil.',
+}
+
 // Mesmas posições fixas do Tribunais: dinheiro depois do vídeo, leitura depois da correção.
 export const TELA_DINHEIRO: TelaPerfil = {
   type: 'single', key: 'dinheiro', title: 'Quanto você receberia a mais por mês se fosse aprovado(a) hoje na carreira que você mira?',
-  hint: 'Juiz, promotor e defensor começam perto de R$ 37 mil; procurador do estado, perto de R$ 36 mil; delegado, até R$ 31 mil. Compare com o que você ganha hoje.',
+  hint: (r) => `${SUBSIDIO_POR_ALVO[r.alvo ?? ''] ?? SUBSIDIO_POR_ALVO.any} Compare com o que você ganha hoje.`,
   opts: [
     ['120', 'Uns R$ 10 mil a mais por mês', 'R$ 120 mil por ano'],
     ['180', 'Uns R$ 15 mil a mais por mês', 'R$ 180 mil por ano'],
@@ -430,13 +456,45 @@ export function labelCargo(r: RespostasPerfil): string {
   return mapa[r.cargo ?? ''] ?? ''
 }
 
+const ESFERAS: readonly string[] = ['estadual', 'federal', 'trabalho']
+const CARREIRAS_BASE = ['juiz', 'mp', 'defensoria', 'procuradoria', 'delegado']
+
+// Lista da tela de concursos, filtrada pela carreira E pela esfera. Quando a
+// esfera não tem nada aberto ou previsto (juiz do trabalho, MPF, PF, procurador
+// municipal), mostra o que existe dela e, embaixo, o resto da mesma carreira,
+// com o aviso de editaisAviso explicando por quê.
 export function editaisDisponiveis(r: RespostasPerfil): Edital[] {
-  return EDITAIS[r.alvo ?? ''] ?? EDITAIS.any
+  const alvo = r.alvo ?? ''
+  const esfera = r.cargo ?? ''
+  if (!CARREIRAS_BASE.includes(alvo)) {
+    if (!ESFERAS.includes(esfera)) return EDITAIS.any
+    // Editais já publicados primeiro; no máximo 10 pra a tela não virar um catálogo no celular.
+    const daEsfera = CARREIRAS_BASE.flatMap((c) => EDITAIS[c]).filter((e) => e.esfera === esfera && !e.semPrevisao)
+    return [...daEsfera.filter((e) => e.aberto), ...daEsfera.filter((e) => !e.aberto)].slice(0, 10)
+  }
+  const daCarreira = EDITAIS[alvo]
+  if (!ESFERAS.includes(esfera)) return daCarreira
+  const daEsfera = daCarreira.filter((e) => e.esfera === esfera)
+  if (daEsfera.some((e) => !e.semPrevisao)) return daEsfera
+  return [...daEsfera, ...daCarreira.filter((e) => e.esfera !== esfera)]
+}
+
+// Frase que abre a dica da tela de concursos quando a esfera escolhida está
+// sem concurso (ver editaisDisponiveis). Vazia no caso normal.
+export function editaisAviso(r: RespostasPerfil): string {
+  const alvo = r.alvo ?? ''
+  const esfera = r.cargo ?? ''
+  if (!CARREIRAS_BASE.includes(alvo)) return ''
+  if (esfera === 'municipal') return 'As procuradorias municipais são centenas e não entram nesta lista. Abaixo, os concursos de procurador do estado e da AGU, que cobram a mesma base. '
+  if (!ESFERAS.includes(esfera)) return ''
+  const daEsfera = EDITAIS[alvo].filter((e) => e.esfera === esfera)
+  if (daEsfera.some((e) => !e.semPrevisao)) return ''
+  return `Hoje não há concurso de ${labelCargo(r)} aberto nem previsto. Abaixo, os outros concursos de ${({ juiz: 'magistratura', mp: 'Ministério Público', defensoria: 'Defensoria', procuradoria: 'advocacia pública', delegado: 'delegado' } as Record<string, string>)[alvo]}, que cobram a mesma base. `
 }
 
 export function editaisEscolhidos(r: RespostasPerfil): Edital[] {
-  const lista = editaisDisponiveis(r)
-  return (r.editais ?? []).filter((x) => x !== 'qualquer').map((id) => lista.find((e) => e.id === id)).filter((e): e is Edital => Boolean(e))
+  const todos = CARREIRAS_BASE.flatMap((c) => EDITAIS[c])
+  return (r.editais ?? []).filter((x) => x !== 'qualquer').map((id) => todos.find((e) => e.id === id)).filter((e): e is Edital => Boolean(e))
 }
 
 // Frase da tela de correção, indexada pelo número de acertos (0 a 5).

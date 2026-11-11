@@ -413,133 +413,202 @@ EDITAIS = {
     "juiz": [
         {
             "id": "tjsc",
-            "label": "TJ SC",
-            "sub": "edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 26/11",
+            "label": "Juiz · TJ SC",
+            "sub": "edital publicado (FGV); 15 vagas, inscrições até 26/11",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "tjrs",
-            "label": "TJ RS",
-            "sub": "edital publicado para juiz substituto (banca FGV); 30 vagas, prova em 13/12",
+            "label": "Juiz · TJ RS",
+            "sub": "edital publicado (FGV); 30 vagas, prova em 13/12",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "tjap",
-            "label": "TJ AP",
-            "sub": "edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 13/11",
+            "label": "Juiz · TJ AP",
+            "sub": "edital publicado (FGV); 15 vagas, inscrições até 13/11",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "tjdft",
-            "label": "TJDFT",
-            "sub": "banca definida para juiz substituto (Cebraspe); 20 vagas previstas"
+            "label": "Juiz · TJDFT",
+            "sub": "banca definida (Cebraspe); 20 vagas previstas",
+            "esfera": "estadual"
         },
         {
             "id": "tjpb",
-            "label": "TJ PB",
-            "sub": "concurso para juiz substituto em preparação; 6 vagas previstas"
+            "label": "Juiz · TJ PB",
+            "sub": "concurso em preparação; 6 vagas previstas",
+            "esfera": "estadual"
         },
         {
             "id": "tjac",
-            "label": "TJ AC",
-            "sub": "regulamento publicado para juiz substituto; banca a definir"
+            "label": "Juiz · TJ AC",
+            "sub": "regulamento publicado; banca a definir",
+            "esfera": "estadual"
+        },
+        {
+            "id": "tjrr",
+            "label": "Juiz · TJ RR",
+            "sub": "comissão do concurso formada; banca a definir",
+            "esfera": "estadual"
+        },
+        {
+            "id": "trf5",
+            "label": "Juiz federal · TRF 5",
+            "sub": "edital publicado (FGV); 11 vagas, inscrições já encerradas",
+            "esfera": "federal",
+            "aberto": True
         },
         {
             "id": "trfs",
-            "label": "TRFs (juiz federal)",
-            "sub": "concursos previstos no orçamento de 2027 nos seis TRFs"
+            "label": "Juiz federal · TRFs 1 a 6",
+            "sub": "concursos previstos no orçamento de 2027",
+            "esfera": "federal"
+        },
+        {
+            "id": "trt",
+            "label": "Juiz do trabalho · concurso nacional unificado",
+            "sub": "sem edital nem previsão oficial; ainda há aprovados do concurso anterior",
+            "esfera": "trabalho",
+            "semPrevisao": True
         }
     ],
     "mp": [
         {
             "id": "mpap",
-            "label": "MP AP",
-            "sub": "banca definida para promotor substituto (FCC); 5 vagas previstas"
+            "label": "Promotor · MP AP",
+            "sub": "banca definida (FCC); 5 vagas previstas",
+            "esfera": "estadual"
         },
         {
             "id": "mppe",
-            "label": "MP PE",
-            "sub": "regulamento publicado para promotor substituto; 15 vagas"
+            "label": "Promotor · MP PE",
+            "sub": "regulamento publicado; 15 vagas",
+            "esfera": "estadual"
         },
         {
             "id": "mpsp",
-            "label": "MP SP",
-            "sub": "novo concurso para promotor em estudo; contratação da banca iniciada"
+            "label": "Promotor · MP SP",
+            "sub": "novo concurso em estudo; contratação da banca iniciada",
+            "esfera": "estadual"
         },
         {
             "id": "mprj",
-            "label": "MP RJ",
-            "sub": "novo regulamento em preparação para o XL concurso de promotor"
+            "label": "Promotor · MP RJ",
+            "sub": "regulamento em preparação para o XL concurso",
+            "esfera": "estadual"
+        },
+        {
+            "id": "mpf",
+            "label": "Procurador da República · MPF",
+            "sub": "o 31º concurso terminou em julho; o 32º ainda não foi anunciado",
+            "esfera": "federal",
+            "semPrevisao": True
         }
     ],
     "defensoria": [
         {
             "id": "dpesp",
-            "label": "DPE SP",
-            "sub": "edital publicado para defensor público (banca FCC); 70 vagas, prova em 10/01/2027",
+            "label": "Defensor · DPE SP",
+            "sub": "edital publicado (FCC); 70 vagas, prova em 10/01/2027",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "dpern",
-            "label": "DPE RN",
-            "sub": "banca definida para defensor público (Cebraspe); 10 vagas previstas"
+            "label": "Defensor · DPE RN",
+            "sub": "banca definida (Cebraspe); 10 vagas previstas",
+            "esfera": "estadual"
         },
         {
             "id": "dpego",
-            "label": "DPE GO",
-            "sub": "regulamento publicado para defensor público; edital previsto"
+            "label": "Defensor · DPE GO",
+            "sub": "regulamento publicado; edital previsto",
+            "esfera": "estadual"
         },
         {
             "id": "dpu",
-            "label": "DPU",
-            "sub": "comissão formada para contratar a banca do concurso de defensor federal"
+            "label": "Defensor federal · DPU",
+            "sub": "comissão formada para contratar a banca; 183 cargos no orçamento de 2027",
+            "esfera": "federal"
         }
     ],
     "procuradoria": [
         {
             "id": "pgeba",
-            "label": "PGE BA",
-            "sub": "banca contratada para procurador do estado (FCC); 20 vagas"
-        },
-        {
-            "id": "agu",
-            "label": "AGU",
-            "sub": "concurso unificado autorizado; 170 vagas, banca em definição"
+            "label": "Procurador do estado · PGE BA",
+            "sub": "banca contratada (FCC); 20 vagas, edital iminente",
+            "esfera": "estadual"
         },
         {
             "id": "pgers",
-            "label": "PGE RS",
-            "sub": "comissão formada para o 16º concurso de procurador do estado"
+            "label": "Procurador do estado · PGE RS",
+            "sub": "comissão formada para o 16º concurso",
+            "esfera": "estadual"
+        },
+        {
+            "id": "pgema",
+            "label": "Procurador do estado · PGE MA",
+            "sub": "regulamento publicado; banca em negociação",
+            "esfera": "estadual"
+        },
+        {
+            "id": "agu",
+            "label": "AGU · Advogado da União, PFN e Procurador Federal",
+            "sub": "concurso unificado autorizado; 170 vagas, edital previsto até jan/2027",
+            "esfera": "federal"
         }
     ],
     "delegado": [
         {
             "id": "pcpe",
-            "label": "PC PE",
-            "sub": "edital publicado para delegado (banca Cebraspe); 45 vagas, inscrições até 16/12",
+            "label": "Delegado · PC PE",
+            "sub": "edital publicado (Cebraspe); 45 vagas, inscrições até 16/12",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "pcac",
-            "label": "PC AC",
-            "sub": "edital publicado para delegado (banca Idecan); 8 vagas, inscrições até 14/12",
+            "label": "Delegado · PC AC",
+            "sub": "edital publicado (Idecan); 8 vagas, inscrições até 14/12",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "pcap",
-            "label": "PC AP",
-            "sub": "edital publicado para delegado (banca Cesgranrio); prova em 06/12",
+            "label": "Delegado · PC AP",
+            "sub": "edital publicado (Cesgranrio); prova em 06/12",
+            "esfera": "estadual",
             "aberto": True
         },
         {
             "id": "pcrj",
-            "label": "PC RJ",
-            "sub": "banca definida para delegado (Cesgranrio); 85 vagas"
+            "label": "Delegado · PC RJ",
+            "sub": "banca definida (Cesgranrio); 85 vagas",
+            "esfera": "estadual"
         },
         {
             "id": "pcto",
-            "label": "PC TO",
-            "sub": "concurso autorizado para delegado; comissão definida, 60 vagas"
+            "label": "Delegado · PC TO",
+            "sub": "concurso autorizado; comissão definida, 60 vagas",
+            "esfera": "estadual"
+        },
+        {
+            "id": "pcmt",
+            "label": "Delegado · PC MT",
+            "sub": "comissão formada; banca a definir",
+            "esfera": "estadual"
+        },
+        {
+            "id": "pf",
+            "label": "Delegado federal · PF",
+            "sub": "sem novo edital; um concurso em 2027 ainda depende de autorização",
+            "esfera": "federal",
+            "semPrevisao": True
         }
     ]
 }
