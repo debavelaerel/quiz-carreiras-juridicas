@@ -9,24 +9,27 @@ do quiz OAB: duas imagens Docker, Supabase na nuvem e S3 via IAM role.
 | --- | --- | --- | --- |
 | **Quiz + admin** (Next.js) | `Dockerfile` na raiz | 3000 | container Node de **longa duração** (não serverless: o PDF é disparado com `after()` depois do `finish`) |
 | **Serviço de PDF** (FastAPI + Chromium) | `services/diagnostico-pdf/Dockerfile` | `${PORT:-8000}` | só rede interna; o Next é o único cliente |
-| **Banco** | Supabase (nuvem) — o **mesmo projeto do quiz Tribunais** | — | tabelas `quiz_sessions` e `leads_desqualificados` |
+| **Banco** | Supabase (nuvem) — mesmo projeto do Tribunais/OAB | — | tabelas próprias `quiz_cj_sessions` e `quiz_cj_leads_desqualificados` |
 | **Bucket S3** | — | — | privado, região `sa-east-1` (nome a definir; ex.: `vicio-quiz-cj-s3`) |
 
 As duas imagens saem do mesmo commit e devem ser publicadas **juntas** (o texto dos diagnósticos
 fica no Next e no serviço Python, gerado pelo mesmo script).
 
-## 1. Banco (Supabase) — nenhuma migration
+## 1. Banco (Supabase) — JÁ APLICADO em 11/11/2026
 
-O quiz usa **o mesmo esquema do quiz Tribunais, sem nenhuma alteração**. As linhas do CJ ficam
-separadas pelo campo `evento = 'diagnostico-carreiras-juridicas'` (o Tribunais usa
-`diagnostico-tribunais-comercial`), então os dois painéis `/admin` não se misturam e a mesma pessoa
-pode fazer os dois quizzes.
+Mesmo projeto Supabase do Tribunais e da OAB, mas com **tabelas próprias**, no padrão da OAB
+(`quiz_oab_*`): `quiz_cj_sessions` e `quiz_cj_leads_desqualificados`, mais a função
+`quiz_cj_set_updated_at()`. Nada do Tribunais, da OAB ou das automações (`tribunais_*`, `dash_*`,
+`clint_*`) foi alterado: só objetos novos foram criados (conferido por impressão digital do esquema
+antes e depois).
 
-- Apontar para o **mesmo projeto Supabase de produção do Tribunais**: não rodar `supabase db push`
-  nem nenhuma migration. As migrations em `supabase/migrations/` são cópia das do Tribunais e só
-  servem para o Supabase **local**.
-- O app precisa só de `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (chave de servidor; nunca no
-  navegador).
+- Arquivo: `supabase/migrations/20261111120000_quiz_cj_tabelas.sql`; aplicado com
+  `supabase/producao/aplicar-quiz-cj.sql` (transação + verificação). Conferência a qualquer momento
+  (só leitura): `supabase/producao/verificar-quiz-cj.sql`.
+- **NUNCA** rodar `supabase link` / `db push` / `migration repair` / `db reset` deste repo contra a
+  produção: as outras migrations da pasta são cópias das do Tribunais, só para o Supabase **local**.
+- O app precisa só de `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (chave de servidor).
+- Desfazer (só objetos do CJ): `drop table public.quiz_cj_sessions, public.quiz_cj_leads_desqualificados; drop function public.quiz_cj_set_updated_at();`
 
 ## 2. Bucket e permissões (IAM role, sem chave)
 
@@ -51,7 +54,7 @@ Nenhuma variável é embutida no build: todas são lidas em runtime.
 
 | Variável | Valor |
 | --- | --- |
-| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | do projeto Supabase do Tribunais |
+| `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | do projeto Supabase compartilhado (o mesmo do Tribunais) |
 | `ADMIN_PASSWORD` | senha longa e aleatória do `/admin` (pode ser diferente da do Tribunais) |
 | `ADMIN_SESSION_SECRET` | `openssl rand -base64 48` — **nunca** reaproveitar o do Tribunais |
 | `LAUDO_SERVICE_URL` | URL **interna** do serviço de PDF (ex.: `http://diagnostico-pdf:8000`) |
@@ -73,7 +76,7 @@ Nenhuma variável é embutida no build: todas são lidas em runtime.
 3. Em `/admin`, o lead "TESTE" aparece com o diagnóstico pronto; o botão de baixar o PDF funciona
    (e o da apresentação comercial também).
 4. Apague o lead de teste:
-   `delete from quiz_sessions where evento = 'diagnostico-carreiras-juridicas' and nome = 'TESTE';`
+   `delete from quiz_cj_sessions where nome = 'TESTE';`
 
 Se o diagnóstico ficar com erro: veja os logs do serviço de PDF (segredo diferente nos dois lados
 ou falta de permissão no bucket). A coluna `laudo_pdf_erro` da sessão guarda a última falha.

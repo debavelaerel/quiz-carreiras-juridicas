@@ -1,7 +1,8 @@
 # Diagnóstico da Base — Quiz VDE Carreiras Jurídicas
 
 > **Vai subir na AWS?** Comece por [`docs/DEPLOY.md`](docs/DEPLOY.md). Este repo nasceu do
-> `quiz-tribunais` e usa o **mesmo banco, sem migration** (separado por `evento`).
+> `quiz-tribunais`. Usa o mesmo projeto Supabase, mas em **tabelas próprias** `quiz_cj_*`
+> (padrão da OAB) — ver `docs/DEPLOY.md`.
 
 Funil de quiz comercial: a pessoa responde um teste graduado (5 questões
 reais de concurso, uma por disciplina) + um perfilamento (alvo, cargo, tempo de estudo, dor,

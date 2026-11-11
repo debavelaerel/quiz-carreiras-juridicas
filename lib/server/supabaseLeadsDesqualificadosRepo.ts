@@ -39,7 +39,7 @@ export function criarSupabaseLeadsDesqualificadosRepo(client: SupabaseClient): L
   }
   return {
     async criar(lead) {
-      const { data, error } = await client.from('leads_desqualificados').insert({
+      const { data, error } = await client.from('quiz_cj_leads_desqualificados').insert({
         evento: lead.evento,
         fluxo: lead.fluxo,
         motivo: lead.motivo,

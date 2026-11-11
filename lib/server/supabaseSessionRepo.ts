@@ -135,7 +135,7 @@ function paraLinhaPatch(patch: Partial<QuizSession>): Record<string, unknown> {
 // (ver comentário em `listar`) — mesmo filtro status/fluxo/busca nas duas,
 // só muda o que cada uma pede de volta (linhas+count vs. só count).
 function aplicarFiltro(client: SupabaseClient, evento: string, filtro: Omit<FiltroListagem, 'pagina' | 'porPagina'>, opts: { count: 'exact'; head?: boolean }) {
-  let query = client.from('quiz_sessions').select('*', opts).eq('evento', evento)
+  let query = client.from('quiz_cj_sessions').select('*', opts).eq('evento', evento)
   if (filtro.status) query = query.eq('status', filtro.status)
   if (filtro.fluxo) query = query.eq('fluxo', filtro.fluxo)
   if (filtro.busca) {
@@ -155,7 +155,7 @@ export function criarSupabaseSessionRepo(client: SupabaseClient): SessionRepo {
   }
   return {
     async buscarPorEmail(evento, emailNormalizado) {
-      const { data, error } = await client.from('quiz_sessions').select('*')
+      const { data, error } = await client.from('quiz_cj_sessions').select('*')
         .eq('evento', evento).eq('email_normalizado', emailNormalizado).maybeSingle()
       if (error) throw error
       return data ? paraSessao(data as LinhaBanco) : null
@@ -165,7 +165,7 @@ export function criarSupabaseSessionRepo(client: SupabaseClient): SessionRepo {
       // duas linhas do mesmo evento podem legitimamente compartilhar o valor (ex.: uma
       // linha casada por email teve o whatsapp sobrescrito). `.maybeSingle()` lançaria
       // PGRST116 nesse caso — aqui pegamos a mais recente.
-      const { data, error } = await client.from('quiz_sessions').select('*')
+      const { data, error } = await client.from('quiz_cj_sessions').select('*')
         .eq('evento', evento).eq('whatsapp_normalizado', whatsappNormalizado)
         .order('updated_at', { ascending: false }).limit(1)
       if (error) throw error
@@ -173,24 +173,24 @@ export function criarSupabaseSessionRepo(client: SupabaseClient): SessionRepo {
       return linha ? paraSessao(linha as LinhaBanco) : null
     },
     async buscarPorToken(sessionToken) {
-      const { data, error } = await client.from('quiz_sessions').select('*')
+      const { data, error } = await client.from('quiz_cj_sessions').select('*')
         .eq('session_token', sessionToken).maybeSingle()
       if (error) throw error
       return data ? paraSessao(data as LinhaBanco) : null
     },
     async buscarPorLaudoToken(laudoToken) {
-      const { data, error } = await client.from('quiz_sessions').select('*')
+      const { data, error } = await client.from('quiz_cj_sessions').select('*')
         .eq('laudo_token', laudoToken).maybeSingle()
       if (error) throw error
       return data ? paraSessao(data as LinhaBanco) : null
     },
     async criar(sessao) {
-      const { data, error } = await client.from('quiz_sessions').insert(paraLinhaPatch(sessao)).select('*').single()
+      const { data, error } = await client.from('quiz_cj_sessions').insert(paraLinhaPatch(sessao)).select('*').single()
       if (error) throw error
       return paraSessao(data as LinhaBanco)
     },
     async atualizar(id, patch) {
-      const { data, error } = await client.from('quiz_sessions').update(paraLinhaPatch(patch)).eq('id', id).select('*').single()
+      const { data, error } = await client.from('quiz_cj_sessions').update(paraLinhaPatch(patch)).eq('id', id).select('*').single()
       if (error) throw error
       return paraSessao(data as LinhaBanco)
     },
