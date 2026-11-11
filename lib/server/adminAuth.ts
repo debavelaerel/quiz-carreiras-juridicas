@@ -6,7 +6,9 @@ import { createHmac, timingSafeEqual } from 'node:crypto'
 // parâmetro, não lê process.env diretamente) pra ser testável sem mock de
 // ambiente; os call sites (middleware, rota de login) leem as env vars.
 
-export const NOME_COOKIE_ADMIN = 'admin_session'
+// Nome e path próprios: o domínio é compartilhado com o painel do OAB, que usa
+// 'admin_session' em path '/' — o mesmo nome derrubaria um login com o outro.
+export const NOME_COOKIE_ADMIN = 'quiz_cj_admin_session'
 const UM_DIA_MS = 24 * 60 * 60 * 1000
 const VALIDADE_MS = 7 * UM_DIA_MS
 

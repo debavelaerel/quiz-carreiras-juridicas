@@ -5,7 +5,9 @@ export type EstadoQuiz = {
   email: string
 }
 
-const CHAVE = 'quiz-tribunais-comercial:v1'
+// Prefixo próprio: o localStorage é por domínio e o CJ divide
+// viciodeumaestudante.com.br com o Tribunais e o OAB.
+const CHAVE = 'quiz-cj:v1'
 
 export function carregarEstado(): EstadoQuiz | null {
   if (typeof window === 'undefined') return null

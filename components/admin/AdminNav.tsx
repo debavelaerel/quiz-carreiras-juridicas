@@ -1,5 +1,6 @@
 'use client'
 
+import { comBase } from '@/lib/basePath'
 import { usePathname, useRouter } from 'next/navigation'
 import { Users, PieChart as PieChartIcon, LogOut } from 'lucide-react'
 
@@ -13,7 +14,7 @@ export default function AdminNav() {
   const router = useRouter()
 
   async function sair() {
-    await fetch('/api/admin/logout', { method: 'POST' }).catch(() => {})
+    await fetch(comBase('/api/admin/logout'), { method: 'POST' }).catch(() => {})
     router.replace('/admin/login')
     router.refresh()
   }
@@ -21,7 +22,7 @@ export default function AdminNav() {
   return (
     <aside className="flex w-[232px] flex-none flex-col border-r border-brand-line px-4 py-6">
       {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-      <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="mb-6 ml-2 h-8 w-auto" />
+      <img src={comBase('/brand/versao01-color0.svg')} alt="VDE Concursos — Carreiras Jurídicas" width={1163} height={393} className="mb-6 ml-2 h-8 w-auto" />
 
       <nav className="flex flex-col gap-0.5">
         {ITENS.map(({ href, label, Icone }) => {

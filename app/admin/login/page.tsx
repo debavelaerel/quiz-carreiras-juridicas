@@ -1,5 +1,6 @@
 'use client'
 
+import { comBase } from '@/lib/basePath'
 import { useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -27,7 +28,7 @@ function FormularioLogin() {
     setEnviando(true)
     setErro(null)
     try {
-      const res = await fetch('/api/admin/login', {
+      const res = await fetch(comBase('/api/admin/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ senha }),
@@ -50,7 +51,7 @@ function FormularioLogin() {
     <div className="flex min-h-screen items-center justify-center px-6">
       <div className="w-full max-w-sm text-center">
         {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-        <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="mx-auto h-11 w-auto" />
+        <img src={comBase('/brand/versao01-color0.svg')} alt="VDE Concursos — Carreiras Jurídicas" width={1163} height={393} className="mx-auto h-11 w-auto" />
         <h1 className="mt-7 text-xl font-bold leading-tight tracking-[-0.01em] text-brand-ink">Painel administrativo</h1>
         <p className="mt-2 text-[14px] text-brand-ink-soft">Área restrita ao time VDE Tribunais.</p>
 

@@ -1,5 +1,6 @@
 'use client'
 
+import { comBase } from '@/lib/basePath'
 import { ArrowLeft } from 'lucide-react'
 import ProgressBar from './ProgressBar'
 
@@ -21,7 +22,7 @@ export default function Header({ progresso, onVoltar }: HeaderProps) {
     <header className="mx-auto w-full max-w-md px-6 pt-6">
       <div className="flex items-center justify-between gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca, sem necessidade do pipeline de otimização de imagem */}
-        <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="h-12 w-auto" />
+        <img src={comBase('/brand/vde-concursos-branco.png')} alt="Método VDE Concursos" width={1200} height={346} className="h-12 w-auto" />
         {onVoltar && (
           <button
             type="button"

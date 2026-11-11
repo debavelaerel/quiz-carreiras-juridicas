@@ -1,3 +1,4 @@
+import { comBase } from '@/lib/basePath'
 import Link from 'next/link'
 import { Download } from 'lucide-react'
 import { criarSupabaseAdmin } from '@/lib/server/supabaseAdmin'
@@ -97,7 +98,7 @@ export default async function LeadsPage({ searchParams }: { searchParams: Promis
         </button>
         <span className="flex-1" />
         <a
-          href={`/api/admin/export?${paramsExport.toString()}`}
+          href={comBase(`/api/admin/export?${paramsExport.toString()}`)}
           className="inline-flex items-center gap-1.5 rounded-[10px] border-[1.5px] border-brand-line-strong bg-brand-card px-3.5 py-2 text-[13.5px] font-semibold text-brand-ink hover:border-brand-ink hover:bg-brand-tint"
         >
           <Download size={14} strokeWidth={2.25} />

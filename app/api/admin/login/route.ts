@@ -1,3 +1,4 @@
+import { BASE_PATH } from '@/lib/basePath'
 import { NextResponse } from 'next/server'
 import { senhaConfere, assinarSessao, NOME_COOKIE_ADMIN } from '@/lib/server/adminAuth'
 import { permitirRequisicao } from '@/lib/server/rateLimit'
@@ -42,7 +43,7 @@ export function criarHandlerAdminLogin(config: Config) {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      path: '/',
+      path: BASE_PATH,
       maxAge: 60 * 60 * 24 * 7, // 7 dias — mesma validade checada em verificarSessao
     })
     return res

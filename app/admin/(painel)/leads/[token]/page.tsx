@@ -1,3 +1,4 @@
+import { BASE_PATH, comBase } from '@/lib/basePath'
 import Link from 'next/link'
 import { headers } from 'next/headers'
 import { notFound } from 'next/navigation'
@@ -36,7 +37,7 @@ export default async function LeadDetalhePage({ params }: { params: Promise<{ to
   // porta certos em qualquer ambiente (local, preview, produção), sem
   // precisar de uma env var própria só pra isso.
   const host = (await headers()).get('host')
-  const baseUrl = `https://${host}`
+  const baseUrl = `https://${host}${BASE_PATH}`
 
   const editais = sessao.perfil.editais ?? []
   const nivel = sessao.acertos !== null ? nivelTeste(sessao.acertos) : ''
@@ -54,13 +55,13 @@ export default async function LeadDetalhePage({ params }: { params: Promise<{ to
       {sessao.status === 'concluido' && (
         <div className="mb-4 flex flex-wrap gap-2.5">
           <a
-            href={`/api/admin/leads/${token}/pdf`}
+            href={comBase(`/api/admin/leads/${token}/pdf`)}
             className="inline-flex items-center gap-1.5 rounded-full bg-brand-ink px-4 py-2 text-[13px] font-semibold text-white hover:bg-brand-navy-2"
           >
             Baixar PDF do diagnóstico
           </a>
           <a
-            href={`/api/admin/leads/${token}/apresentacao`}
+            href={comBase(`/api/admin/leads/${token}/apresentacao`)}
             className="inline-flex items-center gap-1.5 rounded-full border-[1.5px] border-brand-line-strong px-4 py-2 text-[13px] font-semibold text-brand-ink hover:bg-brand-tint"
           >
             Baixar apresentação comercial

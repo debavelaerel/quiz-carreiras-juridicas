@@ -1,5 +1,6 @@
 'use client'
 
+import { comBase } from '@/lib/basePath'
 import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { ArrowRight, Check, RotateCcw, X } from 'lucide-react'
 import { QUESTIONS } from '@/lib/questions'
@@ -422,8 +423,7 @@ export default function Quiz() {
 
     void (async () => {
       try {
-        const resResultado = await fetch(
-          `/api/quiz/result?session_token=${encodeURIComponent(salvo.sessionToken)}`,
+        const resResultado = await fetch(comBase(`/api/quiz/result?session_token=${encodeURIComponent(salvo.sessionToken)}`),
         )
         if (cancelado) return
 
@@ -444,7 +444,7 @@ export default function Quiz() {
 
         // 404 = não concluída (em andamento ou inexistente): reenvia os dados em
         // cache para /start, que é idempotente e reencontra a linha pelo email.
-        const resStart = await fetch('/api/quiz/start', {
+        const resStart = await fetch(comBase('/api/quiz/start'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -516,7 +516,7 @@ export default function Quiz() {
   // decide o que fazer (ver usos abaixo).
   async function mostrarResultadoExistente(sessionToken: string, novoEstado: EstadoQuiz): Promise<boolean> {
     try {
-      const res = await fetch(`/api/quiz/result?session_token=${encodeURIComponent(sessionToken)}`)
+      const res = await fetch(comBase(`/api/quiz/result?session_token=${encodeURIComponent(sessionToken)}`))
       if (!res.ok) return false
       const json: Resultado = await res.json()
       salvarEstado(novoEstado)
@@ -539,7 +539,7 @@ export default function Quiz() {
     setEnviando(true)
     setErro(null)
     try {
-      const res = await fetch('/api/quiz/start', {
+      const res = await fetch(comBase('/api/quiz/start'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -584,7 +584,7 @@ export default function Quiz() {
     const sessionToken = estado.sessionToken
     const disparar = () => {
       perfilEmVooRef.current = true
-      fetch('/api/quiz/perfil', {
+      fetch(comBase('/api/quiz/perfil'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_token: sessionToken, chave, valor }),
@@ -623,7 +623,7 @@ export default function Quiz() {
     setEnviando(true)
     setErro(null)
     try {
-      const res = await fetch('/api/leads/desqualificado', {
+      const res = await fetch(comBase('/api/leads/desqualificado'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -778,7 +778,7 @@ export default function Quiz() {
     setEnviando(true)
     setErro(null)
     try {
-      const res = await fetch('/api/quiz/answer', {
+      const res = await fetch(comBase('/api/quiz/answer'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_token: estado.sessionToken, num: questao.num, escolhida: letra }),
@@ -821,7 +821,7 @@ export default function Quiz() {
     setTela('analisando')
     try {
       const [res] = await Promise.all([
-        fetch('/api/quiz/finish', {
+        fetch(comBase('/api/quiz/finish'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_token: sessionToken }),
@@ -865,7 +865,7 @@ export default function Quiz() {
     // garantido. Contato mudou = trata como pessoa nova, com token novo.
     const mesmoContato = estado && estado.email === email && estado.whatsapp === whatsapp
     const token = mesmoContato ? estado!.sessionToken : criarNovoSessionToken()
-    const resStart = await fetch('/api/quiz/start', {
+    const resStart = await fetch(comBase('/api/quiz/start'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nome, whatsapp, email, session_token: token, fluxo: 'final', refazer_token: refazerTokenRef.current ?? undefined, ...utmsDaUrl() }),
@@ -895,7 +895,7 @@ export default function Quiz() {
     // (não uma por chave, até 14 sequenciais) — era a causa da lentidão
     // sentida bem aqui, no clique de contato do fluxo final.
     if (Object.keys(respostasPerfil).length > 0) {
-      const resPerfil = await fetch('/api/quiz/perfil', {
+      const resPerfil = await fetch(comBase('/api/quiz/perfil'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_token: sessionToken, respostas: respostasPerfil }),
@@ -907,7 +907,7 @@ export default function Quiz() {
       .map((questao) => ({ num: questao.num, escolhida: respostasTeste[questao.num] }))
       .filter((r): r is { num: number; escolhida: string } => !!r.escolhida)
     if (respostasParaEnviar.length > 0) {
-      const resAnswer = await fetch('/api/quiz/answer', {
+      const resAnswer = await fetch(comBase('/api/quiz/answer'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ session_token: sessionToken, respostas: respostasParaEnviar }),
@@ -962,7 +962,7 @@ export default function Quiz() {
       }
       setTela('analisando')
       const [resFinish] = await Promise.all([
-        fetch('/api/quiz/finish', {
+        fetch(comBase('/api/quiz/finish'), {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_token: sessionToken }),
@@ -1012,7 +1012,7 @@ export default function Quiz() {
                 o Header (justify-between) deixaria a logo sozinha, pequena e
                 jogada pra esquerda. Mesma logo grande e centralizada da intro. */}
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-16 w-auto" />
+            <img src={comBase('/brand/vde-concursos-branco.png')} alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-16 w-auto" />
             <h1 className="mt-7 text-[26px] font-bold leading-tight tracking-[-0.01em] text-brand-ink">
               Para onde podemos enviar o resultado do diagnóstico?
             </h1>
@@ -1063,7 +1063,7 @@ export default function Quiz() {
         <main className="flex flex-1 items-start justify-center px-7 py-10">
           <div className="w-full max-w-md text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-16 w-auto" />
+            <img src={comBase('/brand/vde-concursos-branco.png')} alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-16 w-auto" />
             <div className="mt-7">
               <Eyebrow>Antes de começar</Eyebrow>
             </div>
@@ -1114,7 +1114,7 @@ export default function Quiz() {
         <main className="relative flex flex-1 items-start justify-center px-6 py-3 sm:py-10">
           <div className="w-full max-w-md text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca, sem necessidade do pipeline de otimização de imagem */}
-            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-9 w-auto sm:h-16" />
+            <img src={comBase('/brand/vde-concursos-branco.png')} alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-9 w-auto sm:h-16" />
             <h1 className="mt-3.5 text-[19px] leading-snug tracking-[-0.01em] font-bold text-brand-ink sm:mt-7 sm:text-[26px] sm:leading-tight sm:tracking-[-0.015em]">
               Os próximos 12 meses vão ser das carreiras jurídicas.
             </h1>
@@ -1709,7 +1709,7 @@ export default function Quiz() {
         <main className="flex flex-1 items-center justify-center px-6 py-8">
           <div className="w-full max-w-md text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-11 w-auto" />
+            <img src={comBase('/brand/vde-concursos-branco.png')} alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-11 w-auto" />
             <div className="relative mx-auto mt-10 h-32 w-32">
               <svg viewBox="0 0 128 128" className="h-full w-full -rotate-90">
                 <defs>
@@ -1853,7 +1853,7 @@ export default function Quiz() {
                     // silencioso de propósito (fire-and-forget): nunca pode
                     // atrasar ou travar a abertura do WhatsApp.
                     if (estado?.sessionToken) {
-                      void fetch('/api/quiz/whatsapp', {
+                      void fetch(comBase('/api/quiz/whatsapp'), {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ session_token: estado.sessionToken }),

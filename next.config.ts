@@ -1,10 +1,13 @@
 import type { NextConfig } from 'next'
+import { BASE_PATH } from './lib/basePath'
 
 const nextConfig: NextConfig = {
   // Imagem Docker enxuta (Dockerfile na raiz): container Node de longa duração
   // na AWS, igual ao quiz OAB. Precisa ser long-running (não serverless) porque
   // o PDF é disparado com after() depois da resposta do /api/quiz/finish.
   output: 'standalone',
+  // Publicado em viciodeumaestudante.com.br/quiz-cj (ver lib/basePath.ts).
+  basePath: BASE_PATH,
   // Headers de segurança básicos, aplicados a toda rota (o quiz é um
   // formulário de captação de lead — vale proteger contra clickjacking).
   // De propósito SEM Content-Security-Policy aqui: o app usa bastante

@@ -57,7 +57,7 @@ call 1:1 de vendas).
 ```
 
 Dois containers na AWS (mesmo modelo do quiz OAB — ver [`docs/DEPLOY.md`](docs/DEPLOY.md)):
-- **App Next.js** (`Dockerfile` na raiz, `output: 'standalone'`) — quiz público + painel `/admin`.
+- **App Next.js** (`Dockerfile` na raiz, `output: 'standalone'`) — quiz público + painel `/admin` (publicado sob `/quiz-cj`: `basePath` em `lib/basePath.ts`).
   Precisa ser container de longa duração: o PDF é disparado com `after()`.
 - **`services/diagnostico-pdf`** — container à parte (Playwright precisa de Chromium instalado
   no sistema), só na rede interna.
@@ -296,7 +296,7 @@ npm install
 cp .env.example .env.local
 npx supabase start                    # Supabase local (portas 655xx); copie a service_role pro .env.local
 docker compose -p quiz-cj --env-file .env.local up -d --build   # MinIO + bucket + serviço de PDF
-npm run dev                           # http://localhost:3000
+npm run dev                           # http://localhost:3000/quiz-cj (painel: /quiz-cj/admin)
 ```
 
 O PDF gerado fica no MinIO (console em http://localhost:9101, usuário/senha `minioadmin`).

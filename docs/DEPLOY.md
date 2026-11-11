@@ -15,6 +15,18 @@ do quiz OAB: duas imagens Docker, Supabase na nuvem e S3 via IAM role.
 As duas imagens saem do mesmo commit e devem ser publicadas **juntas** (o texto dos diagnósticos
 fica no Next e no serviço Python, gerado pelo mesmo script).
 
+## Endereço: `viciodeumaestudante.com.br/quiz-cj`
+
+O app já é gerado com o prefixo `/quiz-cj` (`basePath`, em `lib/basePath.ts`). Tudo dele, incluindo
+páginas, `/api/*`, imagens e `/_next/*`, fica sob `/quiz-cj`. Por isso o roteamento é **uma regra só**:
+
+- `viciodeumaestudante.com.br/quiz-cj` e `/quiz-cj/*` → container do Next, **sem reescrever o
+  caminho** (o container espera receber `/quiz-cj/...`). Repassar o `Host` original.
+- Quiz: `/quiz-cj`. Painel: `/quiz-cj/admin`.
+- Health check do container do Next: `GET /quiz-cj` → `200` (a raiz `/` dá 404, de propósito).
+- Não conflita com o OAB nem com o Tribunais: o progresso salvo no navegador (`quiz-cj:v1`) e o
+  cookie do painel (`quiz_cj_admin_session`, path `/quiz-cj`) têm nomes próprios.
+
 ## 1. Banco (Supabase) — JÁ APLICADO em 11/11/2026
 
 Mesmo projeto Supabase do Tribunais e da OAB, mas com **tabelas próprias**, no padrão da OAB
@@ -56,7 +68,7 @@ Nenhuma variável é embutida no build: todas são lidas em runtime.
 | Variável | Valor |
 | --- | --- |
 | `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` | do projeto Supabase compartilhado (o mesmo do Tribunais) |
-| `ADMIN_PASSWORD` | senha longa e aleatória do `/admin` (pode ser diferente da do Tribunais) |
+| `ADMIN_PASSWORD` | senha longa e aleatória do `/quiz-cj/admin` (pode ser diferente da do Tribunais) |
 | `ADMIN_SESSION_SECRET` | `openssl rand -base64 48` — **nunca** reaproveitar o do Tribunais |
 | `DIAGNOSTICO_SERVICE_URL` | URL **interna** do serviço de PDF (ex.: `http://diagnostico-pdf:8000`) |
 | `DIAGNOSTICO_SERVICE_SECRET` | segredo forte (`openssl rand -hex 32`), **igual** nos dois serviços |
@@ -73,8 +85,8 @@ Nenhuma variável é embutida no build: todas são lidas em runtime.
 1. `GET <serviço-pdf>/health` → `200`. Logo depois de subir, o Chromium pode levar alguns
    segundos; configure o health check do ALB/ECS com tolerância (período inicial de ~30 s e 3
    falhas seguidas) para não reiniciar a tarefa em loop.
-2. Abra o quiz e responda até o fim com o nome **"TESTE"**.
-3. Em `/admin`, o lead "TESTE" aparece com o diagnóstico pronto; o botão de baixar o PDF funciona
+2. Abra `https://viciodeumaestudante.com.br/quiz-cj` e responda até o fim com o nome **"TESTE"**.
+3. Em `/quiz-cj/admin`, o lead "TESTE" aparece com o diagnóstico pronto; o botão de baixar o PDF funciona
    (e o da apresentação comercial também).
 4. Apague o lead de teste:
    `delete from quiz_cj_sessions where nome = 'TESTE';`

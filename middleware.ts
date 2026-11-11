@@ -23,7 +23,10 @@ export function middleware(req: NextRequest) {
   if (pathname.startsWith('/api/admin')) {
     return NextResponse.json({ erro: 'não autenticado' }, { status: 401 })
   }
-  const destino = new URL('/admin/login', req.url)
+  // clone() mantém o basePath (/quiz-cj); new URL('/admin/login', req.url) o perderia.
+  const destino = req.nextUrl.clone()
+  destino.pathname = '/admin/login'
+  destino.search = ''
   destino.searchParams.set('proximo', pathname)
   return NextResponse.redirect(destino)
 }
