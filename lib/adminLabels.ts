@@ -27,11 +27,11 @@ const TEMPO: Record<string, string> = {
 }
 
 const PROVAS: Record<string, string> = {
-  p0: 'Nunca fez uma prova de tribunal',
+  p0: 'Nunca fez prova de carreira jurídica',
   p1: 'Fez 1-2, ficou longe do corte',
   p2: 'Fez várias, continua longe do corte',
-  p3: 'Fica perto do corte, não passa',
-  p4: 'Já aprovado(a), quer subir de cargo',
+  p3: 'Perto do corte ou cai na discursiva',
+  p4: 'Já aprovado(a), quer subir de carreira',
 }
 
 const METODO: Record<string, string> = {
@@ -51,13 +51,13 @@ const EDITAL_STATUS: Record<string, string> = {
 
 const DOR: Record<string, string> = {
   base: 'Não tem base', improviso: 'Estuda no improviso', tempo: 'Pouco tempo (trabalho)',
-  naojur: 'Medo das não-jurídicas', fixar: 'Lê muito, fixa pouco', banca: 'Não sabe o que a banca cobra',
+  discursiva: 'Trava na discursiva', fixar: 'Lê muito, fixa pouco', juris: 'Não acompanha jurisprudência',
   emocional: 'Emocional sabota', todas: 'Todas acima',
 }
 
 const DINHEIRO: Record<string, string> = {
-  '60': 'R$ 5 mil/mês a mais', '96': 'R$ 8 mil/mês a mais', '120': 'R$ 10 mil/mês a mais',
-  '156': 'R$ 13 mil/mês a mais', '192': 'R$ 16 mil/mês ou mais',
+  '120': 'R$ 10 mil/mês a mais', '180': 'R$ 15 mil/mês a mais', '240': 'R$ 20 mil/mês a mais',
+  '300': 'R$ 25 mil/mês a mais', '360': 'R$ 30 mil/mês ou mais',
 }
 
 const LEITURA: Record<string, string> = { completa: 'Quis a leitura completa', basica: 'Só o diagnóstico básico' }
@@ -66,14 +66,14 @@ const LEITURA: Record<string, string> = { completa: 'Quis a leitura completa', b
 // motivo 'juridica' nunca aparece aqui: tem CTA próprio, gravado em
 // leads_desqualificados, não em quiz_sessions.perfil.
 const DESQUALIFICADO_MOTIVO: Record<string, string> = {
-  outro: 'Concurso fora de tribunais', cargo_baixo: 'Mira cargo abaixo do nível (escrevente/técnico)',
+  outro: 'Concurso fora das carreiras jurídicas', cargo_baixo: 'Sem formação em Direito',
 }
 
 // Um dicionário por chave de RespostasPerfil — usado tanto pro detalhe do
 // lead quanto pra passar como prop `rotulos` do PieChart.
 export const ROTULOS_PERFIL: Record<string, Record<string, string>> = {
   alvo: L.alvo,
-  cargo: L.cargo,
+  cargo: { estadual: 'Estadual', federal: 'Federal', trabalho: 'Trabalho', municipal: 'Municipal', any: 'O que abrir primeiro', unsure: 'Não sabe a diferença' },
   formacao: FORMACAO,
   tempo: TEMPO,
   provas: PROVAS,

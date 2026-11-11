@@ -10,21 +10,24 @@
  * "cor"), e verde/vermelho são só função (correção), nunca decoração.
  */
 @theme {
-  --color-brand-bg: #ffffff;
-  --color-brand-card: #ffffff;
-  --color-brand-ink: #203c7c;
-  --color-brand-ink-soft: #5b6478;
-  --color-brand-ink-dim: #7c86a6;
-  --color-brand-line: #e7e7ea;
-  --color-brand-line-strong: #c9c9ce;
-  --color-brand-tint: #eef1f8;
-  --color-brand-navy: #203c7c;
-  --color-brand-navy-2: #16305f;
-  --color-brand-gold: #f9e08a;
-  --color-brand-gold-deep: #c89b18;
-  --color-brand-gold-text: #8a6a0c;
-  --color-brand-green: #2fb367;
-  --color-brand-red: #e03131;
+  /* Black Friday VDE Carreiras Jurídicas: fundo escuro, lilás da marca VDE Concursos, amarelo da campanha. */
+  --color-brand-bg: #0b0b0f;
+  --color-brand-card: #15151c;
+  --color-brand-ink: #f4f3f8;
+  --color-brand-ink-soft: #b9b7c6;
+  --color-brand-ink-dim: #8a88a0;
+  --color-brand-line: #2a2a35;
+  --color-brand-line-strong: #3a3a48;
+  --color-brand-tint: #1e1b33;
+  --color-brand-navy: #2b2550;
+  --color-brand-navy-2: #1d1940;
+  --color-brand-lilas: #b7adfd;
+  --color-brand-roxo: #8f82d6;
+  --color-brand-gold: #f5cf4a;
+  --color-brand-gold-deep: #e0b43a;
+  --color-brand-gold-text: #f5cf4a;
+  --color-brand-green: #5bd69a;
+  --color-brand-red: #f2777a;
 
   --font-brand: var(--font-poppins), "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -37,27 +40,21 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/*
- * PRÉVIA temporária (não commitada como decisão) — fundo gradiente + cartão
- * flutuante copiados 1:1 do github.com/davifacanhaa/vde-diagnostico-tribunais
- * (app/globals.css de lá), só pra visualização. Isso reabre exatamente o que
- * a seção 2/7 do DESIGN.md documenta como testado e rejeitado (roxo/lilás
- * fora do logo, "mistureba de cores") — remover este bloco se a decisão for
- * manter as 3 cores atuais.
- */
 body {
+  color-scheme: dark;
   background:
-    radial-gradient(1100px 560px at 8% -12%, rgba(169, 160, 246, 0.32), transparent 60%),
-    radial-gradient(900px 650px at 100% 102%, rgba(139, 110, 240, 0.2), transparent 55%),
-    #f6f5fc;
+    radial-gradient(900px 520px at 10% -10%, rgba(143, 130, 214, 0.22), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 44px 44px,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px) 0 0 / 44px 44px,
+    #0b0b0f;
   background-attachment: fixed;
 }
 .preview-qcard {
-  background: #fff;
+  background: #15151c;
   border-radius: 22px;
   padding: 34px 32px 30px;
-  border: 1px solid rgba(26, 47, 92, 0.1);
-  box-shadow: 0 20px 50px -24px rgba(60, 30, 120, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 50px -24px rgba(0, 0, 0, 0.6);
 }
 
 /* Anel da tela 'analisando' (components/Quiz.tsx) — indeterminado, de

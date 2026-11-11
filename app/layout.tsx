@@ -10,7 +10,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Diagnóstico VDE Tribunais',
+  title: 'Diagnóstico VDE Carreiras Jurídicas',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

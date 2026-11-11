@@ -21,7 +21,7 @@ export default function Header({ progresso, onVoltar }: HeaderProps) {
     <header className="mx-auto w-full max-w-md px-6 pt-6">
       <div className="flex items-center justify-between gap-3">
         {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca, sem necessidade do pipeline de otimização de imagem */}
-        <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="h-12 w-auto" />
+        <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="h-12 w-auto" />
         {onVoltar && (
           <button
             type="button"

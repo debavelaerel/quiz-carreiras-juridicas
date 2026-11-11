@@ -123,7 +123,7 @@ function resolveParagrafo(p: Paragrafo, bateFn: (r: Regra | undefined) => boolea
 // caso (`EDITAIS.get(alvo) or EDITAIS.get("trt", [])`), então um TJ ou TRF
 // marcado por quem escolheu "qualquer tribunal" sumia do diagnóstico. Aqui, e
 // em `answers.py::Lead.editais`, o fallback é a união de todos os grupos.
-export const EDITAIS_BASE = { tj: EDITAIS.tj, trf: EDITAIS.trf, trt: EDITAIS.trt, fe: EDITAIS.fe } as const
+export const EDITAIS_BASE = { juiz: EDITAIS.juiz, mp: EDITAIS.mp, defensoria: EDITAIS.defensoria, procuradoria: EDITAIS.procuradoria, delegado: EDITAIS.delegado } as const
 
 // Nota de fidelidade: esse é o único lookup do arquivo que precisa do
 // cuidado `?.length` acima em vez de `??` — porque é o único ponto em que
@@ -154,7 +154,7 @@ export function selecionarBlocos(perfil: RespostasPerfil, respostas: RespostaRes
     // brief), então checamos contra a constante 0..3 em vez do tamanho real
     // do banco de questões.
     correct: (n) => {
-      if (n < 0 || n > 3) throw new Error(`índice de questão fora do intervalo (0 a 3): ${n}`)
+      if (n < 0 || n > 4) throw new Error(`índice de questão fora do intervalo (0 a 4): ${n}`)
       return respostas.find((r) => r.num === n + 1)?.acertou ?? false
     },
     // Nota de fidelidade: Python soma `lead.correct(n)` só para `n` em
@@ -173,7 +173,7 @@ export function selecionarBlocos(perfil: RespostasPerfil, respostas: RespostaRes
   const marcadores = {
     edital_label: primeiroEdital?.label ?? '',
     edital_sub: primeiroEdital?.sub ?? '',
-    disciplinas: perfil.alvo === 'trt' ? 'as 12 disciplinas do TRT' : 'as 16 disciplinas de TJ e TRF',
+    disciplinas: 'as disciplinas comuns a toda carreira jurídica',
   }
 
   const escolhidos: BlocoEscolhido[] = []

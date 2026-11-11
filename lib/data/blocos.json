@@ -43,8 +43,8 @@
         },
         "title": "Começando agora, o maior risco é estudar pro primeiro edital que sair",
         "paragraphs": [
-          "É a armadilha clássica. Sai um concurso, você corre pra ele, estuda a lista daquele órgão em três meses, faz a prova, não passa, e no edital seguinte descobre que quase nada ficou de pé.",
-          "Formar base é o caminho oposto. É estudar as disciplinas que se repetem em todo tribunal, na ordem certa e com profundidade pra resolver questão difícil: primeiro a teoria sistematizada do tema, depois a lei e a jurisprudência daquele mesmo tema, depois questões comentadas dele, e simulado todo mês pra medir o que ficou. Feito uma vez, isso serve pro TRT, pro TJ e pro TRF, porque a base é a mesma.",
+          "É a armadilha clássica. Sai um concurso, você corre pra ele, estuda a lista daquele órgão em poucos meses, faz a prova, não passa, e no edital seguinte descobre que quase nada ficou de pé.",
+          "Formar base é o caminho oposto. É estudar as disciplinas que se repetem em toda carreira jurídica, na ordem certa e com profundidade pra resolver questão difícil: primeiro a teoria sistematizada do tema, depois a lei e a jurisprudência daquele mesmo tema, depois questões comentadas dele. Feito uma vez, isso serve pra magistratura, pro MP, pra Defensoria, pra Procuradoria e pra Polícia, porque a base é a mesma.",
           "Quem tem base entra em qualquer edital revisando. Quem não tem entra estudando do zero, com o relógio correndo."
         ]
       },
@@ -57,10 +57,10 @@
             ]
           }
         },
-        "title": "Você já é servidor, e isso muda a conta",
+        "title": "Você já foi aprovado, e isso muda a conta",
         "paragraphs": [
-          "Subir de técnico pra analista é o salto com melhor relação entre esforço e retorno que existe em tribunal. A base comum você já venceu, e a diferença está na profundidade das jurídicas.",
-          "E nada do que você já sabe é jogado fora: no VDE, quem estuda pra analista estuda também o que cai pra técnico. Como você já tem parte do caminho andado, o cronograma personalizado deixa marcar só as disciplinas que precisa aprofundar."
+          "Quem já passou num concurso jurídico sabe estudar e sabe fazer prova. O salto pra uma carreira jurídica é de profundidade: mais doutrina, mais jurisprudência dos tribunais superiores e fases que a sua prova anterior não tinha, como discursiva e oral.",
+          "E nada do que você já sabe é jogado fora. O cronograma personalizado deixa marcar só as disciplinas que precisa aprofundar e tratar o resto como revisão."
         ]
       },
       {
@@ -74,9 +74,9 @@
         },
         "title": "Você já fez prova e para perto do corte, então o ajuste é fino e continua sendo de base",
         "paragraphs": [
-          "Chegar perto significa que existe alicerce. Ele só não está nivelado: duas ou três disciplinas seguram a sua nota, e você provavelmente sabe quais são, porque são as que você menos abre.",
+          "Chegar perto, ou passar da objetiva e cair na discursiva, significa que existe alicerce. Ele só não está nivelado: duas ou três disciplinas seguram a sua nota, e você provavelmente sabe quais são, porque são as que você menos abre.",
           "A tentação nesse ponto é comprar mais reta final e mais simulado. Isso te mantém no mesmo lugar, porque reta final revisa o que já está pronto e não constrói o que falta.",
-          "No VDE dá pra fazer as duas coisas ao mesmo tempo. O cronograma personalizado deixa você marcar só as disciplinas que estão te derrubando e tratar cada uma até o fim, com teoria sistematizada, caderno de leis por incidência em provas e questão comentada do mesmo tema, enquanto o simulado mensal segura o resto.",
+          "No VDE dá pra fazer as duas coisas ao mesmo tempo. O cronograma personalizado deixa você marcar só as disciplinas que estão te derrubando e tratar cada uma até o fim, com teoria sistematizada, caderno de leis e informativos e questão comentada do mesmo tema.",
           {
             "if": {
               "eq": {
@@ -100,11 +100,11 @@
             ]
           }
         },
-        "title": "Você já fez prova de tribunal, então dá pra ser direta com você",
+        "title": "Você já fez prova de carreira jurídica, então dá pra ser direta com você",
         "paragraphs": [
-          "Quem faz prova e fica longe do corte quase nunca estuda pouco. Estuda sem base. O que a folha de respostas mostra é uma preparação montada em pedaços: um tanto de videoaula, um PDF achado na internet, questão solta, e nenhuma disciplina fechada do começo ao fim.",
-          "Na prova isso cobra o preço na hora. Você reconhece todos os assuntos e não domina nenhum a ponto de separar duas alternativas parecidas. Como o corte de tribunal é alto, reconhecer não pontua.",
-          "Formação de base é exatamente o que está faltando aí, e é o que o VDE Tribunais faz: um cronograma que fecha {disciplinas} na ordem certa, teoria sistematizada por tema, caderno de leis e informativos com a incidência de cada artigo nas provas anteriores, questões comentadas do mesmo tema logo em seguida e simulado mensal pra medir o avanço. Construída uma vez, ela serve pra todos os editais que vierem.",
+          "Quem faz prova e fica longe do corte quase nunca estuda pouco. Estuda sem base. O que a folha de respostas mostra é uma preparação montada em pedaços: um manual aqui, uma videoaula ali, questão solta, e nenhuma disciplina fechada do começo ao fim.",
+          "Na prova isso cobra o preço na hora. Você reconhece todos os assuntos e não domina nenhum a ponto de separar duas alternativas parecidas. Como o corte de carreira jurídica é alto, reconhecer não pontua.",
+          "Formação de base é exatamente o que está faltando aí, e é o que o VDE Carreiras Jurídicas faz: um cronograma que fecha {disciplinas} na ordem certa, teoria sistematizada por tema, caderno de leis e informativos, questões comentadas do mesmo tema logo em seguida e simulados no estilo das grandes bancas. Construída uma vez, ela serve pra todos os editais que vierem.",
           {
             "if": {
               "eq": {
@@ -127,10 +127,10 @@
             ]
           }
         },
-        "title": "Você ainda não fez prova de tribunal, e isso é um dado que falta no seu diagnóstico",
+        "title": "Você ainda não fez prova de carreira jurídica, e isso é um dado que falta no seu diagnóstico",
         "paragraphs": [
           "Estudar sem nunca ter sentado numa prova real é estudar sem termômetro. A sala, o relógio e o jeito da banca escrever mudam o seu desempenho, e só a prova mostra o tamanho dessa diferença.",
-          "Inscreva-se na próxima que aparecer, mesmo sem se sentir pronto, e trate aquilo como medição. Enquanto isso, o que constrói nota é a base: as disciplinas que se repetem em todo tribunal, na ordem certa, com questão comentada desde a primeira semana."
+          "Inscreva-se na próxima objetiva que aparecer, mesmo sem se sentir pronto, e trate aquilo como medição. Enquanto isso, o que constrói nota é a base: as disciplinas que se repetem em toda carreira, na ordem certa, com questão comentada desde a primeira semana."
         ]
       }
     ]
@@ -150,7 +150,7 @@
         "title": "Menos de 1 hora por dia é o único ponto que eu mexeria já",
         "paragraphs": [
           "Constância vale mais que velocidade, e eu repito isso todo dia. Só que abaixo de uma hora o intervalo entre uma sessão e outra fica tão grande que você gasta metade do tempo relembrando onde parou.",
-          "Não estou te pedindo o dia inteiro. Com 2 horas por dia a base completa fecha em 12 meses, e essas 2 horas podem ser partidas: 1 hora de manhã e 1 hora à noite valem igual. Comece com o que dá hoje e suba pra 2 assim que der, gerando o cronograma de novo com o tempo novo."
+          "Não estou te pedindo o dia inteiro. 2 horas por dia já sustentam o cronograma padrão, e essas 2 horas podem ser partidas: 1 hora de manhã e 1 hora à noite valem igual. Comece com o que dá hoje e suba pra 2 assim que der, gerando o cronograma de novo com o tempo novo."
         ]
       },
       {
@@ -162,10 +162,10 @@
             ]
           }
         },
-        "title": "1 a 2 horas por dia é suficiente, e eu falo isso com número",
+        "title": "1 a 2 horas por dia é suficiente pra começar",
         "paragraphs": [
           "Você não precisa de velocidade, precisa de constância. Quem estuda 6 horas no domingo e nada durante a semana rende menos que quem faz 2 horas todo dia, porque o esquecimento trabalha justamente nos intervalos.",
-          "No VDE Tribunais, 2 horas por dia formam a base completa em 12 meses. Esse é o cronograma padrão e ele foi desenhado pra quem trabalha. Se um dia sobrar tempo, ótimo, mas o plano não depende disso."
+          "No VDE Carreiras Jurídicas, o cronograma padrão foi desenhado pra quem trabalha. Se um dia sobrar tempo, ótimo, mas o plano não depende disso."
         ]
       },
       {
@@ -177,9 +177,9 @@
             ]
           }
         },
-        "title": "Com 3 horas você entra no ritmo recomendado, e a base fecha em 8 meses",
+        "title": "Com 3 horas você entra no ritmo recomendado",
         "paragraphs": [
-          "2 horas por dia fecham a base em 12 meses e 3 horas fecham em 8. Essa hora a mais é a que mais rende no plano inteiro, então, se der pra chegar nas 3 em alguns dias da semana, é ali que eu colocaria.",
+          "Essa hora a mais por dia é a que mais rende no plano inteiro: encurta o caminho até a base fechada sem te custar a rotina. Se der pra chegar nas 3 em alguns dias da semana, é ali que eu colocaria.",
           "Um detalhe que atrapalha muita gente: as horas do cronograma já incluem a resolução de questões. Se você contar só o tempo de leitura, o plano atrasa sem você perceber."
         ]
       },
@@ -192,9 +192,9 @@
             ]
           }
         },
-        "title": "No seu ritmo, a base fecha entre 6 e 8 meses",
+        "title": "No seu ritmo, o resultado depende mais de ordem que de tempo",
         "paragraphs": [
-          "3 horas por dia fecham em 8 meses e 4 horas fecham em 6. Você está na faixa em que o resultado depende menos de tempo e mais de ordem: estudar a matéria certa na hora certa, e não gastar as melhores horas do dia no que já domina.",
+          "Você está na faixa em que o resultado depende menos de horas e mais de estudar a matéria certa na hora certa, sem gastar as melhores horas do dia no que já domina.",
           "É pra isso que o cronograma vem pronto por tema. Você abre e executa, sem decidir todo dia o que estudar. Decidir cansa, e é esse cansaço que faz gente com tempo render pouco."
         ]
       },
@@ -209,8 +209,8 @@
         },
         "title": "Mais de 4 horas por dia: o seu risco é dispersão, não falta de tempo",
         "paragraphs": [
-          "Com 4 horas a base fecha em 6 meses. Quem tem esse tempo costuma preencher com material demais: dois cursos, três canais, PDF de todo mundo. No fim, muitas horas e pouca profundidade.",
-          "Eu faria o contrário. Uma fonte por matéria, o cronograma de 6 meses, e o tempo que sobrar indo pro banco de questões comentadas. Questão resolvida e entendida é o que transforma hora de estudo em nota."
+          "Quem tem esse tempo costuma preencher com material demais: dois cursos, três manuais por disciplina, PDF de todo mundo. No fim, muitas horas e pouca profundidade.",
+          "Eu faria o contrário. Uma fonte por disciplina, o cronograma no ritmo intensivo, e o tempo que sobrar indo pro banco de questões comentadas e pra discursiva. Questão resolvida e entendida é o que transforma hora de estudo em nota."
         ]
       }
     ]
@@ -229,8 +229,8 @@
         },
         "title": "Estudar só quando sai edital pode ser a explicação que está faltando",
         "paragraphs": [
-          "Reta final é revisão. Funciona muito bem pra quem chega com a base pronta e precisa afiar, e não entrega o que promete pra quem chega do zero, porque em 90 dias não existe primeira leitura de 12 disciplinas.",
-          "Pular de edital em edital te obriga a recomeçar sempre no pior momento, com o relógio correndo. O caminho que eu defendo é o inverso: formar a base completa e aprofundada das disciplinas que se repetem em todo tribunal e, só depois disso, entrar em reta final pra revisar o que você já sabe. Aí sim o curso de reta final vira vantagem."
+          "Reta final é revisão. Funciona muito bem pra quem chega com a base pronta e precisa afiar, e não entrega o que promete pra quem chega do zero, porque em poucos meses não existe primeira leitura de mais de 20 disciplinas.",
+          "Pular de edital em edital te obriga a recomeçar sempre no pior momento, com o relógio correndo. O caminho que eu defendo é o inverso: formar a base completa e aprofundada das disciplinas que se repetem em toda carreira jurídica e, só depois disso, entrar em reta final pra revisar o que você já sabe."
         ]
       },
       {
@@ -245,7 +245,7 @@
         "title": "Videoaula em excesso dá sensação de avanço",
         "paragraphs": [
           "Assistir é confortável. A matéria parece fácil enquanto o professor explica, e a conta só chega na prova, quando você precisa lembrar sozinho e ninguém está conduzindo o raciocínio.",
-          "No VDE Tribunais eu inverti isso de propósito. A teoria vem em PDF sistematizado, de 30 a 50 páginas por tema, que você lê no seu ritmo e revisita em minutos. Videoaula existe nas não jurídicas, Português, Raciocínio Lógico e Informática, que é onde ver alguém resolvendo na sua frente realmente destrava."
+          "No VDE Carreiras Jurídicas eu inverti isso de propósito. A teoria vem em PDF sistematizado, que você lê no seu ritmo e revisita em minutos, no lugar de livros gigantes e horas de vídeo."
         ]
       },
       {
@@ -259,8 +259,8 @@
         },
         "title": "Você já estuda no formato certo, então o ajuste é de conteúdo",
         "paragraphs": [
-          "PDF com questões e cronograma é exatamente o método que eu defendo, então metade do caminho está feita. O que costuma faltar nesse cenário é calibragem: material genérico de concurso público, escrito pra qualquer carreira, sem a profundidade que tribunal cobra em Processo Civil e sem dizer o que cada banca realmente pega.",
-          "Esse é o recorte do VDE Tribunais: material feito pra tribunal, com o caderno de leis e informativos mostrando a incidência de cada artigo nas provas dos últimos anos."
+          "PDF com questões e cronograma é exatamente o método que eu defendo, então metade do caminho está feita. O que costuma faltar nesse cenário é calibragem: material genérico, sem a profundidade que carreira jurídica cobra e sem a jurisprudência dos tribunais superiores amarrada a cada tema.",
+          "Esse é o recorte do VDE Carreiras Jurídicas: material feito pra carreira, com o caderno de leis e informativos junto de cada tema."
         ]
       },
       {
@@ -275,7 +275,7 @@
         "title": "Só questões trava num teto",
         "paragraphs": [
           "Questão é o melhor termômetro que existe e o pior professor. Ela mostra onde você erra e ensina só o pedaço daquele item, então o aprendizado fica cheio de buracos, com assuntos inteiros que nunca apareceram nas questões que você fez.",
-          "O desenho que funciona é ler o tema, ler a lei daquele tema e só então resolver questão comentada do mesmo tema, tudo na mesma semana. Os três passos no mesmo assunto, um atrás do outro."
+          "O desenho que funciona é ler o tema, ler a lei e a jurisprudência daquele tema e só então resolver questão comentada do mesmo tema, tudo na mesma semana."
         ]
       },
       {
@@ -304,8 +304,8 @@
         },
         "title": "Mentoria organiza a rotina, e alguém ainda precisa entregar o conteúdo",
         "paragraphs": [
-          "Mentoria e coaching resolvem rotina, cobrança e cabeça, e isso tem valor real. O que eles não fazem é te ensinar Processo Civil no nível que a FGV cobra: a maioria te orienta a buscar o conteúdo por fora, e você acaba montando a preparação com pedaços de fontes diferentes.",
-          "O VDE Tribunais entrega as duas pontas na mesma plataforma: o cronograma que organiza e o material que ensina, com a Vic.IA, treinada só nos nossos materiais, pra tirar dúvida na hora em que ela aparece."
+          "Mentoria e coaching resolvem rotina, cobrança e cabeça, e isso tem valor real. O que eles não fazem é te ensinar Processo Penal no nível de uma prova de magistratura: a maioria te orienta a buscar o conteúdo por fora.",
+          "O VDE Carreiras Jurídicas entrega as duas pontas na mesma plataforma: o cronograma que organiza e o material que ensina, com a vic.IA, treinada nos nossos materiais, na legislação e na jurisprudência, pra tirar dúvida na hora em que ela aparece."
         ]
       }
     ]
@@ -325,7 +325,7 @@
         "title": "Sentir que começa do zero a cada edital tem causa técnica",
         "paragraphs": [
           "Isso acontece quando o estudo nunca teve segunda passada. O conteúdo entra, fica algumas semanas e sai, porque a volta ao assunto só acontece quando ele reaparece num edital.",
-          "No VDE o retorno ao conteúdo é forçado por dois pontos do método: o caderno de leis e informativos, que você revisita por tema, e o simulado mensal, com data já marcada no cronograma, que mostra em número o que ficou de pé e o que evaporou."
+          "No VDE o retorno ao conteúdo é forçado pelo método: o caderno de leis e informativos, que você revisita por tema, e a revisão programada no cronograma, que mostra o que ficou de pé e o que evaporou."
         ]
       },
       {
@@ -339,8 +339,8 @@
         },
         "title": "Improviso é o gargalo mais fácil de resolver da sua lista",
         "paragraphs": [
-          "Estudar sem cronograma quer dizer que toda sessão começa com uma decisão, e decisão gasta a energia que devia ir pro conteúdo. É também o motivo de matéria chata ficar sempre pra depois.",
-          "O passo zero do VDE Tribunais é gerar o cronograma: você diz quantas horas tem por dia, ele distribui os temas, e você abre a plataforma sabendo exatamente o que fazer. Se sair edital no meio do caminho, é só gerar um personalizado com as disciplinas daquele edital."
+          "Estudar sem cronograma quer dizer que toda sessão começa com uma decisão, e decisão gasta a energia que devia ir pro conteúdo. É também o motivo de disciplina chata ficar sempre pra depois.",
+          "O passo zero do VDE Carreiras Jurídicas é gerar o cronograma: você diz quantas horas tem por dia e qual carreira mira, ele distribui os temas, e você abre a plataforma sabendo exatamente o que fazer."
         ]
       },
       {
@@ -355,28 +355,22 @@
         "title": "Conciliar trabalho e estudo é questão de desenho",
         "paragraphs": [
           "Quem trabalha não perde por estudar menos horas. Perde por estudar horas irregulares: três dias intensos, quatro em branco, e o conteúdo escorrendo no meio.",
-          "O desenho que funciona é bloco curto e fixo, todo dia, no mesmo horário, com o tema já definido antes de você sentar. 2 horas por dia formam a base completa em 12 meses. É pouco por dia e vira muito no ano."
+          "O desenho que funciona é bloco curto e fixo, todo dia, no mesmo horário, com o tema já definido antes de você sentar. É pouco por dia e vira muito no ano."
         ]
       },
       {
-        "id": "d_naojur",
+        "id": "d_discursiva",
         "when": {
           "eq": {
             "dor": [
-              "naojur"
-            ]
-          },
-          "not": {
-            "wrong": [
-              0,
-              3
+              "discursiva"
             ]
           }
         },
-        "title": "As não jurídicas decidem mais provas do que parece",
+        "title": "A discursiva se treina desde já, não depois da objetiva",
         "paragraphs": [
-          "Português, Raciocínio Lógico e Informática têm peso alto na prova de tribunal e são justamente onde o bacharel relaxa, achando que garante a nota nas jurídicas. Aí a vaga vai embora por questão de vírgula e de conjunto numérico.",
-          "São essas três que têm videoaula no VDE Tribunais, do zero, além do PDF e das questões comentadas. Foi escolha de método: nas jurídicas, ler e resolver rende mais; nessas, ver alguém resolvendo na sua frente destrava mais rápido."
+          "Quem trava na discursiva quase nunca sabe menos. Sabe de um jeito que serve pra marcar alternativa, e a segunda fase cobra outra coisa: fundamentar, organizar e escrever no tempo da prova.",
+          "Escrita jurídica é treino. Uma questão discursiva por semana, corrigida pelo espelho da banca, já muda a sua segunda fase daqui a um ano. E quem só começa a treinar quando passa na objetiva tem semanas pra fazer o que precisava de meses."
         ]
       },
       {
@@ -391,22 +385,22 @@
         "title": "Ler muito e fixar pouco é sintoma de estudo sem saída",
         "paragraphs": [
           "Leitura sozinha dá sensação de entendimento e não cria memória de prova. O conteúdo só fixa quando você tenta recuperá-lo sem olhar, e questão é a forma mais barata de fazer isso.",
-          "A regra que eu daria pro seu caso: nenhum tema termina no PDF. Leu a teoria, lê a lei daquele tema e resolve questão comentada dele no mesmo dia. Errar ali é ótimo, porque o comentário te devolve o motivo na hora, enquanto o assunto ainda está quente."
+          "A regra que eu daria pro seu caso: nenhum tema termina no PDF. Leu a teoria, lê a lei daquele tema e resolve questão comentada dele no mesmo dia. Errar ali é ótimo, porque o comentário te devolve o motivo na hora."
         ]
       },
       {
-        "id": "d_banca",
+        "id": "d_juris",
         "when": {
           "eq": {
             "dor": [
-              "banca"
+              "juris"
             ]
           }
         },
-        "title": "Saber o que FGV e FCC cobram é conteúdo, e dá pra estudar isso",
+        "title": "Jurisprudência sem filtro vira afogamento",
         "paragraphs": [
-          "As duas bancas têm assinatura. A FGV gosta de caso concreto, com você aplicando a regra numa situação; a FCC cobra mais a letra da lei e a literalidade do artigo. Estudar sem olhar pra isso é estudar no escuro.",
-          "O caderno de leis e informativos do VDE traz a análise de incidência: quais artigos apareceram nas últimas provas e com que frequência. E o banco tem mais de 75 mil questões comentadas, o que te deixa treinar no formato exato da banca do seu edital."
+          "Ninguém lê todos os informativos do STF e do STJ e ainda estuda o resto. Quem tenta acaba sem tempo pra base, e a jurisprudência solta, fora do tema, não fica.",
+          "O que funciona é estudar a jurisprudência junto com o tema a que ela pertence. É isso que o caderno de leis e informativos do VDE faz, com as atualizações jurídicas mensais pra você não perder o que mudou."
         ]
       },
       {
@@ -421,7 +415,7 @@
         "title": "O emocional melhora quando o plano fica visível",
         "paragraphs": [
           "Ansiedade e sensação de atraso crescem no escuro. Sem saber quanto falta, todo dia parece pouco, e a comparação com os outros ocupa o espaço que a informação deveria ocupar.",
-          "Ter data de fim muda isso. Saber que a sua base fecha em 8 ou em 12 meses transforma uma angústia sem tamanho numa fila de tarefas com prazo. E o simulado mensal te dá o número real do seu avanço, que quase sempre é melhor que a sua sensação."
+          "Ter data de fim muda isso. Saber em quanto tempo a sua base fecha transforma uma angústia sem tamanho numa fila de tarefas com prazo. E os indicadores de desempenho te dão o número real do seu avanço, que quase sempre é melhor que a sua sensação."
         ]
       },
       {
@@ -436,7 +430,7 @@
         "title": "Marcar todas as opções também é um diagnóstico",
         "paragraphs": [
           "Quando tudo dói ao mesmo tempo, o conteúdo raramente é o culpado. Falta uma estrutura sustentando o estudo, e sem estrutura cada dificuldade puxa a seguinte: sem cronograma você não revisa, sem revisar não fixa, sem fixar a prova assusta, e o medo faz trocar de material outra vez.",
-          "Por isso eu não começaria pela matéria mais difícil. Começaria pelo cronograma e por uma fonte única, e metade dessa lista some sozinha nas primeiras semanas."
+          "Por isso eu não começaria pela disciplina mais difícil. Começaria pelo cronograma e por uma fonte única, e metade dessa lista some sozinha nas primeiras semanas."
         ]
       }
     ]
@@ -449,114 +443,33 @@
         "when": {
           "score_max": 1
         },
-        "title": "Sobre as quatro questões: o teste fez o trabalho dele",
+        "title": "Sobre as cinco questões: o teste fez o trabalho dele",
         "paragraphs": [
-          "Elas são reais, de FGV e de FCC, e escolhidas entre as difíceis. Errar aqui não diz nada sobre a sua capacidade e diz tudo sobre o tamanho do salto entre estudar o assunto e resolver o item.",
-          "Repara no que elas cobraram: relação lógica entre orações, competência legislativa, fraude à execução com prazos, e lógica pura. É esse o nível que a sua base precisa alcançar, e é ele que eu uso como régua ao montar o material."
+          "Elas são reais, de provas recentes de juiz, defensor e delegado, de FGV e Cebraspe. Errar aqui não diz nada sobre a sua capacidade e diz tudo sobre o tamanho do salto entre estudar o assunto e resolver o item.",
+          "Repara no que elas cobraram: competência legislativa, poder de polícia, favorecimento pessoal, busca e apreensão e contrato consigo mesmo. É esse o nível que a sua base precisa alcançar."
         ]
       },
       {
-        "id": "n2",
+        "id": "n23",
         "when": {
           "score_min": 2,
-          "score_max": 2
+          "score_max": 3
         },
-        "title": "Sobre as quatro questões: duas de quatro é um começo real",
+        "title": "Sobre as cinco questões: você tem um começo real",
         "paragraphs": [
-          "Metade em questões difíceis significa que existe alicerce em pé. Ele ainda não sustenta a régua de tribunal, onde o corte alto obriga a praticamente fechar a prova, mas sustenta uma preparação séria.",
-          "O que costuma faltar nesse ponto é constância e profundidade nas duas ou três disciplinas de maior peso. É pouco ajuste pra bastante ganho."
+          "Acertar parte de questões de prova de carreira significa que existe alicerce em pé. Ele ainda não sustenta a régua de uma carreira jurídica, onde o corte alto obriga a praticamente fechar a prova, mas sustenta uma preparação séria.",
+          "O que costuma faltar nesse ponto é constância e profundidade nas disciplinas de maior peso. É pouco ajuste pra bastante ganho."
         ]
       },
       {
-        "id": "n34",
+        "id": "n45",
         "when": {
-          "score_min": 3
+          "score_min": 4
         },
-        "title": "Sobre as quatro questões: você não precisa recomeçar nada",
+        "title": "Sobre as cinco questões: você não precisa recomeçar nada",
         "paragraphs": [
-          "Nesse nível, refazer teoria do zero seria desperdício do seu tempo. O seu ganho está em profundidade nos pontos específicos que ainda vazam e em volume de questão da sua banca, com tempo cronometrado.",
+          "Nesse nível, refazer teoria do zero seria desperdício do seu tempo. O seu ganho está em profundidade nos pontos específicos que ainda vazam, em volume de questão da sua banca com tempo cronometrado e em treino de discursiva.",
           "Se você entrar no curso, o caminho é o cronograma personalizado: marca as disciplinas que precisa e deixa de fora o que já está de pé."
-        ]
-      }
-    ]
-  },
-  {
-    "group": "Sinal das não jurídicas",
-    "items": [
-      {
-        "id": "naojur2",
-        "when": {
-          "wrong": [
-            0,
-            3
-          ]
-        },
-        "title": "Você errou Português e Raciocínio Lógico, e essas duas decidem prova de tribunal",
-        "paragraphs": [
-          "Elas não são acessório. Português, Raciocínio Lógico e Informática somam peso alto no total de questões, e são as que mais gente deixa pro final, achando que garante a vaga nas jurídicas. É por ali que a nota vaza.",
-          "Você precisa atacar as duas desde agora, não na véspera. A boa notícia é que são as matérias mais treináveis que existem: regra clara, padrão repetido, questão parecida prova após prova.",
-          "E são exatamente essas que têm videoaula no VDE Tribunais, do zero, além do PDF sistematizado e do banco de questões comentadas. Se você nunca entendeu Português ou congela em lógica, é por essas aulas que eu começaria."
-        ]
-      },
-      {
-        "id": "port",
-        "when": {
-          "wrong": [
-            0
-          ],
-          "right": [
-            3
-          ]
-        },
-        "title": "Você errou a de Português, e Português cai em toda prova de tribunal",
-        "paragraphs": [
-          "A questão pedia nomear a relação lógica entre duas orações, que é interpretação com nome técnico, o tipo de item que a FGV adora. Português tem peso alto em qualquer tribunal e é a matéria que mais aparece, então cada ponto perdido ali sai caro.",
-          "No VDE Tribunais, Português é uma das disciplinas com videoaula do zero, além do PDF e do banco de questões. Se essa for uma dívida antiga sua, dá pra zerar nos primeiros meses do cronograma."
-        ]
-      },
-      {
-        "id": "rlm",
-        "when": {
-          "wrong": [
-            3
-          ],
-          "right": [
-            0
-          ]
-        },
-        "title": "Você errou a de Raciocínio Lógico, e RLM é ponto barato que muita gente entrega",
-        "paragraphs": [
-          "Aquela questão era lógica pura, sem nada pra decorar: só combinação de informações. Ela é difícil na primeira vez e vira mecânica depois de umas trinta parecidas, porque FGV e FCC repetem os mesmos formatos.",
-          "É a matéria com a melhor relação entre tempo investido e ponto ganho da prova inteira. No VDE Tribunais ela tem videoaula do zero, além do PDF e das questões comentadas, e eu colocaria ela no cronograma desde a primeira semana."
-        ]
-      }
-    ]
-  },
-  {
-    "group": "Sinal das processuais",
-    "items": [
-      {
-        "id": "proc",
-        "when": {
-          "wrong": [
-            2
-          ]
-        },
-        "title": "Você errou a de Processo Civil, e isso costuma se repetir nos outros processos",
-        "paragraphs": [
-          "Processo Civil é o modelo de raciocínio de todas as processuais. Quem tropeça em prazo, ato e efeito ali costuma tropeçar igual em Processo Penal e em Processo do Trabalho, porque a engrenagem é a mesma: quem pode fazer, em que prazo, e o que acontece se não fizer.",
-          {
-            "if": {
-              "eq": {
-                "alvo": [
-                  "trt"
-                ]
-              }
-            },
-            "then": "Isso joga a favor do seu plano: arrumar Processo Civil bem feito arruma as outras junto. E no TRT, Processo Civil e Processo do Trabalho andam colados, então esse é o bloco que eu trataria primeiro.",
-            "else": "Isso joga a favor do seu plano: arrumar Processo Civil bem feito arruma as outras junto. E em TJ e TRF, Processo Civil e Processo Penal somados costumam formar o maior bloco de questões jurídicas da prova."
-          },
-          "No VDE essas matérias vêm com a teoria sistematizada do tema, o caderno de leis com a incidência em provas e a questão comentada logo em seguida. É assim que prazo e ato processual param de escorregar."
         ]
       }
     ]
@@ -565,16 +478,118 @@
     "group": "Sinal do direito público",
     "items": [
       {
-        "id": "pub",
+        "id": "pub2",
         "when": {
           "wrong": [
+            0,
             1
           ]
         },
-        "title": "Você errou a de Constitucional, e Constitucional é a porta do direito público",
+        "title": "Você errou Constitucional e Administrativo, e as duas são a porta do direito público",
         "paragraphs": [
-          "A questão era de competência legislativa, um dos assuntos mais cobrados da Constituição e o que sustenta o resto do direito público. Quem não tem esse eixo firme costuma sentir a mesma dificuldade em Administrativo e em Tributário, porque as três repetem a mesma pergunta: quem pode legislar, quem pode agir, e até onde vai esse poder.",
-          "Constitucional e Administrativo estão na base comum de todo tribunal, TRT, TJ e TRF, e caem em toda prova. Se eu fosse escolher por onde você começa, começaria por aí, porque o ganho aparece nas três de uma vez."
+          "Elas repetem a mesma pergunta: quem pode legislar, quem pode agir, e até onde vai esse poder. Quem não tem esse eixo firme sente a mesma dificuldade em Tributário, Ambiental e em boa parte das específicas de Procuradoria e Defensoria.",
+          "As duas caem em toda carreira jurídica, com peso alto. Se eu fosse escolher por onde você começa, começaria por aí, porque o ganho aparece em várias disciplinas de uma vez."
+        ]
+      },
+      {
+        "id": "const",
+        "when": {
+          "wrong": [
+            0
+          ],
+          "right": [
+            1
+          ]
+        },
+        "title": "Você errou a de Constitucional, e Constitucional cai em toda carreira",
+        "paragraphs": [
+          "A questão era de competência legislativa, um dos assuntos mais cobrados da Constituição. A pegadinha era a roupagem: falar em adolescente e educação não muda o fato de que o projeto criava vínculo de trabalho.",
+          "Esse é o tipo de raciocínio que a banca repete em toda prova. Competências, organização do Estado e controle de constitucionalidade são o primeiro bloco que eu fecharia no seu cronograma."
+        ]
+      },
+      {
+        "id": "adm",
+        "when": {
+          "wrong": [
+            1
+          ],
+          "right": [
+            0
+          ]
+        },
+        "title": "Você errou a de Administrativo, e os poderes administrativos são base de tudo",
+        "paragraphs": [
+          "A questão pedia separar poder de polícia de poder hierárquico, disciplinar e autotutela, que é conceito de primeira semana e mesmo assim derruba muita gente, porque a banca troca os nomes nas alternativas.",
+          "Administrativo cai em toda carreira e pesa ainda mais em Procuradoria e Defensoria. Fechar poderes, atos e responsabilidade do Estado logo no começo destrava o resto da disciplina."
+        ]
+      }
+    ]
+  },
+  {
+    "group": "Sinal das criminais",
+    "items": [
+      {
+        "id": "crim2",
+        "when": {
+          "wrong": [
+            2,
+            3
+          ]
+        },
+        "title": "Você errou Penal e Processo Penal, e as criminais pesam em quase toda carreira",
+        "paragraphs": [
+          "Na magistratura estadual, no MP, na Defensoria e na Polícia, Penal e Processo Penal estão entre as disciplinas de maior peso. Errar as duas mostra que esse bloco ainda não foi estudado com a profundidade da banca.",
+          "A boa notícia é que as duas andam juntas: estudar o crime e o procedimento do mesmo tema na mesma semana fixa as duas de uma vez."
+        ]
+      },
+      {
+        "id": "penal",
+        "when": {
+          "wrong": [
+            2
+          ],
+          "right": [
+            3
+          ]
+        },
+        "title": "Você errou a de Penal, e a pegadinha era de detalhe da lei",
+        "paragraphs": [
+          "A questão separava favorecimento pessoal de favorecimento real e cobrava a isenção de pena do parente, que está num parágrafo do artigo. É o tipo de detalhe que só fica com lei seca lida junto da teoria.",
+          "No VDE, o caderno de leis vem junto de cada tema justamente por isso: a banca de carreira jurídica cobra o parágrafo, não só o caput."
+        ]
+      },
+      {
+        "id": "ppenal",
+        "when": {
+          "wrong": [
+            3
+          ],
+          "right": [
+            2
+          ]
+        },
+        "title": "Você errou a de Processo Penal, e busca e apreensão é tema que volta sempre",
+        "paragraphs": [
+          "A questão misturava letra do CPP com reserva de jurisdição e com a regra do horário da busca. Processo Penal cobra isso o tempo todo: o artigo e o entendimento dos tribunais superiores sobre ele, juntos.",
+          "Eu colocaria Processo Penal cedo no seu cronograma, com informativos do mesmo tema logo depois da teoria."
+        ]
+      }
+    ]
+  },
+  {
+    "group": "Sinal do direito privado",
+    "items": [
+      {
+        "id": "civil",
+        "when": {
+          "wrong": [
+            4
+          ]
+        },
+        "title": "Você errou a de Civil, e Civil é a disciplina mais extensa da sua prova",
+        "paragraphs": [
+          "A questão era de negócio jurídico, parte geral do Código Civil: contrato consigo mesmo é anulável, não nulo. Parte geral sustenta todo o resto de Civil, e quem não a domina tropeça em contratos, responsabilidade e família.",
+          "Civil é longa, e por isso precisa de ordem: parte geral primeiro, com questão comentada do mesmo tema na sequência. É assim que nulidade e anulabilidade param de se confundir."
         ]
       }
     ]
@@ -593,8 +608,8 @@
         },
         "title": "Sobre a sua prova em menos de 3 meses",
         "paragraphs": [
-          "Com esse prazo, começar formação de base agora não te ajuda nessa prova. O que rende nas próximas semanas é revisão das disciplinas de maior peso, lei seca e questão da banca. É isso que eu faria no seu lugar.",
-          "Depois dessa prova o cenário muda. São 27 TJs, 6 TRFs e 24 TRTs em rodízio, e o próximo edital vai te encontrar revisando ou começando de novo. Vale conversar com o consultor já pensando nele."
+          "Com esse prazo, começar formação de base agora não te ajuda nessa prova. O que rende nas próximas semanas é revisão das disciplinas de maior peso, lei seca, informativos e questão da banca. É isso que eu faria no seu lugar.",
+          "Depois dessa prova o cenário muda. Carreira jurídica abre o ano inteiro, e o próximo edital vai te encontrar revisando ou começando de novo. Vale conversar com o consultor já pensando nele."
         ]
       },
       {
@@ -604,23 +619,23 @@
         },
         "title": "Você marcou vários editais, e essa é uma decisão adiada",
         "paragraphs": [
-          "Quem quer tudo acaba não estudando de verdade pra nada. Cada edital tem as suas específicas, e correr atrás de todos ao mesmo tempo deixa você raso em todos.",
-          "A saída não é desistir dos outros: é escolher um foco pra base e deixar que os demais venham junto, porque a base comum se repete. Um atalho pra escolher: se você tem afinidade com Trabalho e Processo do Trabalho, vá de TRT; se prefere Penal e Processo Penal, vá de TJ ou TRF."
+          "Quem quer tudo acaba não estudando de verdade pra nada. Cada edital tem as suas específicas e a sua banca, e correr atrás de todos ao mesmo tempo deixa você raso em todos.",
+          "A saída não é desistir dos outros: é escolher um foco pra base e deixar que os demais venham junto, porque a base comum se repete em toda carreira."
         ]
       },
       {
-        "id": "alvo_fe",
+        "id": "alvo_delegado",
         "when": {
           "eq": {
             "alvo": [
-              "fe"
+              "delegado"
             ]
           }
         },
-        "title": "Defensoria, MP e Procuradoria puxam a mesma base",
+        "title": "Delegado puxa a mesma base, com peso maior nas criminais",
         "paragraphs": [
-          "O quadro de apoio desses órgãos tem prova muito próxima da de tribunal: mesma base de matérias e as mesmas bancas. Por isso o curso de TJ e TRF atende bem esse alvo.",
-          "A diferença fica nas específicas, e isso se resolve no cronograma personalizado quando o edital sair."
+          "A prova de delegado cobra a mesma base das outras carreiras jurídicas, com Penal, Processo Penal e legislação penal especial no centro.",
+          "Por isso a formação de base serve muito bem a esse alvo. A diferença fica nas específicas, e isso se resolve no cronograma personalizado quando o edital sair."
         ]
       },
       {
@@ -632,10 +647,10 @@
             ]
           }
         },
-        "title": "Você quer o que abrir primeiro, então a base pesa ainda mais",
+        "title": "Você quer a que abrir primeiro, então a base pesa ainda mais",
         "paragraphs": [
-          "Sem alvo fechado, o que te serve é justamente o que se repete em todos: Português, Raciocínio Lógico, Informática, Ética, Constitucional, Administrativo, Civil e Processo Civil aparecem em TRT, TJ e TRF.",
-          "Ainda assim eu escolheria um curso pra guiar o cronograma, porque as específicas divergem: no TRT são 12 disciplinas, com Trabalho e Processo do Trabalho; em TJ e TRF são 16, com Penal e Processo Penal no meio."
+          "Sem alvo fechado, o que te serve é justamente o que se repete em todas: Constitucional, Administrativo, Penal, Processo Penal, Civil e Processo Civil aparecem na magistratura, no MP, na Defensoria, na Procuradoria e na Polícia.",
+          "Ainda assim eu escolheria uma carreira pra guiar o cronograma, porque as específicas divergem: Defensoria puxa Direitos Humanos e Consumidor, Procuradoria puxa Tributário, a Polícia puxa as criminais."
         ]
       }
     ]
@@ -643,30 +658,6 @@
   {
     "group": "Cargo e formação",
     "items": [
-      {
-        "id": "tec_sup",
-        "when": {
-          "eq": {
-            "cargo": [
-              "tecnico"
-            ],
-            "formacao": [
-              "direito",
-              "outra"
-            ]
-          },
-          "ne": {
-            "alvo": [
-              "fe"
-            ]
-          }
-        },
-        "title": "Com curso superior, analista deveria estar no seu radar",
-        "paragraphs": [
-          "Analista paga quase o dobro do técnico e cai sobre a mesma base de matérias, com mais profundidade nas jurídicas. E tem um detalhe que economiza tempo: quem estuda pra analista estuda também o que cai pra técnico, então dá pra manter as duas portas abertas com um material só.",
-          "Se você ainda não fez essa conta, vale fazer antes de fechar o seu plano."
-        ]
-      },
       {
         "id": "unsure",
         "when": {
@@ -676,25 +667,10 @@
             ]
           }
         },
-        "title": "Você ainda não escolheu o cargo, e isso dá pra resolver hoje",
+        "title": "Você ainda não escolheu a esfera, e isso dá pra resolver hoje",
         "paragraphs": [
-          "Resumo rápido. Técnico é nível médio, faz o trabalho de apoio do processo e tem prova mais rasa nas jurídicas. Analista é nível superior, salário bem maior e prova mais profunda: a área judiciária costuma exigir bacharel em Direito e as outras áreas aceitam formações diversas. Oficial de justiça, na maioria dos tribunais, é uma especialidade de analista, com o mesmo patamar de salário e mais Processo Civil na prova.",
-          "Como a base de matérias é a mesma, dá pra começar hoje e fechar a escolha quando o edital sair."
-        ]
-      },
-      {
-        "id": "oficial",
-        "when": {
-          "eq": {
-            "cargo": [
-              "oficial"
-            ]
-          }
-        },
-        "title": "Oficial de justiça é prova de analista com peso extra em Processo Civil",
-        "paragraphs": [
-          "Na maior parte dos tribunais, oficial de justiça é uma especialidade dentro do cargo de analista: mesma exigência de nível superior, mesmo patamar de salário, e prova puxando mais em Processo Civil, porque é ali que estão citação, intimação, penhora e mandado.",
-          "Ou seja, a sua base é a de analista. Estudar como analista te deixa com as duas portas abertas."
+          "Resumo rápido. A esfera estadual tem mais concursos por ano, porque são 27 tribunais, MPs, Defensorias, Procuradorias e Polícias. A federal tem menos concursos, mais concorridos e com conteúdo mais amplo.",
+          "Como a base de disciplinas é a mesma, dá pra começar hoje e fechar a escolha quando o edital sair."
         ]
       },
       {
@@ -708,24 +684,8 @@
         },
         "title": "Cursando Direito, você está no melhor momento possível",
         "paragraphs": [
-          "As matérias da faculdade e as do concurso se sobrepõem bastante, então o que você estuda serve pra dupla função. A diferença é o recorte: a faculdade cobra teoria e a banca cobra aplicação, e é a questão de concurso que ajusta essa mira.",
-          "Um ponto prático: o diploma costuma ser exigido só na posse, e a regra sai em cada edital. Dá pra construir a base antes de colar grau e chegar pronto."
-        ]
-      },
-      {
-        "id": "outra_area",
-        "when": {
-          "eq": {
-            "formacao": [
-              "outra",
-              "cursando_outra"
-            ]
-          }
-        },
-        "title": "Sem ser da área do Direito, o caminho existe e tem nome",
-        "paragraphs": [
-          "Você não precisa ser bacharel pra entrar num tribunal. As áreas administrativa e de apoio especializado do cargo de analista costumam aceitar qualquer curso superior, e a área judiciária é a que pede Direito.",
-          "Na prática isso muda as específicas, não a base: Português, Raciocínio Lógico, Informática, Constitucional e Administrativo continuam sendo o coração da prova. Vale confirmar isso com o consultor antes de escolher o curso, pra você não estudar específica que não vai precisar."
+          "As disciplinas da faculdade e as do concurso se sobrepõem bastante, então o que você estuda serve pra dupla função. A diferença é o recorte: a faculdade cobra teoria e a banca cobra aplicação, e é a questão de concurso que ajusta essa mira.",
+          "Um ponto prático: magistratura e MP exigem 3 anos de atividade jurídica depois de formado. Começar a base agora faz esse prazo trabalhar a seu favor."
         ]
       }
     ]
@@ -744,7 +704,7 @@
         },
         "title": "Você já é aluno do VDE Concursos",
         "paragraphs": [
-          "Então metade do caminho está resolvida: você conhece o formato e sabe que ele funciona pra você. O que a conversa com o consultor resolve é o encaixe entre o que você já tem e o VDE Tribunais, pra você não pagar duas vezes pelo mesmo conteúdo nem deixar buraco no meio."
+          "Então metade do caminho está resolvida: você conhece o formato e sabe que ele funciona pra você. O que a conversa com o consultor resolve é o encaixe entre o que você já tem e o VDE Carreiras Jurídicas, pra você não pagar duas vezes pelo mesmo conteúdo nem deixar buraco no meio."
         ]
       },
       {
@@ -758,7 +718,7 @@
         },
         "title": "Você já estudou com a gente antes",
         "paragraphs": [
-          "Então já sabe como é: PDF direto ao ponto, lei e questão, sem enrolação. O VDE Tribunais é essa mesma lógica calibrada pro nível de tribunal, que é mais profundo nas jurídicas. Menciona que você é ex-aluno na conversa com o consultor."
+          "Então já sabe como é: PDF direto ao ponto, lei e questão, sem enrolação. O VDE Carreiras Jurídicas é essa mesma lógica calibrada pro nível de carreira, mais profundo em doutrina e jurisprudência. Menciona que você é ex-aluno na conversa com o consultor."
         ]
       },
       {
@@ -772,7 +732,7 @@
         },
         "title": "Você me acompanha no Instagram",
         "paragraphs": [
-          "Então já viu o método pela janela. A diferença entre o que eu posto e o curso é ordem e profundidade: no Instagram cabe o tema solto, no curso cabe a sequência inteira, com cronograma, lei, questão comentada e simulado mensal."
+          "Então já viu o método pela janela. A diferença entre o que eu posto e o curso é ordem e profundidade: no Instagram cabe o tema solto, no curso cabe a sequência inteira, com cronograma, lei, informativos e questão comentada."
         ]
       },
       {
@@ -786,8 +746,8 @@
         },
         "title": "Você chegou aqui sem me conhecer, então deixa eu me apresentar rápido",
         "paragraphs": [
-          "VDE é Vício de uma Estudante, e o método tem cinco passos. Você abre o cronograma e vê o tema do dia, lê a teoria sistematizada em PDF, lê o caderno de leis e informativos daquele tema, resolve questões comentadas do mesmo tema e, nas não jurídicas, assiste a videoaula se precisar. Todo mês tem simulado com análise de desempenho, e a Vic.IA, treinada só com os nossos materiais, responde dúvida na hora.",
-          "É isso. Sem maratona de videoaula e sem material genérico de concurso."
+          "VDE é Vício de uma Estudante, e o método tem cinco passos. Você abre o cronograma e vê o tema do dia, lê a teoria sistematizada em PDF, lê o caderno de leis e informativos daquele tema, resolve questões comentadas do mesmo tema e faz as suas anotações e revisões. A vic.IA, treinada nos nossos materiais, responde dúvida na hora.",
+          "É isso. Sem maratona de videoaula e sem livro gigante."
         ]
       }
     ]

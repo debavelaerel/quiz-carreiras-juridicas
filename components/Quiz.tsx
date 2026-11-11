@@ -132,7 +132,7 @@ function valAplicado<T>(x: T | ((r: RespostasPerfil) => T), r: RespostasPerfil):
 // padrão do `.eyebrow` do funil de referência.
 function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-block rounded-full bg-[#FBF3D6] px-3 py-1 text-[12px] font-semibold text-brand-gold-text">
+    <span className="inline-block rounded-full bg-[#2A2410] px-3 py-1 text-[12px] font-semibold text-brand-gold-text">
       {children}
     </span>
   )
@@ -156,7 +156,7 @@ function ChipCarreira({ selecionado, onClick, children }: { selecionado: boolean
       type="button"
       onClick={onClick}
       className={`rounded-full border-[1.5px] px-3.5 py-2 text-[13px] font-medium transition-colors ${
-        selecionado ? 'border-brand-gold-deep bg-[#FBF3D6] font-semibold text-brand-gold-text' : 'border-brand-line-strong bg-brand-card text-brand-ink-soft hover:border-brand-ink-dim'
+        selecionado ? 'border-brand-gold-deep bg-[#2A2410] font-semibold text-brand-gold-text' : 'border-brand-line-strong bg-brand-card text-brand-ink-soft hover:border-brand-ink-dim'
       }`}
     >
       {children}
@@ -999,7 +999,7 @@ export default function Quiz() {
                 o Header (justify-between) deixaria a logo sozinha, pequena e
                 jogada pra esquerda. Mesma logo grande e centralizada da intro. */}
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-            <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="mx-auto h-16 w-auto" />
+            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-16 w-auto" />
             <h1 className="mt-7 text-[26px] font-bold leading-tight tracking-[-0.01em] text-brand-ink">
               Para onde podemos enviar o resultado do diagnóstico?
             </h1>
@@ -1050,7 +1050,7 @@ export default function Quiz() {
         <main className="flex flex-1 items-start justify-center px-7 py-10">
           <div className="w-full max-w-md text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-            <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="mx-auto h-16 w-auto" />
+            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-16 w-auto" />
             <div className="mt-7">
               <Eyebrow>Antes de começar</Eyebrow>
             </div>
@@ -1093,23 +1093,23 @@ export default function Quiz() {
           viewBox="-15 -15 320 420"
           style={{ transform: 'rotate(-8deg)' }}
         >
-          <path d="M114.005 1.24982e-05C114.474 -0.000487502 114.943 0.0140133 115.412 0.0437633C137.646 1.46326 146.237 27.1058 130.492 42.1793C126.404 46.0933 117.094 48.0828 111.65 50.4063C99.8631 55.3205 88.9161 62.0448 79.2043 70.3365C74.3256 74.5065 73.3038 76.061 69.5171 80.8105C59.4943 93.3808 55.9448 106.396 54.9756 122.235C54.9218 123.114 54.6976 124.202 55.2436 124.838C55.9328 124.608 60.8981 119.723 61.7871 118.899C109.12 75.0638 178.935 62.2893 230.575 106.661C238.21 113.222 246.515 121.322 252.843 129.604C269.155 151.335 281.083 177.351 283.938 204.518C288.758 250.383 266.705 293.208 230.02 319.973C216.05 330.166 187.892 346.583 170.859 347.973C163.359 348.096 154.893 344.011 150.554 337.881C146.776 332.463 145.269 325.781 146.358 319.268C146.941 316.021 148.162 312.926 149.952 310.156C156.176 300.316 164.592 301.236 174.6 296.776C182.66 293.146 190.357 288.758 197.59 283.676C212.95 272.918 224.85 256.031 228.47 237.426C229.335 232.986 228.818 227.041 229.595 222.903L229.655 222.598C224.675 226.843 220.513 231.226 215.108 235.473C198.754 248.506 180.002 258.201 159.915 264.008C98.2291 281.513 41.2703 245.531 14.8048 190.474C13.1063 186.94 11.1481 183.516 9.6896 179.85C4.90635 167.72 1.82335 154.986 0.528097 142.011C-1.98615 115.196 4.52559 88.3088 19.0298 65.6155C35.7723 38.8815 60.6931 19.395 89.7094 7.45701C97.5359 4.23676 105.501 0.828262 114.005 1.24982e-05ZM171.273 334.023C175.267 333.598 181.792 330.838 185.559 329.338C201.433 323.013 216.353 313.831 229.155 302.528C230.255 301.558 232.335 300.311 233.308 299.341C237.403 295.261 241.74 290.913 245.393 286.438C256.785 272.561 264.688 256.511 268.628 238.981C269.448 235.326 269.463 231.621 270.055 228.093C271.675 218.461 270.488 209.998 269.503 200.394C268.705 192.62 266.68 186.258 264.08 178.921C255.535 154.073 240.19 132.121 219.788 115.56C200.728 100.25 179.511 92.4373 154.934 92.479C151.534 92.4848 147.78 93.048 144.419 93.375C120.241 95.7268 96.9198 108.243 78.1868 123.246C73.6671 126.866 68.5343 130.783 64.4268 134.925C58.2111 141.193 52.2328 148.184 46.4786 154.914C45.3341 151.622 44.6193 147.726 43.8613 144.31C39.5706 124.971 40.8393 105.343 49.2881 87.2828C60.5843 63.137 83.6041 46.9403 107.692 37.1428C113.482 34.788 120.972 34.3995 123.87 28.1648C127.354 21.1495 121.455 12.502 113.678 13.2158C107.751 14.4423 102.181 16.801 96.6156 19.1228C69.5176 30.1833 46.3711 49.135 30.1808 73.5173C27.6233 77.4183 25.8033 81.154 23.8436 85.35C13.7813 106.938 11.0986 131.235 16.2093 154.498C18.2218 164.054 21.7271 174.334 26.0081 183.08C27.1146 185.341 28.7843 187.706 30.0173 189.954C41.1538 210.263 56.6346 227.998 76.1544 240.626C79.8161 242.996 85.3241 245.231 89.2836 247.018C108.707 255.791 130.744 257.196 151.429 252.441C156.313 251.248 161.204 249.843 165.885 247.931C170.391 246.086 175.387 244.461 179.72 242.133C195.501 233.661 210.052 222.303 222.833 209.803C225.233 207.458 236.338 193.79 237.92 193.016C239.428 195.063 241.89 208.751 242.215 212.041C242.945 220.946 243.108 230.086 242.01 238.948C241.278 244.863 239.255 249.783 237.248 255.158C227.133 282.231 203.61 299.333 177.778 309.998C173.213 311.881 168.006 312.716 163.748 315.238C159.087 318.128 158.294 325.658 161.572 329.863C164.363 333.443 167.015 333.966 171.273 334.023Z" fill="#203C7C" />
-          <path d="M144.018 120C153.402 119.614 164.115 121.248 172.959 124.226C196.708 132.419 216.275 149.633 227.428 172.145C224.14 179.163 221.075 183.178 215.558 188.574C213.538 190.625 211.713 192.988 209.68 195.008C191.406 213.173 166.843 227.623 140.624 228.143C107.004 228.481 83.1954 211.873 63.4524 186.458C61.9186 184.484 56.9411 179 57.1734 176.564C57.5826 172.268 64.6131 164.492 67.2324 160.781C84.1484 140.525 106.241 125.424 132.566 120.967C135.386 120.472 140.956 120.255 144.018 120ZM72.7099 176.4C76.7726 182.307 83.3016 188.821 88.5999 193.778C98.7486 203.272 112.278 210.603 126.025 213.151C130.601 214.013 135.251 214.426 139.907 214.376C158.71 213.276 172.732 207.191 187.513 195.796C197.372 188.194 204.332 181.85 211.948 172.003C197.974 153.461 182.879 138.674 158.974 134.168C155.733 133.557 148.454 132.713 145.281 132.998C140.801 133.348 134.985 133.8 130.677 134.828C106.329 140.637 87.6831 157.152 72.7099 176.4Z" fill="#203C7C" />
-          <path d="M121.7 141.505C122.743 141.798 126.239 146.408 127.567 147.592C138.533 157.372 153.49 159.425 167.41 155.905C170.66 155.083 173.491 153.872 176.693 152.967C174.867 154.848 173.368 156.043 171.515 158.217C161.315 169.631 156.693 183.069 160.691 198.17C161.08 199.64 163.626 205.306 163.453 206.226C161.675 205.078 159.416 202.243 157.62 200.747C142.596 188.23 126.78 185.845 109.389 195.307C110.592 193.132 111.986 191.849 113.647 190.04C117.225 186.143 119.962 182.772 122.1 177.889C127.563 165.407 126.855 153.985 121.7 141.505Z" fill="#203C7C" />
+          <path d="M114.005 1.24982e-05C114.474 -0.000487502 114.943 0.0140133 115.412 0.0437633C137.646 1.46326 146.237 27.1058 130.492 42.1793C126.404 46.0933 117.094 48.0828 111.65 50.4063C99.8631 55.3205 88.9161 62.0448 79.2043 70.3365C74.3256 74.5065 73.3038 76.061 69.5171 80.8105C59.4943 93.3808 55.9448 106.396 54.9756 122.235C54.9218 123.114 54.6976 124.202 55.2436 124.838C55.9328 124.608 60.8981 119.723 61.7871 118.899C109.12 75.0638 178.935 62.2893 230.575 106.661C238.21 113.222 246.515 121.322 252.843 129.604C269.155 151.335 281.083 177.351 283.938 204.518C288.758 250.383 266.705 293.208 230.02 319.973C216.05 330.166 187.892 346.583 170.859 347.973C163.359 348.096 154.893 344.011 150.554 337.881C146.776 332.463 145.269 325.781 146.358 319.268C146.941 316.021 148.162 312.926 149.952 310.156C156.176 300.316 164.592 301.236 174.6 296.776C182.66 293.146 190.357 288.758 197.59 283.676C212.95 272.918 224.85 256.031 228.47 237.426C229.335 232.986 228.818 227.041 229.595 222.903L229.655 222.598C224.675 226.843 220.513 231.226 215.108 235.473C198.754 248.506 180.002 258.201 159.915 264.008C98.2291 281.513 41.2703 245.531 14.8048 190.474C13.1063 186.94 11.1481 183.516 9.6896 179.85C4.90635 167.72 1.82335 154.986 0.528097 142.011C-1.98615 115.196 4.52559 88.3088 19.0298 65.6155C35.7723 38.8815 60.6931 19.395 89.7094 7.45701C97.5359 4.23676 105.501 0.828262 114.005 1.24982e-05ZM171.273 334.023C175.267 333.598 181.792 330.838 185.559 329.338C201.433 323.013 216.353 313.831 229.155 302.528C230.255 301.558 232.335 300.311 233.308 299.341C237.403 295.261 241.74 290.913 245.393 286.438C256.785 272.561 264.688 256.511 268.628 238.981C269.448 235.326 269.463 231.621 270.055 228.093C271.675 218.461 270.488 209.998 269.503 200.394C268.705 192.62 266.68 186.258 264.08 178.921C255.535 154.073 240.19 132.121 219.788 115.56C200.728 100.25 179.511 92.4373 154.934 92.479C151.534 92.4848 147.78 93.048 144.419 93.375C120.241 95.7268 96.9198 108.243 78.1868 123.246C73.6671 126.866 68.5343 130.783 64.4268 134.925C58.2111 141.193 52.2328 148.184 46.4786 154.914C45.3341 151.622 44.6193 147.726 43.8613 144.31C39.5706 124.971 40.8393 105.343 49.2881 87.2828C60.5843 63.137 83.6041 46.9403 107.692 37.1428C113.482 34.788 120.972 34.3995 123.87 28.1648C127.354 21.1495 121.455 12.502 113.678 13.2158C107.751 14.4423 102.181 16.801 96.6156 19.1228C69.5176 30.1833 46.3711 49.135 30.1808 73.5173C27.6233 77.4183 25.8033 81.154 23.8436 85.35C13.7813 106.938 11.0986 131.235 16.2093 154.498C18.2218 164.054 21.7271 174.334 26.0081 183.08C27.1146 185.341 28.7843 187.706 30.0173 189.954C41.1538 210.263 56.6346 227.998 76.1544 240.626C79.8161 242.996 85.3241 245.231 89.2836 247.018C108.707 255.791 130.744 257.196 151.429 252.441C156.313 251.248 161.204 249.843 165.885 247.931C170.391 246.086 175.387 244.461 179.72 242.133C195.501 233.661 210.052 222.303 222.833 209.803C225.233 207.458 236.338 193.79 237.92 193.016C239.428 195.063 241.89 208.751 242.215 212.041C242.945 220.946 243.108 230.086 242.01 238.948C241.278 244.863 239.255 249.783 237.248 255.158C227.133 282.231 203.61 299.333 177.778 309.998C173.213 311.881 168.006 312.716 163.748 315.238C159.087 318.128 158.294 325.658 161.572 329.863C164.363 333.443 167.015 333.966 171.273 334.023Z" fill="#B7ADFD" />
+          <path d="M144.018 120C153.402 119.614 164.115 121.248 172.959 124.226C196.708 132.419 216.275 149.633 227.428 172.145C224.14 179.163 221.075 183.178 215.558 188.574C213.538 190.625 211.713 192.988 209.68 195.008C191.406 213.173 166.843 227.623 140.624 228.143C107.004 228.481 83.1954 211.873 63.4524 186.458C61.9186 184.484 56.9411 179 57.1734 176.564C57.5826 172.268 64.6131 164.492 67.2324 160.781C84.1484 140.525 106.241 125.424 132.566 120.967C135.386 120.472 140.956 120.255 144.018 120ZM72.7099 176.4C76.7726 182.307 83.3016 188.821 88.5999 193.778C98.7486 203.272 112.278 210.603 126.025 213.151C130.601 214.013 135.251 214.426 139.907 214.376C158.71 213.276 172.732 207.191 187.513 195.796C197.372 188.194 204.332 181.85 211.948 172.003C197.974 153.461 182.879 138.674 158.974 134.168C155.733 133.557 148.454 132.713 145.281 132.998C140.801 133.348 134.985 133.8 130.677 134.828C106.329 140.637 87.6831 157.152 72.7099 176.4Z" fill="#B7ADFD" />
+          <path d="M121.7 141.505C122.743 141.798 126.239 146.408 127.567 147.592C138.533 157.372 153.49 159.425 167.41 155.905C170.66 155.083 173.491 153.872 176.693 152.967C174.867 154.848 173.368 156.043 171.515 158.217C161.315 169.631 156.693 183.069 160.691 198.17C161.08 199.64 163.626 205.306 163.453 206.226C161.675 205.078 159.416 202.243 157.62 200.747C142.596 188.23 126.78 185.845 109.389 195.307C110.592 193.132 111.986 191.849 113.647 190.04C117.225 186.143 119.962 182.772 122.1 177.889C127.563 165.407 126.855 153.985 121.7 141.505Z" fill="#B7ADFD" />
         </svg>
 
         <main className="relative flex flex-1 items-start justify-center px-6 py-3 sm:py-10">
           <div className="w-full max-w-md text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca, sem necessidade do pipeline de otimização de imagem */}
-            <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="mx-auto h-9 w-auto sm:h-16" />
+            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-9 w-auto sm:h-16" />
             <h1 className="mt-3.5 text-[19px] leading-snug tracking-[-0.01em] font-bold text-brand-ink sm:mt-7 sm:text-[26px] sm:leading-tight sm:tracking-[-0.015em]">
-              Os próximos 12 meses vão ser dos concursos de tribunais.
+              Os próximos 12 meses vão ser das carreiras jurídicas.
             </h1>
             <p className="mt-3 text-[13.5px] leading-normal text-brand-ink-soft sm:mt-4 sm:text-[17px] sm:leading-relaxed">
-              TRT8, TRF3, TRT4, TJ PB e TJ SP já com edital publicado. TRT23 com banca definida. TJ AM, TJ GO e a DPU na fila.
+              TJ SC, TJ RS, DPE SP, PC PE e PC AC já com edital publicado. TJDFT, MP AP, PGE BA, DPE RN e PC RJ com banca definida. AGU com 170 vagas autorizadas, e os TRFs, o MP SP e a DPU na fila.
             </p>
             <p className="mt-3 text-[13.5px] leading-normal text-brand-ink-soft sm:mt-4 sm:text-[17px] sm:leading-relaxed">
-              Não dá pra desperdiçar essas oportunidades. Quem chega despreparado não perde só uma prova: perde o ciclo inteiro, porque o próximo edital do mesmo tribunal demora anos.
+              Não dá pra desperdiçar essas oportunidades. Quem chega despreparado não perde só uma prova: perde o ciclo inteiro, porque o próximo edital da mesma carreira no mesmo estado pode demorar anos.
             </p>
             <p className="mt-3 text-[13.5px] leading-normal text-brand-ink-soft sm:mt-4 sm:text-[17px] sm:leading-relaxed">
               E o que separa quem aproveita essa janela de quem assiste ela passar é saber em que momento da preparação está. <b className="text-brand-ink">Este diagnóstico revela o seu em menos de 3 minutos.</b>
@@ -1207,7 +1207,7 @@ export default function Quiz() {
     let paragrafos: string[]
     if (motivoDesqualificacao === 'outro') {
       paragrafos = [
-        'Pelo que você me contou, o seu foco hoje não é um concurso de tribunal. E o VDE Tribunais foi feito sob medida pra tribunal: TJ, TRF, TRT e os órgãos das funções essenciais.',
+        'Pelo que você me contou, o seu foco hoje não é uma carreira jurídica. E o VDE Carreiras Jurídicas foi feito sob medida pra juiz, promotor, defensor, procurador e delegado.',
         'Prefiro te dizer isso agora e você chegar no seu concurso pelo caminho certo.',
       ]
     } else if (motivoDesqualificacao === 'juridica') {
@@ -1217,8 +1217,8 @@ export default function Quiz() {
       ]
     } else {
       paragrafos = [
-        'O VDE Tribunais é calibrado pro nível de analista e oficial de justiça, então ele aprofunda as matérias jurídicas mais do que a prova de técnico de nível médio pede.',
-        'Prefiro te dizer isso agora. Se em algum momento o seu alvo virar analista, o diagnóstico continua aqui.',
+        'Toda carreira jurídica exige bacharelado em Direito, e o VDE Carreiras Jurídicas foi feito pra quem está nesse caminho.',
+        'Prefiro te dizer isso agora. Se em algum momento você entrar em Direito, o diagnóstico continua aqui.',
       ]
     }
     const progressoDesqualificado = Math.round((passoPerfil / PASSOS_POS_INTRO) * 100)
@@ -1456,7 +1456,7 @@ export default function Quiz() {
               que sobrou entre título e botão, em vez de estourar o flex. */}
           <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center">
             <div
-              className="aspect-[9/16] h-full max-h-[62svh] w-auto overflow-hidden rounded-[22px] bg-brand-navy shadow-[0_10px_30px_rgba(32,60,124,0.25)]"
+              className="aspect-[9/16] h-full max-h-[62svh] w-auto overflow-hidden rounded-[22px] bg-brand-navy shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
               // Reaproveita o mesmo <iframe> pré-carregado desde o mount do
               // quiz (ver o useEffect de videoHostRef acima) — só reposiciona
               // o nó pra dentro deste container, nunca cria um novo (isso
@@ -1519,7 +1519,7 @@ export default function Quiz() {
               Escrevi isso porque essa conta só para de correr quando a preparação deixa de ser improviso e vira base.
             </p>
             <p className="mt-4 text-brand-ink-soft">
-              <b className="text-brand-ink">Agora eu preciso ver a sua base na prática.</b> Vêm 4 questões reais de FGV e FCC: Português, Constitucional, Processo Civil e Raciocínio Lógico. Pode errar à vontade: elas servem pra medir o seu nível de partida, e o resultado entra no seu diagnóstico.
+              <b className="text-brand-ink">Agora eu preciso ver a sua base na prática.</b> Vêm 5 questões reais de provas de juiz, defensor e delegado, de FGV e Cebraspe: Constitucional, Administrativo, Penal, Processo Penal e Civil. Pode errar à vontade: elas servem pra medir o seu nível de partida, e o resultado entra no seu diagnóstico.
             </p>
             <Button variant="gold" onClick={() => setTela('quiz')} className="mt-6">
               Quero encurtar esse caminho <ArrowRight size={17} strokeWidth={2.25} />
@@ -1555,7 +1555,7 @@ export default function Quiz() {
                   disabled={enviando}
                   onClick={() => responder(o.letter)}
                 >
-                  <span className="font-semibold text-brand-navy">{o.letter}</span> <span>{o.text}</span>
+                  <span className="font-semibold text-brand-lilas">{o.letter}</span> <span>{o.text}</span>
                 </OptionButton>
               ))}
             </div>
@@ -1685,16 +1685,16 @@ export default function Quiz() {
         <main className="flex flex-1 items-center justify-center px-6 py-8">
           <div className="w-full max-w-md text-center">
             {/* eslint-disable-next-line @next/next/no-img-element -- SVG estático da marca */}
-            <img src="/brand/versao01-color0.svg" alt="VDE Concursos — Tribunais" width={1163} height={393} className="mx-auto h-11 w-auto" />
+            <img src="/brand/vde-concursos-branco.png" alt="Método VDE Concursos" width={1200} height={346} className="mx-auto h-11 w-auto" />
             <div className="relative mx-auto mt-10 h-32 w-32">
               <svg viewBox="0 0 128 128" className="h-full w-full -rotate-90">
                 <defs>
                   <linearGradient id="analiseGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="#F9E08A" />
-                    <stop offset="1" stopColor="#C89B18" />
+                    <stop offset="0" stopColor="#F5CF4A" />
+                    <stop offset="1" stopColor="#F5CF4A" />
                   </linearGradient>
                 </defs>
-                <circle cx="64" cy="64" r="55" fill="none" stroke="#ECE9F5" strokeWidth="8" />
+                <circle cx="64" cy="64" r="55" fill="none" stroke="#2A2A35" strokeWidth="8" />
                 <circle cx="64" cy="64" r="55" fill="none" stroke="url(#analiseGrad)" strokeWidth="8" strokeLinecap="round" className="diag-ring" />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center text-2xl font-bold tabular-nums text-brand-ink">
@@ -1778,7 +1778,7 @@ export default function Quiz() {
                       <div className="mt-3 flex flex-col gap-2">
                         {diagnostico.ordem.map((item, i) => (
                           <div key={i} className="flex items-start gap-2.5 rounded-[12px] border-[1.5px] border-brand-line px-3 py-2.5">
-                            <span className="mt-0.5 flex h-[22px] w-[22px] flex-none items-center justify-center rounded-full bg-brand-ink text-[11.5px] font-bold text-white">
+                            <span className="mt-0.5 flex h-[22px] w-[22px] flex-none items-center justify-center rounded-full bg-brand-lilas text-[11.5px] font-bold text-[#16122e]">
                               {i + 1}
                             </span>
                             <span className="text-[13px] leading-snug text-brand-ink-soft">{item}</span>
@@ -1799,12 +1799,12 @@ export default function Quiz() {
                 // dar tanto conteúdo de graça antes do CTA.
                 <div className="relative mt-7 max-h-[150px] overflow-hidden rounded-[16px] border-[1.5px] border-brand-line px-4 py-4">
                   <div className="select-none" style={{ filter: 'blur(3px)' }}>
-                    <h3 className="font-bold text-brand-navy">Por que essa ordem</h3>
+                    <h3 className="font-bold text-brand-lilas">Por que essa ordem</h3>
                     {diagnostico.texto.map((t, i) => (
                       <p key={i} className="mt-2 text-brand-ink-soft">{t}</p>
                     ))}
                   </div>
-                  <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0), #FFFFFF 78%)' }} />
+                  <div className="pointer-events-none absolute inset-0" style={{ backgroundImage: 'linear-gradient(to bottom, rgba(21,21,28,0), #15151C 78%)' }} />
                 </div>
               )}
 
@@ -1812,7 +1812,7 @@ export default function Quiz() {
                   reduzida mantendo a mesma ideia da original (leitura
                   superficial → conversa de 20min → diagnóstico completo por
                   WhatsApp → grátis, agenda curta), só mais enxuta. */}
-              <div className="mt-4 rounded-[14px] bg-gradient-to-br from-brand-navy to-brand-navy-2 px-5 py-5 shadow-[0_10px_30px_rgba(32,60,124,0.25)]">
+              <div className="mt-4 rounded-[14px] bg-gradient-to-br from-brand-navy to-brand-navy-2 px-5 py-5 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
                 <p className="text-[13px] leading-relaxed text-white">
                   Este diagnóstico é uma leitura rápida do seu caso. Numa conversa de 20 minutos, um consultor do <b className="font-semibold">nosso time</b> cruza suas respostas com o edital e monta seu plano de ação, com o diagnóstico completo em PDF pelo WhatsApp.
                 </p>
@@ -1836,7 +1836,7 @@ export default function Quiz() {
                       }).catch(() => {})
                     }
                   }}
-                  className="mt-4 flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-br from-brand-gold to-brand-gold-deep px-4 py-3.5 text-[13.5px] font-semibold text-brand-navy shadow-[0_10px_24px_rgba(200,155,24,0.28)] transition-transform hover:-translate-y-0.5 sm:gap-2 sm:px-6 sm:py-4 sm:text-[15.5px]"
+                  className="mt-4 flex w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-br from-brand-gold to-brand-gold-deep px-4 py-3.5 text-[13.5px] font-semibold text-[#1a1608] shadow-[0_10px_24px_rgba(245,207,74,0.28)] transition-transform hover:-translate-y-0.5 sm:gap-2 sm:px-6 sm:py-4 sm:text-[15.5px]"
                 >
                   {/* Ícone de marca (WhatsApp) — fora do set genérico do lucide, mantido como SVG inline. */}
                   <svg viewBox="0 0 24 24" width={17} height={17} className="flex-none sm:h-5 sm:w-5" fill="currentColor" aria-hidden="true">

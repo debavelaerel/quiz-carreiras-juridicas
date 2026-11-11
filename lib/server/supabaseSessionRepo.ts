@@ -1,3 +1,4 @@
+import { criarFakeSessionRepo } from './testHelpers/fakeSessionRepo'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { SessionRepo, FiltroListagem } from './sessionRepo'
 import type { QuizSession } from './types'
@@ -128,6 +129,11 @@ function aplicarFiltro(client: SupabaseClient, evento: string, filtro: Omit<Filt
 }
 
 export function criarSupabaseSessionRepo(client: SupabaseClient): SessionRepo {
+  // PRÉVIA LOCAL: repositório em memória, compartilhado entre as rotas do processo.
+  if (process.env.PREVIA_MEMORIA === '1') {
+    const g = globalThis as unknown as { __previaRepo?: SessionRepo }
+    return (g.__previaRepo ??= criarFakeSessionRepo())
+  }
   return {
     async buscarPorEmail(evento, emailNormalizado) {
       const { data, error } = await client.from('quiz_sessions').select('*')

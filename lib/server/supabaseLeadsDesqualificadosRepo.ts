@@ -1,3 +1,4 @@
+import { criarFakeLeadsDesqualificadosRepo } from './testHelpers/fakeLeadsDesqualificadosRepo'
 import type { SupabaseClient } from '@supabase/supabase-js'
 import type { LeadsDesqualificadosRepo, LeadDesqualificado } from './leadsDesqualificadosRepo'
 
@@ -32,6 +33,10 @@ function paraLead(linha: LinhaBanco): LeadDesqualificado {
 }
 
 export function criarSupabaseLeadsDesqualificadosRepo(client: SupabaseClient): LeadsDesqualificadosRepo {
+  if (process.env.PREVIA_MEMORIA === '1') {
+    const g = globalThis as unknown as { __previaLeads?: LeadsDesqualificadosRepo }
+    return (g.__previaLeads ??= criarFakeLeadsDesqualificadosRepo())
+  }
   return {
     async criar(lead) {
       const { data, error } = await client.from('leads_desqualificados').insert({

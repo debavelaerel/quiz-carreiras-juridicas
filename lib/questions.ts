@@ -18,7 +18,7 @@ export type Question = {
   src: string
 }
 
-export const EVENTO = 'diagnostico-tribunais-comercial'
+export const EVENTO = 'diagnostico-carreiras-juridicas'
 
 const LETRAS = ['A', 'B', 'C', 'D', 'E']
 

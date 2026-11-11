@@ -24,7 +24,7 @@ export default function NivelGauge({ nivel, acertos, total }: NivelGaugeProps) {
         {FAIXAS.map((f) => (
           <path key={f.nivel} d={f.path} fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth={16} strokeLinecap="round" />
         ))}
-        <path d={ativa.path} fill="none" stroke="#F9E08A" strokeWidth={16} strokeLinecap="round" />
+        <path d={ativa.path} fill="none" stroke="#F5CF4A" strokeWidth={16} strokeLinecap="round" />
         <line x1={100} y1={100} x2={ativa.agulha.x} y2={ativa.agulha.y} stroke="#fff" strokeWidth={4} strokeLinecap="round" />
         <circle cx={100} cy={100} r={7} fill="#fff" />
       </svg>

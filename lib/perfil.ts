@@ -30,7 +30,7 @@ export type PerfilCalculado = {
   classe: 'A' | 'B'
   pontos: number
   curso: string
-  cursoCod: 'C1-TRT' | 'C2-TJTRF'
+  cursoCod: string
   ritmo: string
 }
 
@@ -41,18 +41,18 @@ export type PerfilCalculado = {
 // rende ritmos diferentes) — mais preciso, mas divergia do texto do pacote
 // de referência, que é tratado como copy aprovada e não deve ser reescrita.
 const RITMOS: Record<string, string> = {
-  h0: 'abaixo do cronograma mínimo; com 2h por dia, base em 12 meses',
-  h1: 'base em 12 meses, no ritmo de 2h por dia',
-  h2: 'base entre 8 e 12 meses',
-  h3: 'base entre 6 e 8 meses',
-  h4: 'base em 6 meses',
+  // PENDENTE: confirmar com o time os prazos reais do cronograma de Carreiras Jurídicas.
+  h0: 'abaixo do cronograma mínimo; o ideal é chegar a 2h por dia',
+  h1: 'cronograma padrão, desenhado pra quem trabalha',
+  h2: 'acima do padrão: a base fecha antes',
+  h3: 'ritmo forte: a base fecha bem antes do padrão',
+  h4: 'ritmo intensivo: o cronograma mais curto',
 }
 
 export function calcularPerfil(r: RespostasPerfil, acertosTeste: number): PerfilCalculado {
   let pontos = 0
-  if (r.cargo === 'analista' || r.cargo === 'oficial') pontos += 2
+  if (r.cargo === 'estadual' || r.cargo === 'federal' || r.cargo === 'trabalho' || r.cargo === 'municipal') pontos += 2
   else if (r.cargo === 'any' || r.cargo === 'unsure') pontos += 1
-  else if (r.cargo === 'tecnico' && r.alvo !== 'tj') pontos += 1
 
   if (r.formacao === 'direito') pontos += 2
   else pontos += 1
@@ -63,12 +63,11 @@ export function calcularPerfil(r: RespostasPerfil, acertosTeste: number): Perfil
   if (r.edital === 'previsto' || r.edital === 'sem') pontos += 2
   else if (r.edital === 'nao') pontos += 1
 
-  if (r.dor === 'base' || r.dor === 'improviso' || r.dor === 'banca' || r.dor === 'todas') pontos += 1
+  if (r.dor === 'base' || r.dor === 'improviso' || r.dor === 'juris' || r.dor === 'todas') pontos += 1
 
   const classe: 'A' | 'B' = pontos >= 7 ? 'A' : 'B'
-  const curso1 = r.alvo === 'trt'
-  const curso = curso1 ? 'Curso 1 · Analista de TRT (168 temas)' : 'Curso 2 · Analista de TJ e TRF (231 temas)'
-  const cursoCod: 'C1-TRT' | 'C2-TJTRF' = curso1 ? 'C1-TRT' : 'C2-TJTRF'
+  const curso = 'Formação de Base · Carreiras Jurídicas (23 disciplinas, 420+ temas)'
+  const cursoCod = 'CJ-BASE'
   const ritmo = (r.horas && RITMOS[r.horas]) || ''
 
   // acertosTeste não entra na pontuação (o teste é diagnóstico, não classificatório
@@ -80,7 +79,7 @@ export function calcularPerfil(r: RespostasPerfil, acertosTeste: number): Perfil
 }
 
 export function nivelTeste(acertos: number): string {
-  const niveis: Record<number, string> = { 0: 'inicial', 1: 'inicial', 2: 'intermediário', 3: 'avançado', 4: 'avançado' }
+  const niveis: Record<number, string> = { 0: 'inicial', 1: 'inicial', 2: 'intermediário', 3: 'intermediário', 4: 'avançado', 5: 'avançado' }
   return niveis[acertos] ?? 'inicial'
 }
 

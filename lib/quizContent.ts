@@ -1,71 +1,81 @@
-// Conteúdo do funil "Diagnóstico da Base" (VDE Tribunais) — perguntas de
+// Conteúdo do funil "Diagnóstico da Base" (VDE Carreiras Jurídicas) — perguntas de
 // perfilamento, editais em andamento, rótulos e diagnósticos por momento.
-// Adaptado do funil de referência (mesmo texto, mesma lógica de ramificação),
-// só reestruturado como dados tipados para o motor de telas do Quiz.tsx.
+// Mesma estrutura e mesmo motor de telas do quiz do VDE Tribunais; só o conteúdo
+// foi adaptado pra juiz, promotor, defensor, procurador e delegado.
 
 import type { RespostasPerfil } from './perfil'
 
 export const CONFIG = {
   quizName: 'Diagnóstico da Base',
-  // Número real do time de consultores — +55 (85) 9 9972-3810.
+  // PENDENTE: confirmar o número do time de Carreiras Jurídicas (hoje é o mesmo do Tribunais).
   whatsapp: '5585999723810',
-  // Embed do Panda Video — vídeo da Ana Clara na tela 'video' do funil.
-  // muted=true é obrigatório pro autoplay funcionar em qualquer navegador
-  // (política padrão contra autoplay com som — ver Quiz.tsx onde o play()
-  // é disparado via postMessage); mutedIndicatorIcon mostra o aviso "toca
-  // pra ativar o som" de que a pessoa precisa pra ouvir.
+  // PENDENTE: vídeo da Ana Clara pra Carreiras Jurídicas (hoje é o mesmo do Tribunais).
   videoSrc: 'https://player-vz-246ae85e-308.tv.pandavideo.com.br/embed/?v=ceeffaff-3a26-4b53-ae04-2e52a05106e4&muted=true&mutedIndicatorIcon=true&mutedIndicatorClickRestart=true&saveProgress=false',
-  editaisAtualizadosEm: '28 de outubro de 2026',
+  editaisAtualizadosEm: '11 de novembro de 2026',
   instagram: 'https://www.instagram.com/vdeconcursos/',
 }
 
-// `aberto`: o edital já saiu e as inscrições estão abertas (ou foram abertas). Só o TS usa — o
-// serviço de PDF (Python) tem a mesma lista sem esse campo, e o texto de `sub` já diz a situação.
+// `aberto`: o edital já saiu (inscrições abertas ou prova marcada).
+// Pesquisa de 11/11/2026 — fontes no relatório editais-carreiras.md.
 export type Edital = { id: string; label: string; sub: string; aberto?: boolean }
 
 export const EDITAIS: Record<string, Edital[]> = {
-  tj: [
-    { id: 'tjpb', label: 'TJ PB', sub: 'edital publicado para analista judiciário (banca FGV); 50 vagas', aberto: true },
-    { id: 'tjsp', label: 'TJ SP', sub: 'edital publicado para escrevente e oficial de justiça (banca Vunesp)', aberto: true },
-    { id: 'tjgo', label: 'TJ GO', sub: 'concurso autorizado para analista judiciário, área judiciária e de apoio' },
-    { id: 'tjam', label: 'TJ AM', sub: 'cerca de 400 vagas anunciadas pelo tribunal' },
-    { id: 'tjto', label: 'TJ TO', sub: 'banca em contratação; 331 cargos vagos, 117 de analista' },
-    { id: 'tjal', label: 'TJ AL', sub: 'comissão formada para analista, oficial de justiça avaliador' },
-    { id: 'tjrs', label: 'TJ RS', sub: 'comissão formada para analista do Poder Judiciário' },
+  juiz: [
+    { id: 'tjsc', label: 'TJ SC', sub: 'edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 26/11', aberto: true },
+    { id: 'tjrs', label: 'TJ RS', sub: 'edital publicado para juiz substituto (banca FGV); 30 vagas, prova em 13/12', aberto: true },
+    { id: 'tjap', label: 'TJ AP', sub: 'edital publicado para juiz substituto (banca FGV); 15 vagas, inscrições até 13/11', aberto: true },
+    { id: 'tjdft', label: 'TJDFT', sub: 'banca definida para juiz substituto (Cebraspe); 20 vagas previstas' },
+    { id: 'tjpb', label: 'TJ PB', sub: 'concurso para juiz substituto em preparação; 6 vagas previstas' },
+    { id: 'tjac', label: 'TJ AC', sub: 'regulamento publicado para juiz substituto; banca a definir' },
+    { id: 'trfs', label: 'TRFs (juiz federal)', sub: 'concursos previstos no orçamento de 2027 nos seis TRFs' },
   ],
-  trf: [
-    { id: 'trf3', label: 'TRF3 (SP e MS)', sub: 'edital publicado para analista e técnico (banca Vunesp)', aberto: true },
-    { id: 'trf2', label: 'TRF2 (RJ e ES)', sub: 'previsto no PLOA 2027, sem cronograma' },
+  mp: [
+    { id: 'mpap', label: 'MP AP', sub: 'banca definida para promotor substituto (FCC); 5 vagas previstas' },
+    { id: 'mppe', label: 'MP PE', sub: 'regulamento publicado para promotor substituto; 15 vagas' },
+    { id: 'mpsp', label: 'MP SP', sub: 'novo concurso para promotor em estudo; contratação da banca iniciada' },
+    { id: 'mprj', label: 'MP RJ', sub: 'novo regulamento em preparação para o XL concurso de promotor' },
   ],
-  trt: [
-    { id: 'trt8', label: 'TRT8 (PA e AP)', sub: 'edital publicado para técnico e analista (banca FCC)', aberto: true },
-    { id: 'trt4', label: 'TRT4 (RS)', sub: 'edital publicado para técnico e analista (banca FCC)', aberto: true },
-    { id: 'trt23', label: 'TRT23 (MT)', sub: 'banca definida (FCC), edital esperado ainda em 2026' },
-    { id: 'trt3', label: 'TRT3 (MG)', sub: 'autorizado, edital previsto para 2027, com até 444 vacâncias' },
-    { id: 'trt5', label: 'TRT5 (BA)', sub: 'previsto no PLOA 2027' },
-    { id: 'trt22', label: 'TRT22 (PI)', sub: 'previsto após dezembro de 2026' },
+  defensoria: [
+    { id: 'dpesp', label: 'DPE SP', sub: 'edital publicado para defensor público (banca FCC); 70 vagas, prova em 10/01/2027', aberto: true },
+    { id: 'dpern', label: 'DPE RN', sub: 'banca definida para defensor público (Cebraspe); 10 vagas previstas' },
+    { id: 'dpego', label: 'DPE GO', sub: 'regulamento publicado para defensor público; edital previsto' },
+    { id: 'dpu', label: 'DPU', sub: 'comissão formada para contratar a banca do concurso de defensor federal' },
   ],
-  fe: [
-    { id: 'dpu', label: 'DPU', sub: '810 vagas previstas na LOA 2026, analista e técnico' },
-    { id: 'dpema', label: 'DPE MA', sub: 'primeiro concurso de servidores, previsto para 2026' },
-    { id: 'pgeba', label: 'PGE BA', sub: 'banca definida, 115 vagas de analista e assistente' },
-    { id: 'pgerj', label: 'PGE RJ', sub: 'autorizado para analista' },
+  procuradoria: [
+    { id: 'pgeba', label: 'PGE BA', sub: 'banca contratada para procurador do estado (FCC); 20 vagas' },
+    { id: 'agu', label: 'AGU', sub: 'concurso unificado autorizado; 170 vagas, banca em definição' },
+    { id: 'pgers', label: 'PGE RS', sub: 'comissão formada para o 16º concurso de procurador do estado' },
+  ],
+  delegado: [
+    { id: 'pcpe', label: 'PC PE', sub: 'edital publicado para delegado (banca Cebraspe); 45 vagas, inscrições até 16/12', aberto: true },
+    { id: 'pcac', label: 'PC AC', sub: 'edital publicado para delegado (banca Idecan); 8 vagas, inscrições até 14/12', aberto: true },
+    { id: 'pcap', label: 'PC AP', sub: 'edital publicado para delegado (banca Cesgranrio); prova em 06/12', aberto: true },
+    { id: 'pcrj', label: 'PC RJ', sub: 'banca definida para delegado (Cesgranrio); 85 vagas' },
+    { id: 'pcto', label: 'PC TO', sub: 'concurso autorizado para delegado; comissão definida, 60 vagas' },
   ],
 }
-EDITAIS.any = [...EDITAIS.trt.slice(0, 3), ...EDITAIS.trf.slice(0, 1), ...EDITAIS.tj.slice(0, 2)]
+EDITAIS.any = [EDITAIS.juiz[0], EDITAIS.delegado[0], EDITAIS.juiz[3], EDITAIS.mp[0], EDITAIS.defensoria[1], EDITAIS.procuradoria[1]]
 
 export const L = {
-  alvo: { tj: 'TJ', trf: 'TRF', trt: 'TRT', fe: 'Defensoria, MP ou Procuradoria', any: 'qualquer tribunal', juridica: 'carreira jurídica', outro: 'outro concurso' } as Record<string, string>,
-  alvoLongo: { tj: 'um Tribunal de Justiça', trf: 'um Tribunal Regional Federal', trt: 'um Tribunal Regional do Trabalho', fe: 'um órgão das funções essenciais à justiça', any: 'o primeiro tribunal que abrir' } as Record<string, string>,
-  cargo: { analista: 'analista judiciário', oficial: 'oficial de justiça', tecnico: 'técnico judiciário', escrevente: 'escrevente', any: 'o cargo que vier', unsure: 'um cargo ainda a definir' } as Record<string, string>,
-  cargoFe: { analista: 'analista', oficial: 'analista', tecnico: 'técnico', escrevente: 'técnico', any: 'o cargo que vier', unsure: 'um cargo ainda a definir' } as Record<string, string>,
+  alvo: { juiz: 'Magistratura', mp: 'Ministério Público', defensoria: 'Defensoria Pública', procuradoria: 'Advocacia Pública', delegado: 'Polícia', any: 'qualquer carreira jurídica', outro: 'outro concurso' } as Record<string, string>,
+  alvoLongo: { juiz: 'a Magistratura', mp: 'o Ministério Público', defensoria: 'a Defensoria Pública', procuradoria: 'a Advocacia Pública', delegado: 'a Polícia Judiciária', any: 'a primeira carreira jurídica que abrir' } as Record<string, string>,
+  // Rótulo do cargo depende da carreira (ver labelCargo): "estadual" é juiz de direito na
+  // Magistratura e procurador do estado na Advocacia Pública.
+  cargoPorAlvo: {
+    juiz: { estadual: 'juiz de direito', federal: 'juiz federal', trabalho: 'juiz do trabalho', any: 'juiz', unsure: 'juiz' },
+    mp: { estadual: 'promotor de justiça', federal: 'procurador da República', any: 'membro do MP', unsure: 'membro do MP' },
+    defensoria: { estadual: 'defensor público estadual', federal: 'defensor público federal', any: 'defensor público', unsure: 'defensor público' },
+    procuradoria: { estadual: 'procurador do estado', federal: 'advogado público federal', municipal: 'procurador do município', any: 'procurador', unsure: 'procurador' },
+    delegado: { estadual: 'delegado de Polícia Civil', federal: 'delegado de Polícia Federal', any: 'delegado', unsure: 'delegado' },
+    any: { estadual: 'carreira estadual', federal: 'carreira federal', any: 'o cargo que vier', unsure: 'um cargo ainda a definir' },
+  } as Record<string, Record<string, string>>,
   dorCurta: {
     base: 'sentir que começa do zero a cada edital',
     improviso: 'estudar no improviso, sem cronograma',
     tempo: 'conciliar estudo e trabalho',
-    naojur: 'as matérias não jurídicas',
+    discursiva: 'a discursiva, a peça e a sentença',
     fixar: 'ler muito e fixar pouco',
-    banca: 'não saber o que FGV e FCC cobram de verdade',
+    juris: 'acompanhar jurisprudência e informativos',
     emocional: 'a ansiedade e a sensação de atraso',
     todas: 'um pouco de tudo isso ao mesmo tempo',
   } as Record<string, string>,
@@ -74,7 +84,7 @@ export const L = {
     sembase: 'Estudo sem base',
     plato: 'Veterano travado no corte',
     improviso: 'Ciclo do improviso',
-    servidor: 'Servidor em ascensão',
+    servidor: 'Do Direito na prática pra carreira',
   } as Record<string, string>,
   horas: {
     h0: 'menos de 1 hora por dia',
@@ -87,70 +97,78 @@ export const L = {
 
 export type QuestaoTeste = { disc: string; src: string; ans: string; note: string; enunciado: string; opts: string[] }
 
-// As 4 perguntas REAIS do teste (gabaritos oficiais FGV/FCC). Não confundir
-// com o banco de perguntas graduado em lib/questions.ts — este arquivo só
-// guarda o texto/apresentação; lib/questions.ts é a fonte de verdade que o
-// servidor usa para corrigir (mesmo conteúdo, replicado lá no formato
-// {num, area, statement, options, correct, comment} que lib/scoring.ts espera).
+// As 5 perguntas REAIS do teste, uma por disciplina. Texto transcrito do caderno
+// oficial e gabarito conferido no gabarito definitivo (pós-recursos) de cada banca;
+// URLs no relatório questoes-carreiras.md. lib/questions.ts deriva daqui o formato
+// que lib/scoring.ts corrige.
 export const TESTE: QuestaoTeste[] = [
   {
-    disc: 'Língua Portuguesa',
-    src: 'FGV · TJ RR 2024 · Analista Judiciário',
-    ans: 'C',
-    note: 'Só a C dá o nome certo à relação: "quando" marca tempo. A é condição, B é oposição, D e E são comparação.',
-    enunciado: 'Assinale a opção em que a relação lógica entre os segmentos da frase se encontra corretamente indicada.',
-    opts: [
-      'Cave no local em que o ouro está enterrado, / a não ser que você só esteja precisando de exercício. Relação de conformidade.',
-      'A fé remove montanhas, / mas os ecologistas são contra. Relação de explicação.',
-      'Quando a última árvore for cortada / os homens vão perceber que dinheiro não alimenta. Relação de tempo.',
-      'Há flores em todas as estações, / assim como loucuras em todas as idades. Relação de modo.',
-      'Os bichos não são tão burros / como se pensa. Relação de causa.',
-    ],
-  },
-  {
     disc: 'Direito Constitucional',
-    src: 'FGV · TJ RR 2024 · Analista Judiciário',
-    ans: 'C',
-    note: 'GLP é energia, e energia é competência privativa da União. A roupagem de defesa do consumidor não transfere a competência.',
-    enunciado:
-      'Lei distrital determina a pesagem obrigatória, na presença do consumidor, de botijões e cilindros de gás liquefeito de petróleo (GLP), visando exercer proteção e defesa do consumidor. Diante do exposto, é correto afirmar que a referida norma é',
-    opts: [
-      'constitucional, por observar a competência concorrente dos Estados e do Distrito Federal para legislar sobre defesa do meio ambiente.',
-      'inconstitucional, por usurpar a competência dos Municípios sobre matéria de interesse local.',
-      'inconstitucional, por usurpar a competência privativa da União para legislar sobre energia.',
-      'inconstitucional, por usurpar a competência privativa da União para legislar sobre defesa do consumidor.',
-      'constitucional, por observar a competência concorrente dos Estados e do Distrito Federal para legislar sobre defesa do consumidor.',
-    ],
-  },
-  {
-    disc: 'Direito Processual Civil',
-    src: 'FGV · TJ RR 2024 · Analista Judiciário',
+    src: 'FGV · TJ MT 2024 · Juiz Substituto',
     ans: 'B',
-    note: 'Averbada a execução no registro do imóvel, a alienação posterior presume-se em fraude. O carro de trabalho é impenhorável, o de lazer não, e o prazo para pagar é de 3 dias.',
+    note: 'Criar vínculo de trabalho com ajuda de custo, fora da lei federal do estágio, é legislar sobre direito do trabalho: competência privativa da União (art. 22, I). Falar em adolescente e educação não torna a competência concorrente.',
     enunciado:
-      'Regina ajuizou ação de execução fundada em título executivo extrajudicial. Após a distribuição, e antes da citação, Regina averbou a pendência do processo no registro de um imóvel de propriedade de João. Após ser citado, com o intuito de esvaziar integralmente seu patrimônio, João alienou o mencionado imóvel, bem como dois veículos: o primeiro, o qual utilizava para trabalhar como motorista de aplicativo de transporte, e outro, usado para lazer e passeios aos finais de semana. Nesse caso, é correto afirmar que',
+      'Em razão de grave crise econômica que assola o estado-membro Alfa, João, deputado estadual, apresentou proposição legislativa disciplinando a criação de um programa de iniciação à atividade profissional, no qual seria estabelecido um vínculo direto entre o estudante adolescente e o órgão público estadual tomador do serviço, com o pagamento de uma ajuda de custo durante a duração do programa. No âmbito da Comissão de Constituição e Justiça da Assembleia Legislativa de Alfa, argumentou-se com a inconstitucionalidade da proposição, que era dissonante da lei federal sobre estágio, dissonância esta que é verdadeira. À luz da sistemática constitucional, é correto afirmar que a proposição é:',
     opts: [
-      'as alienações de bens realizadas são nulas em relação à Regina, que poderá requerer a penhora em relação a todos os bens de propriedade de João.',
-      'há fraude à execução em relação à alienação do imóvel, ante a averbação em seu registro da pendência do processo de execução fundada em título extrajudicial.',
-      'antes de eventual declaração de fraude à execução, o juiz deverá intimar os terceiros adquirentes para, se quiserem, oporem embargos de terceiro, no prazo de 10 (dez) dias.',
-      'ambos os veículos são bens absolutamente impenhoráveis, eis que poderão ser utilizados para que João exerça seu ofício de motorista de aplicativo.',
-      'após ser citado, João teve o prazo legal de 5 (cinco) dias para efetuar o pagamento, sob pena de multa e honorários advocatícios de 10% (dez por cento) cada.',
+      'constitucional, pois trata de matéria típica de regime jurídico, de competência estadual;',
+      'inconstitucional, pois compete privativamente à União legislar sobre direito do trabalho;',
+      'inconstitucional, pois compete privativamente à União legislar sobre diretrizes e bases da educação;',
+      'constitucional, pois compete concorrentemente à União e aos estados legislar sobre direitos da infância e da juventude;',
+      'constitucional, desde que a proposição tenha a forma de lei complementar e observe as normas gerais editadas pela União.',
     ],
   },
   {
-    disc: 'Raciocínio Lógico',
-    src: 'FCC · TRF4 2019 · Oficial de Justiça Avaliador Federal',
-    ans: 'A',
-    note: 'A morena não é Ana nem Beatriz, então é Carla. Ana não é ruiva, logo é loira. E a loira não é de Jaime nem de Jairo: sobra José.',
+    disc: 'Direito Administrativo',
+    src: 'FGV · DPE RJ 2023 · Defensor Público',
+    ans: 'E',
+    note: 'O Estado limitando a atividade do particular em nome do interesse coletivo (a calçada livre) é poder de polícia. Hierárquico e disciplinar só valem pra quem tem vínculo com a Administração, e autotutela é a Administração revendo os próprios atos.',
     enunciado:
-      'Adão tem três primas que moram em outra cidade, Ana, Beatriz e Carla, mas nunca lembra de seus nomes. Ele sabe que uma é loira, uma é ruiva e uma é morena. Cada uma delas é filha de um de seus tios, José, Jaime e Jairo. A mãe de Adão deixou o seguinte bilhete: "A loira não é filha de Jaime nem de Jairo. A morena não é Ana nem Beatriz. Ana não é ruiva. A ruiva não é filha de Jaime." Adão descobriu, corretamente, que:',
+      'No curso de uma fiscalização, fiscais de determinada municipalidade identificaram que um estabelecimento comercial instalou bancos e araras de roupas na calçada para alavancar seus negócios. Os agentes municipais, considerando que estavam devidamente autorizados pela lei, no correto desempenho de suas funções, poderiam:',
     opts: [
-      'Ana é loira e filha de José.',
-      'Carla é morena e filha de Jairo.',
-      'Ana é ruiva e filha de José.',
-      'Beatriz é loira e filha de Jairo.',
-      'Carla é morena e filha de José.',
+      'aplicar multa ao estabelecimento e determinar a instauração de processo de interdição, como expressão de seu poder hierárquico;',
+      'apreender os bancos e as araras e multar o estabelecimento, no exercício de seu poder disciplinar;',
+      'interditar o estabelecimento e apreender todo o mobiliário da calçada, como expressão de seu poder de autotutela;',
+      'interditar o estabelecimento, no exercício de seu poder de tutela administrativa;',
+      'apreender os bancos e as araras de roupas irregulares e multar o estabelecimento, no exercício de seu poder de polícia.',
     ],
+  },
+  {
+    disc: 'Direito Penal',
+    src: 'FGV · PC MG 2025 · Delegado de Polícia Substituto',
+    ans: 'A',
+    note: 'Ajudar o autor a fugir da polícia é favorecimento pessoal (art. 348), e o irmão que presta o auxílio fica isento de pena (§2º). Favorecimento real seria guardar o proveito do crime, e tergiversação é crime de advogado.',
+    enunciado:
+      'Dionísio, agindo com dolo de matar, efetuou seis disparos de arma de fogo em detrimento de Lucas, atingindo-o em partes variadas do corpo, dando azo ao óbito deste. Diversas pessoas testemunharam os fatos, de forma que as autoridades públicas iniciaram, de pronto, buscas pelo autor do delito. Nesse contexto, Dionísio compareceu ao sítio de Bruno, seu irmão, que não tinha qualquer conhecimento anterior sobre o crime praticado. O autor do delito contou o ocorrido e pediu auxílio para que ele pudesse se subtrair à ação dos policiais que o procuravam, obtendo a aquiescência do seu parente. Considerando as disposições do Código Penal, a conduta de Bruno caracteriza o crime de',
+    opts: [
+      'favorecimento pessoal, mas, por ser irmão do autor do delito, ele fica isento de pena.',
+      'favorecimento real, mas, por ser irmão do autor do delito, ele fica isento de pena.',
+      'tergiversação, mas, por ser irmão do autor do delito, ele fica isento de pena.',
+      'favorecimento real, não havendo hipótese de isenção de pena.',
+      'favorecimento pessoal, não havendo hipótese de isenção de pena.',
+    ],
+  },
+  {
+    disc: 'Direito Processual Penal',
+    src: 'Cebraspe · DPE AC 2024 · Defensor Público',
+    ans: 'E',
+    note: 'O art. 240, §1º, do CPP permite a busca pra achar o que é necessário "à prova de infração ou à defesa do réu". As pegadinhas: cartas "abertas ou não", CPI não determina busca domiciliar (reserva de jurisdição), busca pessoal durante a domiciliar dispensa mandado e, com consentimento do morador, a busca pode ser à noite.',
+    enunciado: 'Em relação à busca e apreensão, assinale a opção correta.',
+    opts: [
+      'Admite-se a busca domiciliar com o objetivo de apreender cartas destinadas ao acusado ou investigado, permitida a apreensão somente daquelas que já estejam abertas.',
+      'Admite-se a busca domiciliar ordenada por comissão parlamentar de inquérito (CPI).',
+      'No curso de busca domiciliar, a busca pessoal só é admitida se autorizada por mandado.',
+      'A busca domiciliar deverá ser realizada obrigatoriamente durante o dia.',
+      'Havendo fundadas razões, é cabível a busca domiciliar necessária à defesa do réu.',
+    ],
+  },
+  {
+    disc: 'Direito Civil',
+    src: 'FGV · TJ SC 2024 · Juiz Substituto',
+    ans: 'E',
+    note: 'É o "contrato consigo mesmo": sem permissão da lei ou do representado, é anulável (art. 117 do CC). Não é nulo nem inexistente: o vício protege Leonardo, que pode confirmar o negócio se quiser.',
+    enunciado:
+      'Leonardo contratou Vanessa para que ela encontrasse um inquilino para alugar seu apartamento, dando-lhe poderes para representá-lo no contrato de locação na posição de locadora. Como ninguém se apresentou interessado em alugar o imóvel, Vanessa alugou o apartamento para si própria, figurando no contrato também como locatária, em nome próprio. Diante da ausência de permissão legal ou de Leonardo, segundo o Código Civil de 2002, o contrato de locação celebrado por Vanessa consigo própria é:',
+    opts: ['inexistente;', 'nulo;', 'ineficaz;', 'válido;', 'anulável.'],
   },
 ]
 
@@ -161,75 +179,76 @@ export type Diagnostico = {
   ordem: string[]
 }
 
+// RASCUNHO pra revisão da Ana Clara — mesma estrutura e tamanho dos diagnósticos do Tribunais.
 export const DIAG: Record<string, Diagnostico> = {
   zero: {
     titulo: 'Você está no melhor momento pra fazer a coisa certa desde o início.',
     texto: [
-      'Quem começa sem base pula de videoaula em videoaula e, daqui a dois anos, responde este mesmo quiz marcando "estudo há um tempo e fico perdido". Eu vejo isso todo dia.',
-      'O que decide o seu caso é ordem. Uma base comum bem construída, Português, Constitucional e Administrativo, vem antes de qualquer matéria específica, porque é essa base que cai em todo tribunal do país.',
+      'Quem começa carreira jurídica sem ordem passa um ano lendo manual de mil páginas e, no primeiro edital, descobre que não sabe resolver questão de banca. Eu vejo isso todo dia.',
+      'O que decide o seu caso é sequência. As disciplinas que se repetem em toda carreira, Constitucional, Administrativo, Penal, Processo Penal, Civil e Processo Civil, vêm antes de qualquer matéria específica do cargo.',
     ],
-    prescricao: 'escolher um ritmo de cronograma que caiba no seu dia real, começar por Língua Portuguesa e Direito Constitucional, e resolver questões de FGV e FCC desde a primeira semana, mesmo errando.',
+    prescricao: 'escolher um ritmo de cronograma que caiba no seu dia real, começar pelas disciplinas comuns a toda carreira e resolver questões de FGV, Cebraspe e FCC desde a primeira semana, mesmo errando.',
     ordem: [
-      'Base comum: Português, Constitucional e Administrativo, nessa ordem.',
+      'Disciplinas comuns: Constitucional, Administrativo, Penal, Processo Penal, Civil e Processo Civil.',
       'Questões da banca desde a primeira semana, com caderno de erros.',
-      'Só depois as específicas do seu tribunal.',
-      'Revisão programada, não revisão quando der.',
+      'Lei seca e informativos junto com a teoria, não depois.',
+      'Só depois as específicas da sua carreira.',
     ],
   },
   sembase: {
     titulo: 'Você já pagou o preço de estudar sem estrutura.',
     texto: [
-      'Horas investidas e a sensação de que nada fixa. Falta sequência, e esforço sozinho não compra sequência. A cada edital você recomeça, porque nenhum alicerce sobreviveu do concurso anterior.',
-      'Fonte nova só adia. O que resolve é fechar um único caminho e medir o seu avanço por questão resolvida em cada matéria, com número na mão.',
+      'Horas investidas e a sensação de que nada fixa. São mais de 20 disciplinas, e sem uma ordem clara cada uma puxa você pra um lado. A cada edital você recomeça, porque nenhum alicerce sobreviveu do concurso anterior.',
+      'Mais um manual só adia. O que resolve é fechar um único caminho e medir o seu avanço por questão resolvida em cada disciplina, com número na mão.',
     ],
-    prescricao: 'parar de acumular fontes, fechar um único cronograma de formação de base e medir o progresso por questões acertadas por matéria, semana a semana.',
+    prescricao: 'parar de acumular fontes, fechar um único cronograma de formação de base e medir o progresso por questões acertadas por disciplina, semana a semana.',
     ordem: [
-      'Escolher uma fonte por matéria e abandonar as outras.',
-      'Fechar a base comum em sequência, sem pular.',
-      'Questões comentadas da FGV e da FCC como termômetro semanal.',
-      'Específicas do seu tribunal só com a base fechada.',
+      'Escolher uma fonte por disciplina e abandonar as outras.',
+      'Fechar as disciplinas comuns em sequência, sem pular.',
+      'Questões comentadas de FGV, Cebraspe e FCC como termômetro semanal.',
+      'Específicas da sua carreira só com a base fechada.',
     ],
   },
   plato: {
     titulo: 'O seu ponto vaza sempre no mesmo lugar.',
     texto: [
-      'Quem para a três questões do corte não sabe menos que o aprovado. Erra em lugares específicos e repete os mesmos lugares em toda prova. Enquanto esses lugares não têm nome, a nota fica parada.',
-      'Mais horas costumam ir justamente pro que você já domina, e por isso a nota fica onde está. Abrir as suas provas e tratar o vazamento onde ele acontece é o que destrava.',
+      'Quem para perto do corte, ou passa da objetiva e cai na discursiva, não sabe menos que o aprovado. Erra em lugares específicos e repete os mesmos lugares em toda prova. Enquanto esses lugares não têm nome, a nota fica parada.',
+      'Mais horas costumam ir justamente pro que você já domina. Abrir as suas provas, separar o que vazou na objetiva do que vazou na escrita e tratar cada vazamento onde ele acontece é o que destrava.',
     ],
-    prescricao: 'abrir o espelho da sua última prova e separar o que você errou por não saber o conteúdo do que errou por ler o enunciado errado. São dois problemas diferentes, e tratar os dois do mesmo jeito é o que sustenta o platô.',
+    prescricao: 'abrir o espelho da sua última prova e separar o que você errou por não saber o conteúdo do que errou na leitura do enunciado ou na escrita. São problemas diferentes, e tratar todos do mesmo jeito é o que sustenta o platô.',
     ordem: [
-      'Separar erro de conteúdo de erro de leitura de enunciado.',
+      'Separar erro de conteúdo, erro de leitura e erro de escrita.',
       'Erro de conteúdo: teoria curta e questão da mesma banca, no assunto exato.',
-      'Erro de leitura: treino cronometrado, não mais teoria.',
+      'Erro de escrita: uma discursiva por semana, corrigida pelo espelho.',
       'Matéria forte entra só em revisão, nunca em reestudo.',
     ],
   },
   improviso: {
     titulo: 'Você estuda no modo edital.',
     texto: [
-      'Sai o concurso, corre, faz a prova, para. O curso de reta final é ótimo pra quem já tem base, e péssimo pra quem ainda está construindo. Enquanto o ciclo não quebrar, cada edital vai te encontrar no mesmo lugar.',
-      'A boa notícia: tribunal abre o ano inteiro. São 27 TJs, 6 TRFs e 24 TRTs em rodízio, e a base de matérias é a mesma. Quem constrói essa base uma vez aproveita em todos.',
+      'Sai o concurso, corre, faz a prova, para. Na carreira jurídica, entre o edital e a prova há poucos meses, e ninguém forma em poucos meses a base que a banca cobra. Enquanto o ciclo não quebrar, cada edital vai te encontrar no mesmo lugar.',
+      'A boa notícia: carreira jurídica abre o ano inteiro. São 27 Tribunais de Justiça, 27 Ministérios Públicos, 27 Defensorias, 27 Procuradorias e 27 Polícias Civis, mais a esfera federal, e a base de disciplinas é a mesma. Quem constrói essa base uma vez aproveita em todos.',
     ],
-    prescricao: 'estudar agora, sem edital publicado, a base comum que cai em todo tribunal, pra que o próximo edital te encontre revisando, e não começando.',
+    prescricao: 'estudar agora, sem edital publicado, a base comum que cai em toda carreira jurídica, pra que o próximo edital te encontre revisando, e não começando.',
     ordem: [
       'Cronograma de base independente de edital, com data de fim.',
-      'Base comum primeiro: Português, Constitucional, Administrativo.',
+      'Base comum primeiro: Constitucional, Administrativo, Penal e Civil.',
       'Questões da banca como rotina, não como véspera.',
       'Quando o edital sair, só ajustar as específicas e revisar.',
     ],
   },
   servidor: {
-    titulo: 'Você já provou que sabe passar.',
+    titulo: 'Você já tem o Direito na prática. Falta transformar em prova.',
     texto: [
-      'O salto de técnico pra analista é de profundidade jurídica. A prova cobra Civil, Processo Civil, Penal e Processo Penal num nível que a prova de técnico não cobrava, e a FGV e a FCC gostam de caso concreto.',
-      'Recomeçar do zero seria desperdício. O seu caso pede um cronograma que aproveite o que já está de pé e concentre o esforço nas específicas de analista.',
+      'Quem advoga, assessora ou já é servidor conhece o Direito que usa todo dia, e é justamente aí que mora a armadilha: a prova cobra o que você não usa, na profundidade da banca, com doutrina e jurisprudência dos tribunais superiores.',
+      'Recomeçar do zero seria desperdício. O seu caso pede um cronograma que trate o que você já domina como revisão e concentre as horas onde a base ainda tem buraco.',
     ],
-    prescricao: 'manter as matérias que já sustentam a sua nota com revisão leve e montar um cronograma focado nas específicas de analista, resolvendo questões de analista desde a primeira semana.',
+    prescricao: 'mapear por questões o que você já domina, manter isso em revisão leve e montar o cronograma em cima das disciplinas que você não pratica no trabalho.',
     ordem: [
-      'Diagnóstico do que já está sólido da base comum.',
-      'Específicas de analista em sequência: Civil, Processo Civil, Penal, Processo Penal.',
-      'Questões de analista da banca, não de técnico.',
-      'Revisão leve das matérias já dominadas.',
+      'Diagnóstico por questões em cada disciplina comum.',
+      'O que você usa no trabalho entra só em revisão.',
+      'Horas concentradas nas disciplinas que você não pratica.',
+      'Atividade jurídica documentada desde já, pra inscrição definitiva.',
     ],
   },
 }
@@ -240,44 +259,38 @@ export type TelaPerfil =
   | { type: 'single'; key: keyof RespostasPerfil; title: string; hint?: string | ((r: RespostasPerfil) => string); opts: Opcao[] | ((r: RespostasPerfil) => Opcao[]); after?: (r: RespostasPerfil) => 'desqualificado' | null }
   | { type: 'multi'; key: keyof RespostasPerfil; title: string; hint?: string | ((r: RespostasPerfil) => string); opts: Opcao[] | ((r: RespostasPerfil) => Opcao[]) }
 
-// Ordem exata do funil de referência (screens 1-12; a captura de lead — screen
-// 23 no original — já aconteceu na capa, e o form não se repete aqui).
+// Mesmas 12 telas, na mesma ordem, do quiz do Tribunais.
 export const PERFIL_SCREENS: TelaPerfil[] = [
   {
-    type: 'single', key: 'alvo', title: 'Qual concurso é a sua prioridade hoje?',
+    type: 'single', key: 'alvo', title: 'Qual carreira é a sua prioridade hoje?',
     opts: [
-      ['tj', 'Tribunal de Justiça (TJ)', 'o tribunal estadual'],
-      ['trf', 'Tribunal Regional Federal (TRF)'],
-      ['trt', 'Tribunal Regional do Trabalho (TRT)'],
-      ['fe', 'Defensoria, Ministério Público ou Procuradoria', 'cargo de analista ou técnico, servidor de apoio'],
-      ['any', 'Qualquer tribunal, o que abrir primeiro'],
-      ['juridica', 'Carreira jurídica', 'juiz, promotor, defensor ou procurador'],
-      ['outro', 'Outro concurso, fora dos tribunais'],
+      ['juiz', 'Magistratura', 'juiz de direito, juiz federal ou juiz do trabalho'],
+      ['mp', 'Ministério Público', 'promotor de justiça ou procurador da República'],
+      ['defensoria', 'Defensoria Pública', 'defensor público estadual ou federal'],
+      ['procuradoria', 'Advocacia Pública', 'procurador do estado, AGU ou procurador do município'],
+      ['delegado', 'Delegado de Polícia', 'Polícia Civil ou Polícia Federal'],
+      ['any', 'Qualquer carreira jurídica, a que abrir primeiro'],
+      ['outro', 'Outro concurso, fora das carreiras jurídicas', 'servidor de tribunal, OAB ou outra área'],
     ],
-    after: (r) => (r.alvo === 'outro' || r.alvo === 'juridica' ? 'desqualificado' : null),
+    after: (r) => (r.alvo === 'outro' ? 'desqualificado' : null),
   },
   {
-    type: 'single', key: 'cargo', title: 'Qual cargo você mira?',
-    opts: (r) =>
-      r.alvo === 'fe'
-        ? [
-            ['analista', 'Analista', 'nível superior'],
-            ['tecnico', 'Técnico', 'nível médio'],
-            ['any', 'O que vier, quero entrar no órgão'],
-            ['unsure', 'Ainda não sei a diferença entre eles'],
-          ]
-        : [
-            ['analista', 'Analista judiciário'],
-            ['oficial', 'Oficial de justiça'],
-            ['tecnico', 'Técnico judiciário'],
-            // Escrevente é cargo de Tribunal de Justiça estadual (TJ SP) — não existe em TRF nem TRT.
-            ...(r.alvo === 'tj' || r.alvo === 'any' ? [['escrevente', 'Escrevente'] as Opcao] : []),
-            ['any', 'O que vier, quero entrar no tribunal'],
-            ['unsure', 'Ainda não sei a diferença entre eles'],
-          ],
+    type: 'single', key: 'cargo', title: 'E em qual esfera?',
+    opts: (r) => {
+      const porAlvo: Record<string, Opcao[]> = {
+        juiz: [['estadual', 'Juiz de Direito', 'Tribunal de Justiça'], ['federal', 'Juiz Federal', 'Tribunal Regional Federal'], ['trabalho', 'Juiz do Trabalho', 'Tribunal Regional do Trabalho']],
+        mp: [['estadual', 'Promotor de Justiça', 'Ministério Público estadual'], ['federal', 'Procurador da República', 'Ministério Público Federal']],
+        defensoria: [['estadual', 'Defensor Público estadual', 'DPE'], ['federal', 'Defensor Público federal', 'DPU']],
+        procuradoria: [['estadual', 'Procurador do Estado', 'PGE'], ['federal', 'Advocacia-Geral da União', 'AGU'], ['municipal', 'Procurador do Município']],
+        delegado: [['estadual', 'Delegado de Polícia Civil'], ['federal', 'Delegado de Polícia Federal']],
+        any: [['estadual', 'Carreiras estaduais'], ['federal', 'Carreiras federais']],
+      }
+      return [...(porAlvo[r.alvo ?? ''] ?? porAlvo.any), ['any', 'O que abrir primeiro'], ['unsure', 'Ainda não sei a diferença entre elas']]
+    },
   },
   {
     type: 'single', key: 'formacao', title: 'Qual é a sua formação hoje?',
+    hint: 'Magistratura e Ministério Público exigem 3 anos de atividade jurídica depois de formado. Dá pra formar a base enquanto cumpre esse prazo.',
     opts: [
       ['direito', 'Bacharel em Direito'],
       ['cursando_direito', 'Cursando Direito'],
@@ -285,9 +298,8 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
       ['cursando_outra', 'Cursando outra área'],
       ['medio', 'Ensino médio completo'],
     ],
-    // Escrevente (TJ SP) é cargo de nível médio e o diagnóstico serve pra ele (o site do VDE Tribunais
-    // diz que sim) — por isso ensino médio só desqualifica quem NÃO mira escrevente.
-    after: (r) => (r.formacao === 'medio' && r.cargo !== 'escrevente' ? 'desqualificado' : null),
+    // Toda carreira jurídica exige bacharelado em Direito.
+    after: (r) => (r.formacao === 'direito' || r.formacao === 'cursando_direito' ? null : 'desqualificado'),
   },
   {
     type: 'single', key: 'tempo', title: 'Há quanto tempo você estuda pra concursos?',
@@ -301,14 +313,14 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
     ],
   },
   {
-    type: 'single', key: 'provas', title: 'Quantas provas de tribunal você já fez, e como foi?',
+    type: 'single', key: 'provas', title: 'Quantas provas de carreira jurídica você já fez, e como foi?',
     hint: 'Prova oficial, presencial. Simulado feito em casa não entra nessa conta.',
     opts: [
-      ['p0', 'Nunca fiz uma prova de tribunal'],
+      ['p0', 'Nunca fiz uma prova de carreira jurídica'],
       ['p1', 'Fiz uma ou duas e fiquei longe do corte'],
       ['p2', 'Fiz várias e continuo longe do corte'],
-      ['p3', 'Fico perto do corte, mas não passo'],
-      ['p4', 'Já fui aprovado(a) em algum tribunal e quero subir de cargo'],
+      ['p3', 'Fico perto do corte, ou passo da objetiva e caio na discursiva'],
+      ['p4', 'Já fui aprovado(a) em concurso jurídico e quero subir de carreira'],
     ],
   },
   {
@@ -365,9 +377,9 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
       ['base', 'Não tenho base: sinto que começo do zero a cada edital'],
       ['improviso', 'Estudo no improviso, sem cronograma nem ordem'],
       ['tempo', 'Pouco tempo: concilio estudo com trabalho'],
-      ['naojur', 'Medo das matérias não jurídicas: Português, RLM, Informática'],
+      ['discursiva', 'Travo na discursiva, na peça ou na sentença'],
       ['fixar', 'Leio muito e resolvo pouco: não fixo'],
-      ['banca', 'Não sei o que a FGV e a FCC cobram de verdade'],
+      ['juris', 'Não dou conta de acompanhar jurisprudência e informativos'],
       ['emocional', 'O emocional sabota: ansiedade, comparação, sensação de atraso'],
       ['todas', 'Todas acima'],
     ],
@@ -376,26 +388,24 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
     type: 'single', key: 'momento', title: 'Última: qual dessas frases você diria pra um amigo hoje?',
     opts: [
       ['zero', 'Estou começando do zero, ainda me organizando'],
-      ['sembase', 'Estudo há um tempo, mas sem base sólida: fico perdido no meio das matérias'],
+      ['sembase', 'Estudo há um tempo, mas sem base sólida: fico perdido no meio das disciplinas'],
       ['plato', 'Chego perto do corte e não passo, prova atrás de prova'],
       ['improviso', 'Só estudo quando sai edital, e recomeço do zero toda vez'],
-      ['servidor', 'Já sou servidor(a) e quero subir pra analista'],
+      ['servidor', 'Já trabalho com Direito e quero migrar pra uma carreira jurídica'],
     ],
   },
 ]
 
-// Tela 15 do original (dinheiro) e 22 (leitura) ficam separadas: a primeira
-// entra depois do vídeo/antes da calculadora de custo, a segunda depois da
-// correção — o motor de telas em Quiz.tsx as posiciona nesses pontos fixos.
+// Mesmas posições fixas do Tribunais: dinheiro depois do vídeo, leitura depois da correção.
 export const TELA_DINHEIRO: TelaPerfil = {
-  type: 'single', key: 'dinheiro', title: 'Quanto você receberia a mais por mês se fosse aprovado(a) hoje no cargo que você mira?',
-  hint: 'Analista de tribunal federal começa em cerca de R$ 16 mil. Compare com o que você ganha hoje.',
+  type: 'single', key: 'dinheiro', title: 'Quanto você receberia a mais por mês se fosse aprovado(a) hoje na carreira que você mira?',
+  hint: 'Juiz, promotor e defensor começam perto de R$ 37 mil; procurador do estado, perto de R$ 36 mil; delegado, até R$ 31 mil. Compare com o que você ganha hoje.',
   opts: [
-    ['60', 'Uns R$ 5 mil a mais por mês', 'R$ 60 mil por ano'],
-    ['96', 'Uns R$ 8 mil a mais por mês', 'R$ 96 mil por ano'],
     ['120', 'Uns R$ 10 mil a mais por mês', 'R$ 120 mil por ano'],
-    ['156', 'Uns R$ 13 mil a mais por mês', 'R$ 156 mil por ano'],
-    ['192', 'R$ 16 mil ou mais a mais por mês', 'R$ 192 mil por ano'],
+    ['180', 'Uns R$ 15 mil a mais por mês', 'R$ 180 mil por ano'],
+    ['240', 'Uns R$ 20 mil a mais por mês', 'R$ 240 mil por ano'],
+    ['300', 'Uns R$ 25 mil a mais por mês', 'R$ 300 mil por ano'],
+    ['360', 'R$ 30 mil ou mais a mais por mês', 'R$ 360 mil por ano'],
   ],
 }
 
@@ -409,21 +419,18 @@ export const TELA_LEITURA: TelaPerfil = {
 
 // Prefixa uma frase com o primeiro nome, minúscula a primeira letra que
 // sobrou ("Qual concurso..." -> "Maria, qual concurso..."). Sem nome, devolve
-// a frase original intacta. Usado nos poucos pontos de personalização
-// pontual do funil — não em toda pergunta, pra não soar mala-direta.
+// a frase original intacta.
 export function comNome(nome: string, frase: string): string {
   if (!nome) return frase
   return `${nome}, ${frase.charAt(0).toLowerCase()}${frase.slice(1)}`
 }
 
 export function labelCargo(r: RespostasPerfil): string {
-  return r.alvo === 'fe' ? (L.cargoFe[r.cargo ?? ''] ?? '') : (L.cargo[r.cargo ?? ''] ?? '')
+  const mapa = L.cargoPorAlvo[r.alvo ?? ''] ?? L.cargoPorAlvo.any
+  return mapa[r.cargo ?? ''] ?? ''
 }
 
-// Lista de concursos oferecida na pergunta dos editais. Escrevente é cargo de Tribunal de Justiça
-// estadual, então quem mira escrevente só vê os TJs — mesmo tendo escolhido "qualquer tribunal".
 export function editaisDisponiveis(r: RespostasPerfil): Edital[] {
-  if (r.cargo === 'escrevente') return EDITAIS.tj
   return EDITAIS[r.alvo ?? ''] ?? EDITAIS.any
 }
 
@@ -432,24 +439,20 @@ export function editaisEscolhidos(r: RespostasPerfil): Edital[] {
   return (r.editais ?? []).filter((x) => x !== 'qualquer').map((id) => lista.find((e) => e.id === id)).filter((e): e is Edital => Boolean(e))
 }
 
-// Frase da tela de correção, indexada pelo número de acertos (0 a 4).
+// Frase da tela de correção, indexada pelo número de acertos (0 a 5).
 export const MENSAGENS_CORRECAO: string[] = [
-  'Nenhuma das quatro. E tudo bem: é exatamente esse tipo de questão que a sua base precisa dar conta.',
-  'Uma das quatro. O nível da banca já está claro, e ele é alcançável com base bem construída.',
-  'Duas das quatro. Você tem alicerce em pé, e ele ainda não sustenta a régua de um tribunal.',
-  'Três das quatro. Está perto do corte, e o corte só paga quem passa dele.',
-  'As quatro. Nível bom de partida, e a prova real cobra isso em 70 questões seguidas.',
+  'Nenhuma das cinco. E tudo bem: é exatamente esse tipo de questão que a sua base precisa dar conta.',
+  'Uma das cinco. O nível da banca já está claro, e ele é alcançável com base bem construída.',
+  'Duas das cinco. Você tem alicerce em pé, e ele ainda não sustenta a régua de uma carreira jurídica.',
+  'Três das cinco. Metade do caminho, e a régua da carreira jurídica ainda está acima.',
+  'Quatro das cinco. Está perto do corte, e o corte só paga quem passa dele.',
+  'As cinco. Nível bom de partida, e a prova real cobra isso em 100 questões seguidas, depois discursiva e oral.',
 ]
 
-// Separado de waLink() pra o serviço de PDF em Python (services/diagnostico-pdf)
-// poder montar o mesmo link sem duplicar a lógica da mensagem — manda o
-// texto puro (não codificado) + CONFIG.whatsapp, e o serviço monta a URL do
-// jeito dele (ver brand.cta_whatsapp_com_mensagem). Uma função só pra
-// mensagem, nunca duas implementações do mesmo texto.
 export function mensagemWhatsapp(r: RespostasPerfil, classe: string, cursoCod: string, nivel: string, acertos: number, total: number): string {
   const cargo = labelCargo(r)
-  const ref = `VDE-TRIB ${classe} | ${cursoCod} | ${r.momento} | ${r.dor} | ${L.horas[r.horas ?? '']} | edital:${r.edital} | teste ${acertos}/${total} | vde:${r.vde}`
-  return `Oi! Fiz o ${CONFIG.quizName} do VDE Tribunais agora. Deu ${L.momento[r.momento ?? '']}, nível ${nivel} no teste, mirando ${cargo} em ${L.alvo[r.alvo ?? '']}. Queria ver os horários pra montar o meu plano de ação.\n\n(ref ${ref})`
+  const ref = `VDE-CJ ${classe} | ${cursoCod} | ${r.momento} | ${r.dor} | ${L.horas[r.horas ?? '']} | edital:${r.edital} | teste ${acertos}/${total} | vde:${r.vde}`
+  return `Oi! Fiz o ${CONFIG.quizName} do VDE Carreiras Jurídicas agora. Deu ${L.momento[r.momento ?? '']}, nível ${nivel} no teste, mirando ${cargo} (${L.alvo[r.alvo ?? '']}). Queria ver os horários pra montar o meu plano de ação.\n\n(ref ${ref})`
 }
 
 export function waLink(nome: string, r: RespostasPerfil, classe: string, cursoCod: string, nivel: string, acertos: number, total: number): string {

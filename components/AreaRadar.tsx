@@ -12,12 +12,16 @@ const RAIO = 70
 const CENTRO = 100
 // Eixo por área, na ordem fixa de ORDEM_AREAS: topo, direita, baixo,
 // esquerda (sentido horário) — dx/dy é a direção unitária do eixo.
-const EIXOS = [
-  { dx: 0, dy: -1, labelX: 100, labelY: 20, anchor: 'middle' as const },
-  { dx: 1, dy: 0, labelX: 184, labelY: 103, anchor: 'start' as const },
-  { dx: 0, dy: 1, labelX: 100, labelY: 186, anchor: 'middle' as const },
-  { dx: -1, dy: 0, labelX: 16, labelY: 103, anchor: 'end' as const },
-]
+// Um eixo por área, distribuídos em círculo a partir do topo (sentido horário).
+// Funciona pra qualquer quantidade de áreas (aqui são 5: pentágono).
+const EIXOS = ORDEM_AREAS.map((_, i) => {
+  const ang = -Math.PI / 2 + (i * 2 * Math.PI) / ORDEM_AREAS.length
+  const dx = Math.cos(ang)
+  const dy = Math.sin(ang)
+  const anchor = dx > 0.2 ? ('start' as const) : dx < -0.2 ? ('end' as const) : ('middle' as const)
+  return { dx, dy, labelX: CENTRO + dx * (RAIO + 12), labelY: CENTRO + dy * (RAIO + 12) + (dy > 0.5 ? 8 : dy < -0.5 ? -2 : 3), anchor }
+})
+const anel = (f: number) => EIXOS.map((e) => `${CENTRO + e.dx * RAIO * f},${CENTRO + e.dy * RAIO * f}`).join(' ')
 
 export default function AreaRadar({ areas, areaPrioritaria }: AreaRadarProps) {
   const pontos = ORDEM_AREAS.map((area, i) => {
@@ -35,17 +39,18 @@ export default function AreaRadar({ areas, areaPrioritaria }: AreaRadarProps) {
     // cortados. -55/+130 de folga de cada lado dá espaço pro texto sem
     // mudar a escala nem a posição do diamante (mesmo fator 0.8 px/unidade
     // do viewBox original, só com mais canvas ao redor).
-    <svg viewBox="-55 0 330 200" width={264} height={160} role="img" aria-label="Desempenho por área">
+    <svg viewBox="-55 5 310 200" width={264} height={170} role="img" aria-label="Desempenho por área">
       {/* Grade de referência — 3 anéis + 2 eixos, sempre neutra (nunca a cor de dado). */}
-      <polygon points="100,30 170,100 100,170 30,100" fill="none" stroke="#E7E7EA" strokeWidth={1.5} />
-      <polygon points="100,50 150,100 100,150 50,100" fill="none" stroke="#E7E7EA" strokeWidth={1.5} />
-      <polygon points="100,70 130,100 100,130 70,100" fill="none" stroke="#E7E7EA" strokeWidth={1.5} />
-      <line x1={100} y1={30} x2={100} y2={170} stroke="#E7E7EA" strokeWidth={1.5} />
-      <line x1={30} y1={100} x2={170} y2={100} stroke="#E7E7EA" strokeWidth={1.5} />
+      {[1, 0.66, 0.33].map((f) => (
+        <polygon key={f} points={anel(f)} fill="none" stroke="#2A2A35" strokeWidth={1.5} />
+      ))}
+      {EIXOS.map((e, i) => (
+        <line key={i} x1={CENTRO} y1={CENTRO} x2={CENTRO + e.dx * RAIO} y2={CENTRO + e.dy * RAIO} stroke="#2A2A35" strokeWidth={1.5} />
+      ))}
 
-      <polygon points={poligono} fill="#203C7C" fillOpacity={0.22} stroke="#203C7C" strokeWidth={2.5} />
+      <polygon points={poligono} fill="#B7ADFD" fillOpacity={0.22} stroke="#B7ADFD" strokeWidth={2.5} />
       {pontos.map((p) => (
-        <circle key={p.area} cx={p.x} cy={p.y} r={4} fill={p.fraco ? '#C89B18' : '#203C7C'} />
+        <circle key={p.area} cx={p.x} cy={p.y} r={4} fill={p.fraco ? '#F5CF4A' : '#B7ADFD'} />
       ))}
       {ORDEM_AREAS.map((area, i) => (
         <text
@@ -55,7 +60,7 @@ export default function AreaRadar({ areas, areaPrioritaria }: AreaRadarProps) {
           textAnchor={EIXOS[i].anchor}
           fontSize={9}
           fontWeight={area === areaPrioritaria ? 700 : 400}
-          fill={area === areaPrioritaria ? '#8A6A0C' : '#5B6478'}
+          fill={area === areaPrioritaria ? '#F5CF4A' : '#B9B7C6'}
         >
           {LABEL_CURTO_AREA[area]}
         </text>

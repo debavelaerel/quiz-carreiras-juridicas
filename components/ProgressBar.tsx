@@ -11,7 +11,7 @@ type ProgressBarProps = {
 export default function ProgressBar({ progresso }: ProgressBarProps) {
   const pct = Math.min(100, Math.max(0, progresso))
   return (
-    <div className="mt-4 h-[7px] w-full overflow-hidden rounded-full bg-[#ECE9F5]">
+    <div className="mt-4 h-[7px] w-full overflow-hidden rounded-full bg-[#2A2A35]">
       <div
         className="h-full rounded-full bg-gradient-to-r from-brand-gold-deep to-brand-gold transition-[width] duration-300 ease-out"
         style={{ width: `${pct}%` }}

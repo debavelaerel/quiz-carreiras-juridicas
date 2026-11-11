@@ -4,18 +4,20 @@
 // sempre na mesma posição independente da ordem que `resultado.areas` (um
 // objeto) happens a iterar.
 export const ORDEM_AREAS = [
-  'Língua Portuguesa',
   'Direito Constitucional',
-  'Direito Processual Civil',
-  'Raciocínio Lógico',
+  'Direito Administrativo',
+  'Direito Penal',
+  'Direito Processual Penal',
+  'Direito Civil',
 ] as const
 
 // Nome curto pra caber em eixo de gráfico/rótulo pequeno — não é abreviação
 // genérica (ex.: "Civil" perderia o sentido), é o nome mais curto que ainda
 // identifica a área sem ambiguidade.
 export const LABEL_CURTO_AREA: Record<string, string> = {
-  'Língua Portuguesa': 'Português',
   'Direito Constitucional': 'Constitucional',
-  'Direito Processual Civil': 'Processual',
-  'Raciocínio Lógico': 'Raciocínio',
+  'Direito Administrativo': 'Administrativo',
+  'Direito Penal': 'Penal',
+  'Direito Processual Penal': 'Proc. Penal',
+  'Direito Civil': 'Civil',
 }
