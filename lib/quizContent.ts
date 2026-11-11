@@ -325,7 +325,9 @@ export const PERFIL_SCREENS: TelaPerfil[] = [
       ['pj2', 'Entre 1 e 3 anos'],
       ['pj3', '3 anos ou mais'],
     ],
-    quando: (r) => r.formacao === 'direito',
+    // Conta desde o início (a maioria é bacharel) e some só pra quem está cursando;
+    // outras formações já saem do funil na tela anterior.
+    quando: (r) => r.formacao !== 'cursando_direito',
   },
   {
     type: 'single', key: 'tempo', title: 'Há quanto tempo você estuda pra concursos?',
