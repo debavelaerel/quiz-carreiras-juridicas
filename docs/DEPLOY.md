@@ -26,8 +26,9 @@ antes e depois).
 - Arquivo: `supabase/migrations/20261111120000_quiz_cj_tabelas.sql`; aplicado com
   `supabase/producao/aplicar-quiz-cj.sql` (transação + verificação). Conferência a qualquer momento
   (só leitura): `supabase/producao/verificar-quiz-cj.sql`.
-- **NUNCA** rodar `supabase link` / `db push` / `migration repair` / `db reset` deste repo contra a
-  produção: as outras migrations da pasta são cópias das do Tribunais, só para o Supabase **local**.
+- A pasta `supabase/migrations/` só tem a migration do CJ (as cópias do Tribunais foram removidas).
+  Mesmo assim, mudanças no banco de produção são feitas só pelo SQL Editor, nunca com
+  `supabase link` / `db push` / `db reset` (o banco é compartilhado com Tribunais e OAB).
 - O app precisa só de `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` (chave de servidor).
 - Desfazer (só objetos do CJ): `drop table public.quiz_cj_sessions, public.quiz_cj_leads_desqualificados; drop function public.quiz_cj_set_updated_at();`
 

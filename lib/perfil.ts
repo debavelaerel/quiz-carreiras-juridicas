@@ -25,7 +25,7 @@ export type RespostasPerfil = {
   // próprio (outro/cargo_baixo) — marca direto na sessão que já existe, sem
   // formulário na tela (ver components/Quiz.tsx, tela 'desqualificado'). O
   // motivo 'juridica' NUNCA usa este campo: tem CTA próprio que grava em
-  // leads_desqualificados (ver lib/server/leadsDesqualificados.ts).
+  // quiz_cj_leads_desqualificados (ver lib/server/leadsDesqualificados.ts).
   desqualificadoMotivo?: string
 }
 

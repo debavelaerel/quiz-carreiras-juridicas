@@ -1,11 +1,11 @@
-# Verificação de RLS — quiz_sessions
+# Verificação de RLS — quiz_cj_sessions
 
 Depois de aplicar a migration no projeto Supabase real (`supabase db push` ou pelo dashboard), confirme que a chave `anon` não consegue ler nem escrever na tabela:
 
 ## 1. Tentar ler com a chave anon (deve falhar)
 
 ```bash
-curl -s "$SUPABASE_URL/rest/v1/quiz_sessions?select=*" \
+curl -s "$SUPABASE_URL/rest/v1/quiz_cj_sessions?select=*" \
   -H "apikey: $SUPABASE_ANON_KEY" \
   -H "Authorization: Bearer $SUPABASE_ANON_KEY"
 ```
@@ -15,7 +15,7 @@ Esperado: array vazio `[]` (RLS bloqueia sem retornar erro, por padrão do Postg
 ## 2. Tentar escrever com a chave anon (deve falhar)
 
 ```bash
-curl -s -X POST "$SUPABASE_URL/rest/v1/quiz_sessions" \
+curl -s -X POST "$SUPABASE_URL/rest/v1/quiz_cj_sessions" \
   -H "apikey: $SUPABASE_ANON_KEY" \
   -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
   -H "Content-Type: application/json" \
@@ -27,7 +27,7 @@ Esperado: erro (RLS impede o insert; resposta HTTP não-2xx, corpo indicando vio
 ## 3. Confirmar que a service_role consegue ler/escrever
 
 ```bash
-curl -s "$SUPABASE_URL/rest/v1/quiz_sessions?select=*" \
+curl -s "$SUPABASE_URL/rest/v1/quiz_cj_sessions?select=*" \
   -H "apikey: $SUPABASE_SERVICE_ROLE_KEY" \
   -H "Authorization: Bearer $SUPABASE_SERVICE_ROLE_KEY"
 ```

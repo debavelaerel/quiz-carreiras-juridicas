@@ -64,7 +64,7 @@ const LEITURA: Record<string, string> = { completa: 'Quis a leitura completa', b
 
 // Só existe pro fluxo padrão (marcação silenciosa — ver lib/perfil.ts). O
 // motivo 'juridica' nunca aparece aqui: tem CTA próprio, gravado em
-// leads_desqualificados, não em quiz_sessions.perfil.
+// quiz_cj_leads_desqualificados, não em quiz_cj_sessions.perfil.
 const DESQUALIFICADO_MOTIVO: Record<string, string> = {
   outro: 'Concurso fora das carreiras jurídicas', cargo_baixo: 'Sem formação em Direito',
 }

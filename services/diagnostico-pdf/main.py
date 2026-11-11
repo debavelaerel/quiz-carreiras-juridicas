@@ -106,7 +106,7 @@ class DiagnosticoRequest(BaseModel):
     # ou altera a marcação do link final.
     whatsapp_numero: str = Field(default="", pattern=r"^\d{0,15}$")
     whatsapp_mensagem: str = ""
-    # session_token do quiz_sessions no Supabase — vira a chave do objeto no
+    # session_token do quiz_cj_sessions no Supabase — vira a chave do objeto no
     # S3 (ver s3.upload_pdf). Opcional: só quem quer o diagnóstico salvo no S3
     # manda (ver lib/server/diagnosticoPdfBackground.ts); o download avulso do
     # admin não precisa. Formato uuid (o que o Postgres usa pra

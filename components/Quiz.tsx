@@ -604,7 +604,7 @@ export default function Quiz() {
   // direto na sessão que já existe, sem CTA nenhum na tela (ver
   // components/Quiz.tsx, tela 'desqualificado', e ROTULOS_PERFIL em
   // lib/adminLabels.ts). Motivo 'juridica' NUNCA usa isso — tem CTA próprio,
-  // que grava em leads_desqualificados (fluxo próprio, com ou sem sessão).
+  // que grava em quiz_cj_leads_desqualificados (fluxo próprio, com ou sem sessão).
   useEffect(() => {
     if (tela !== 'desqualificado' || fluxoFinal) return
     if (motivoDesqualificacao !== 'outro' && motivoDesqualificacao !== 'cargo_baixo') return
@@ -612,8 +612,8 @@ export default function Quiz() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tela])
 
-  // CTA da tela de desqualificação — grava em leads_desqualificados (tabela
-  // própria, independente de quiz_sessions: é interesse noutro produto, não
+  // CTA da tela de desqualificação — grava em quiz_cj_leads_desqualificados (tabela
+  // própria, independente de quiz_cj_sessions: é interesse noutro produto, não
   // deve contaminar o funil/analytics do Tribunais). Cobre os 3 casos que
   // têm CTA de verdade: padrão+jurídica (chip só, contato já existe) e os
   // dois casos do fluxo final (chip+campos, ou só campos).

@@ -13,7 +13,7 @@ export type RegistrarLeadDesqualificadoInput = {
 
 // Captura de contato de quem foi desqualificado no perfilamento (ver
 // components/Quiz.tsx, tela 'desqualificado') — tabela própria
-// (leads_desqualificados), independente de quiz_sessions: é interesse em
+// (quiz_cj_leads_desqualificados), independente de quiz_cj_sessions: é interesse em
 // outro produto, não deve contaminar o funil/analytics do Tribunais. Sempre
 // grava uma linha nova, sem dedupe nem resumo — é captura de uma vez só.
 export async function registrarLeadDesqualificado(

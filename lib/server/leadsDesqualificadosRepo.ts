@@ -19,7 +19,7 @@ export type LeadDesqualificado = {
 export type CriarLeadDesqualificadoInput = Omit<LeadDesqualificado, 'id' | 'criadoEm'>
 
 // Interface deliberadamente mínima (só `criar`): ao contrário de
-// quiz_sessions, não existe retomada, dedupe nem update aqui — é captura de
+// quiz_cj_sessions, não existe retomada, dedupe nem update aqui — é captura de
 // uma vez só (ver comentário da migration).
 export interface LeadsDesqualificadosRepo {
   criar(lead: CriarLeadDesqualificadoInput): Promise<LeadDesqualificado>

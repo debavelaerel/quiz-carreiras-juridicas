@@ -37,8 +37,8 @@ call 1:1 de vendas).
                                                ▼
                                    ┌────────────────────────┐
                                    │   Supabase (Postgres)    │
-                                   │   quiz_sessions           │
-                                   │   leads_desqualificados   │
+                                   │   quiz_cj_sessions           │
+                                   │   quiz_cj_leads_desqualificados   │
                                    └───────────┬──────────────┘
                                                │
                      diagnóstico em background ┤──── apresentação sob demanda
@@ -91,8 +91,8 @@ supabase/migrations/          — schema do banco, em ordem cronológica
 | Arquivo | Responsabilidade |
 |---|---|
 | `quizService.ts` | Regras do funil: iniciar/retomar sessão, registrar respostas/perfil, concluir, buscar resultado |
-| `sessionRepo.ts` / `supabaseSessionRepo.ts` | Interface de persistência + implementação Supabase de `quiz_sessions` |
-| `leadsDesqualificados.ts` / `*Repo.ts` | Mesma ideia, pra `leads_desqualificados` |
+| `sessionRepo.ts` / `supabaseSessionRepo.ts` | Interface de persistência + implementação Supabase de `quiz_cj_sessions` |
+| `leadsDesqualificados.ts` / `*Repo.ts` | Mesma ideia, pra `quiz_cj_leads_desqualificados` |
 | `diagnosticoService.ts` | Cliente HTTP do serviço Python (`/laudo` e `/apresentacao`) |
 | `diagnosticoPdfBackground.ts` | Orquestra a geração do diagnóstico em background após `/quiz/finish` |
 | `s3.ts` | URL assinada do diagnóstico no S3 |
@@ -146,7 +146,7 @@ supabase/migrations/          — schema do banco, em ordem cronológica
 8. **Diagnóstico em PDF (background)** — `lib/server/diagnosticoPdfBackground.ts`
    chama o serviço Python (`POST /laudo`), que renderiza com Chromium
    headless e sobe pro S3; a chave do objeto S3 fica salva em
-   `quiz_sessions.laudo_pdf_s3_key` (erro, se houver, em
+   `quiz_cj_sessions.laudo_pdf_s3_key` (erro, se houver, em
    `laudo_pdf_erro` — nunca propaga pro usuário).
 9. **Link estável pro CRM** — **`GET /api/laudo/[laudoToken]`**: gera uma
    URL assinada do S3 (5 min) a cada acesso e redireciona (302). O
@@ -167,7 +167,7 @@ Duas tabelas em Supabase/Postgres, sem policy pública de RLS — só a
 migrations em `supabase/migrations/` (ordem cronológica no nome do
 arquivo):
 
-**`quiz_sessions`** — uma linha por pessoa/sessão de quiz.
+**`quiz_cj_sessions`** — uma linha por pessoa/sessão de quiz.
 - Identidade: `session_token` (uuid, reescrito a cada retomada),
   `laudo_token` (uuid, fixo — usado no link do CRM), `evento`, `fluxo`
   (`padrao`/`final`, só informativo).
@@ -184,7 +184,7 @@ arquivo):
   quiz e reaproveitam o mesmo `laudo_token` pro link estável de cada um.
 - `started_at`, `updated_at` (trigger automático), `completed_at`.
 
-**`leads_desqualificados`** — captura de contato de quem não é público-alvo
+**`quiz_cj_leads_desqualificados`** — captura de contato de quem não é público-alvo
 do Tribunais (interesse em carreira jurídica, cargo abaixo do alvo). Tabela
 independente, sem dedupe, sem update — captura de uma vez só, pra não
 contaminar as métricas do funil principal.
@@ -192,10 +192,10 @@ contaminar as métricas do funil principal.
 ## Perguntas frequentes
 
 **Criou uma tabela nova pros 2 materiais (diagnóstico e apresentação)?**
-Não. Os dois vivem como colunas na mesma tabela `quiz_sessions`:
+Não. Os dois vivem como colunas na mesma tabela `quiz_cj_sessions`:
 `laudo_pdf_s3_key`/`laudo_pdf_erro` (já existiam) e
 `apresentacao_pdf_s3_key`/`apresentacao_pdf_erro` (novas, adicionadas no
-mesmo padrão — ver migration `20260921220000_quiz_sessions_apresentacao_pdf.sql`).
+mesmo padrão — ver `supabase/migrations/20261111120000_quiz_cj_tabelas.sql`).
 
 **É relacionada com a outra?**
 Mais que relacionada — é a **mesma linha**. Não existe chave estrangeira nem

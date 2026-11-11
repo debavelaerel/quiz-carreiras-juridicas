@@ -11,11 +11,10 @@
 --
 -- APLICAR SÓ PELO SQL EDITOR, com supabase/producao/aplicar-quiz-cj.sql (begin +
 -- verificação + rollback/commit). NUNCA `supabase link`/`db push`/`migration
--- repair`/`db reset` deste repo contra a produção: as 9 migrations do Tribunais
--- nesta pasta são só pro Supabase LOCAL.
+-- repair`/`db reset` deste repo contra a produção (banco compartilhado).
 --
--- Esquema = estado final de quiz_sessions/leads_desqualificados após as 9
--- migrations do Tribunais (ver migrations 20260904000001..20260929000000).
+-- Esquema = estado final de quiz_sessions/leads_desqualificados do Tribunais
+-- (repo quiz-tribunais, migrations 20260904000001..20260929000000).
 --
 -- Reversão (só objetos deste arquivo):
 --   drop table public.quiz_cj_sessions, public.quiz_cj_leads_desqualificados;
