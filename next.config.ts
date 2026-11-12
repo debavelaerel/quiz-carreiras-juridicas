@@ -11,10 +11,9 @@ const nextConfig: NextConfig = {
   // Headers de segurança básicos, aplicados a toda rota (o quiz é um
   // formulário de captação de lead — vale proteger contra clickjacking).
   // De propósito SEM Content-Security-Policy aqui: o app usa bastante
-  // style inline (`style={{...}}`, ex. o blur progressivo em Quiz.tsx) e
-  // embuti um iframe de terceiro (Panda Video, ver CONFIG.videoSrc em
-  // lib/quizContent.ts) — uma CSP essa aqui exige testar cada tela pra não
-  // quebrar hidratação/vídeo, não é algo pra escrever às cegas.
+  // style inline (`style={{...}}`, ex. o blur progressivo em Quiz.tsx) —
+  // uma CSP aqui exige testar cada tela pra não quebrar a hidratação, não é
+  // algo pra escrever às cegas.
   async headers() {
     return [
       {

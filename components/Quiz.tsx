@@ -34,7 +34,7 @@ import AreaRadar from './AreaRadar'
 type Tela =
   | 'capa' | 'nome' | 'restaurando'
   | 'intro' | 'perfil' | 'desqualificado' | 'desqualificado_contato'
-  | 'mirror' | 'video' | 'dinheiro' | 'conta'
+  | 'mirror' | 'base' | 'dinheiro' | 'conta'
   | 'quiz' | 'correcao' | 'leitura' | 'contato'
   | 'analisando' | 'resultado'
 
@@ -64,7 +64,7 @@ const TOTAL = QUESTIONS.length
 // contato (só existe no fluxo ?fluxo=final); no fluxo padrão essa etapa
 // nunca é exibida, então o denominador fica levemente conservador — efeito
 // puramente cosmético na barra, sem impacto funcional.
-const PASSOS_POS_INTRO = PERFIL_SCREENS.length + 4 /* mirror, video, dinheiro, conta */ + TOTAL + 2 /* correcao, leitura */ + 1 /* contato */
+const PASSOS_POS_INTRO = PERFIL_SCREENS.length + 4 /* mirror, base, dinheiro, conta */ + TOTAL + 2 /* correcao, leitura */ + 1 /* contato */
 
 // Tela 'analisando': interstício entre terminar de responder e ver o
 // resultado — cobre o tempo real do /api/quiz/finish em voo, com uma
@@ -243,11 +243,6 @@ function fluxoFinalDaUrl(): boolean {
   return new URLSearchParams(window.location.search).get('fluxo') !== 'padrao'
 }
 
-// Origem do player pra validar postMessage recebido (evento.origin) e pra
-// mandar o comando de play (contentWindow.postMessage(msg, origem)) — sempre
-// a mesma de CONFIG.videoSrc, nunca hardcoded separado dela.
-const PANDA_ORIGIN = new URL(CONFIG.videoSrc).origin
-
 export default function Quiz() {
   const [tela, setTela] = useState<Tela>('intro')
   const [atual, setAtual] = useState(0)
@@ -292,62 +287,6 @@ export default function Quiz() {
   const [fluxoFinal, setFluxoFinal] = useState(true)
   useEffect(() => {
     setFluxoFinal(fluxoFinalDaUrl())
-  }, [])
-
-  // Pré-carrega o iframe do vídeo assim que o quiz monta — bem antes da
-  // pessoa chegar na tela 'video' (capa/nome/intro/perfil/mirror vêm antes
-  // dela, ver PASSOS_POS_INTRO). Sem isso, o iframe só passa a existir (DNS,
-  // TLS, bundle do player, fonte) no exato momento em que a tela aparece, e
-  // isso é visível como "vídeo demorando pra carregar". Cria o `<iframe>`
-  // fora da árvore do React, escondido com `position:fixed` fora da
-  // viewport (não `display:none` — isso pausa o carregamento em vários
-  // navegadores) e, quando a tela 'video' aparece, só reaproveita esse
-  // mesmo nó (sem recriar, sem refazer a requisição) — ver o ref callback
-  // no JSX da tela 'video'.
-  const videoHostRef = useRef<HTMLDivElement | null>(null)
-  // Autoplay do vídeo: CONFIG.videoSrc já pede muted=true (obrigatório pra
-  // autoplay funcionar em qualquer navegador), mas NÃO pede autoplay=true —
-  // se pedisse, o player tocaria assim que terminasse de carregar, ainda
-  // escondido no pré-load acima (minutos antes da pessoa chegar na tela
-  // 'video'), e os ~40s do vídeo já teriam passado quando ela finalmente
-  // visse a tela. Em vez disso: espera as DUAS condições baterem — o player
-  // avisar que está pronto (panda_ready) E a tela 'video' ficar visível (ref
-  // callback dela) — e só então manda o comando de play via postMessage.
-  const videoIframeRef = useRef<HTMLIFrameElement | null>(null)
-  const videoProntoRef = useRef(false)
-  const videoVisivelRef = useRef(false)
-  function tentarTocarVideo() {
-    if (videoProntoRef.current && videoVisivelRef.current) {
-      videoIframeRef.current?.contentWindow?.postMessage({ type: 'play' }, PANDA_ORIGIN)
-    }
-  }
-  useEffect(() => {
-    function aoReceberMensagem(evento: MessageEvent) {
-      if (evento.origin !== PANDA_ORIGIN || evento.data?.message !== 'panda_ready') return
-      videoProntoRef.current = true
-      tentarTocarVideo()
-    }
-    window.addEventListener('message', aoReceberMensagem)
-    return () => window.removeEventListener('message', aoReceberMensagem)
-  }, [])
-  useEffect(() => {
-    const host = document.createElement('div')
-    host.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;'
-    const iframe = document.createElement('iframe')
-    iframe.src = CONFIG.videoSrc
-    iframe.title = 'Vídeo da Ana Clara'
-    iframe.allow = 'accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture'
-    iframe.allowFullscreen = true
-    iframe.style.cssText = 'width:100%;height:100%;border:0;display:block;'
-    host.appendChild(iframe)
-    document.body.appendChild(host)
-    videoHostRef.current = host
-    videoIframeRef.current = iframe
-    return () => {
-      host.remove()
-      videoHostRef.current = null
-      videoIframeRef.current = null
-    }
   }, [])
 
   // Anima a tela 'analisando' enquanto ela estiver visível — troca de frase
@@ -1440,7 +1379,7 @@ export default function Quiz() {
               <p className="mt-1.5 text-brand-ink-soft">{edFrase}Se estiver errado, volta e corrige. Se estiver certo, eu consigo te dizer com precisão o que atacar primeiro.</p>
             </div>
 
-            <Button variant="gold" onClick={() => setTela('video')} className="mt-6">
+            <Button variant="gold" onClick={() => setTela('base')} className="mt-6">
               Está certo, pode seguir
             </Button>
           </div>
@@ -1449,45 +1388,48 @@ export default function Quiz() {
     )
   }
 
-  if (tela === 'video') {
+  if (tela === 'base') {
     const progresso = Math.round(((PERFIL_SCREENS.length + 1) / PASSOS_POS_INTRO) * 100)
+    // Entra no lugar do vídeo da Ana: o mesmo recado (quem passa forma a base
+    // antes do edital), só em texto. As disciplinas vêm das próprias questões
+    // do teste, então a lista nunca fica diferente do que a pessoa vai responder.
+    const disciplinas = QUESTIONS.map((q) => q.area.replace(/^Direito /, ''))
+    // Entrada suave, linha por linha (classe .entrada em globals.css).
+    const atraso = (i: number) => ({ animationDelay: `${i * 0.12}s` })
     return (
-      // min-h-svh (não min-h-screen): "primeira dobra" precisa ser a área
-      // realmente visível no mobile, sem contar a barra do navegador que o
-      // 100vh tradicional ignora.
       <div className="flex min-h-svh flex-col">
         <Header progresso={progresso} />
-        {/* justify-between espalha os 3 elementos pela dobra inteira (título
-            no topo, vídeo ocupando o meio — o protagonista —, botão embaixo)
-            em vez de agrupá-los compactos no centro. */}
-        <main className="flex flex-1 flex-col items-center justify-between gap-3 px-6 py-5">
-          <h2 className="max-w-md text-center text-[19px] font-bold leading-snug tracking-[-0.01em] text-brand-ink sm:text-xl">
-            Para tudo. Isso aqui vale os seus próximos 40 segundos.
-          </h2>
-
-          {/* min-h-0 é o que permite o filho h-full abaixo respeitar a altura
-              que sobrou entre título e botão, em vez de estourar o flex. */}
-          <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center">
-            <div
-              className="aspect-[9/16] h-full max-h-[62svh] w-auto overflow-hidden rounded-[22px] bg-brand-navy shadow-[0_10px_30px_rgba(0,0,0,0.25)]"
-              // Reaproveita o mesmo <iframe> pré-carregado desde o mount do
-              // quiz (ver o useEffect de videoHostRef acima) — só reposiciona
-              // o nó pra dentro deste container, nunca cria um novo (isso
-              // refaria a requisição e voltaria a demorar).
-              ref={(el) => {
-                if (el && videoHostRef.current && videoHostRef.current.parentElement !== el) {
-                  videoHostRef.current.style.cssText = 'width:100%;height:100%;'
-                  el.appendChild(videoHostRef.current)
-                  videoVisivelRef.current = true
-                  tentarTocarVideo()
-                }
-              }}
-            />
+        <main className="flex flex-1 justify-center px-6 py-8">
+          <div className="flex w-full max-w-md flex-col">
+            <p className="entrada text-[13px] font-medium text-brand-ink-dim" style={atraso(0)}>Antes do teste</p>
+            <h1 className="entrada mt-2.5 text-[26px] font-bold leading-[1.2] tracking-[-0.015em] text-balance text-brand-ink" style={atraso(1)}>
+              Quem passa em carreira jurídica <span className="text-brand-gold">não espera o edital.</span>
+            </h1>
+            <p className="entrada mt-4 text-[15.5px] leading-relaxed text-brand-ink-soft" style={atraso(2)}>
+              Forma a base antes, nas disciplinas que caem sempre nessas provas:
+            </p>
+            <ol className="mt-5">
+              {disciplinas.map((d, i) => (
+                <li
+                  key={d}
+                  className="entrada flex items-baseline gap-3.5 border-t border-brand-line py-2.5 text-[15.5px] font-medium text-brand-ink last:border-b"
+                  style={atraso(3 + i)}
+                >
+                  <span className="w-4 text-[12px] font-semibold tabular-nums text-brand-lilas">{i + 1}</span>
+                  {d}
+                </li>
+              ))}
+            </ol>
+            <p className="entrada mt-5 text-[15px] leading-relaxed text-brand-ink-soft" style={atraso(3 + disciplinas.length)}>
+              Agora são <b className="font-semibold text-brand-ink">{TOTAL} questões rápidas</b>, uma de cada. No fim, você recebe o{' '}
+              <b className="font-semibold text-brand-ink">seu diagnóstico</b>.
+            </p>
+            <div className="entrada mt-auto pt-7" style={atraso(4 + disciplinas.length)}>
+              <Button variant="gold" onClick={() => setTela('dinheiro')}>
+                Entendi, continuar <ArrowRight size={17} strokeWidth={2.25} />
+              </Button>
+            </div>
           </div>
-
-          <Button variant="gold" onClick={() => setTela('dinheiro')} className="w-full max-w-xs">
-            Entendi, continuar <ArrowRight size={17} strokeWidth={2.25} />
-          </Button>
         </main>
       </div>
     )

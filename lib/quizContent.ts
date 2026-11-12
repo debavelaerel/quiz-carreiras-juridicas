@@ -9,8 +9,6 @@ export const CONFIG = {
   quizName: 'Diagnóstico da Base',
   // PENDENTE: confirmar o número do time de Carreiras Jurídicas (hoje é o mesmo do Tribunais).
   whatsapp: '5585999723810',
-  // PENDENTE: vídeo da Ana Clara pra Carreiras Jurídicas (hoje é o mesmo do Tribunais).
-  videoSrc: 'https://player-vz-246ae85e-308.tv.pandavideo.com.br/embed/?v=ceeffaff-3a26-4b53-ae04-2e52a05106e4&muted=true&mutedIndicatorIcon=true&mutedIndicatorClickRestart=true&saveProgress=false',
   editaisAtualizadosEm: '11 de novembro de 2026',
   instagram: 'https://www.instagram.com/vdeconcursos/',
 }
@@ -434,7 +432,7 @@ const SUBSIDIO_POR_ALVO: Record<string, string> = {
   any: 'Juiz, promotor e defensor começam entre R$ 23 mil e R$ 38 mil por mês; procurador do estado, entre R$ 23 mil e R$ 36 mil; delegado, entre R$ 13 mil e R$ 31 mil.',
 }
 
-// Mesmas posições fixas do Tribunais: dinheiro depois do vídeo, leitura depois da correção.
+// Mesmas posições fixas do Tribunais: dinheiro depois da tela da base (onde era o vídeo), leitura depois da correção.
 export const TELA_DINHEIRO: TelaPerfil = {
   type: 'single', key: 'dinheiro', title: 'Quanto você receberia a mais por mês se fosse aprovado(a) hoje na carreira que você mira?',
   hint: (r) => `${SUBSIDIO_POR_ALVO[r.alvo ?? ''] ?? SUBSIDIO_POR_ALVO.any} Compare com o que você ganha hoje.`,

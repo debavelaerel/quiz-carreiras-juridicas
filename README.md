@@ -111,8 +111,9 @@ supabase/migrations/          — schema do banco, em ordem cronológica
      na mesma sessão.
    - Uma sessão **já concluída nunca é resetada** — retomar só atualiza
      `session_token`/contato, preserva respostas e resultado.
-3. **Vídeo** — tela `video`, autoplay mudo (Panda Video, `CONFIG.videoSrc`
-   em `lib/quizContent.ts`).
+3. **Base** — tela `base`, no lugar do antigo vídeo: texto curto (quem passa
+   forma a base antes do edital) e as disciplinas do teste, tiradas das
+   próprias questões.
 4. **Teste graduado** (tela `quiz`, 4 questões reais de concurso, gabarito
    oficial FGV/FCC) — cada resposta:
    - **`POST /api/quiz/answer`** (fluxo `padrao`, uma chamada por questão), ou

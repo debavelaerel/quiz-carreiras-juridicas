@@ -73,3 +73,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .diag-ring { animation: none; stroke-dashoffset: 90; }
 }
+
+/* Tela 'base' (components/Quiz.tsx, no lugar do vídeo): as linhas entram uma
+   de cada vez, com o atraso definido no próprio elemento. `both` mantém o
+   estado final visível depois da animação. */
+.entrada { animation: entrada-sobe 0.6s ease-out both; }
+@keyframes entrada-sobe {
+  from { opacity: 0; transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .entrada { animation: none; }
+}
