@@ -28,7 +28,7 @@ próprio logotipo: a assinatura "Tribunais" vem com um selo lilás de fábrica
 oficial nunca alterar as cores do logotipo.
 
 Formas com 3 raios (pill, 18px, 14px), sem sistema de sombra em cards — sombra
-é reservada pra elementos flutuantes/acionáveis (botões, o cartão de vídeo).
+é reservada pra elementos acionáveis (botões).
 
 ## 2. Color (canônico — `app/globals.css`)
 
@@ -43,7 +43,7 @@ Formas com 3 raios (pill, 18px, 14px), sem sistema de sombra em cards — sombra
 | `brand-line-strong` | `#C9C9CE` | Borda em hover (cinza neutro) |
 | `brand-tint` | `#EEF1F8` | Tinta clara do próprio azul — fundo de opção selecionada, chip, hover do botão voltar |
 | `brand-navy` | `#203C7C` | Fundo de botão neutro (mesmo azul de `brand-ink`) |
-| `brand-navy-2` | `#16305F` | Hover do botão neutro / gradiente do cartão de vídeo — sombra do mesmo azul |
+| `brand-navy-2` | `#16305F` | Hover do botão neutro — sombra do mesmo azul |
 | `brand-gold` | `#F9E08A` | Ponta clara do gradiente dourado |
 | `brand-gold-deep` | `#C89B18` | Ponta escura do gradiente dourado |
 | `brand-gold-text` | `#8A6A0C` | Texto do selo eyebrow (sobre `#FBF3D6`) |
@@ -57,9 +57,9 @@ progresso, `ProgressBar.tsx`) e `#FBF3D6` (fundo do selo eyebrow, `Quiz.tsx`).
 
 | Papel | Tamanho | Peso | Onde |
 |---|---|---|---|
-| h1 abertura | 26px | 700 | Abertura, capa, tela de nome |
+| h1 abertura | 26px | 700 | Abertura, capa, tela de nome, tela da base |
 | h1 tela | 24px (`text-2xl`) | 700 | Todas as outras telas com título |
-| h2 | 20px (`text-xl`) | 700 | Vídeo, desqualificação |
+| h2 | 20px (`text-xl`) | 700 | Desqualificação |
 | body | 17px | 400 | Parágrafos da abertura |
 | body-sm | 15.5–16px | 400 | Parágrafos das demais telas, enunciado |
 | label | 14.5px | 500 | Rótulo de campo de formulário |
@@ -77,16 +77,14 @@ progresso, `ProgressBar.tsx`) e `#FBF3D6` (fundo do selo eyebrow, `Quiz.tsx`).
   borda de 1.5px e padding de 16px — pesado demais (comparado com um
   concorrente, capa/nome/contato viraram um cartão "carregado" perto do
   resto do funil). Reduzido pra 12px, borda de 1px, padding de 12/14px.
-- **`22px`** — o cartão do vídeo (único elemento maior, ganha um raio maior de propósito).
 - **`16px`** (`rounded-2xl`) — alerta de erro.
 - Nunca usar um raio fora dessa escala; se precisar de algo entre 14 e 18,
   é sinal de que deveria ser um dos dois, não um valor novo.
 
-## 5. Shadow (sem elevation numerada — só 3 papéis)
+## 5. Shadow (sem elevation numerada — só 2 papéis)
 
 - **botão dourado**: `0 10px 24px rgba(200,155,24,.28)`, hover `0 14px 28px rgba(200,155,24,.32)` + `-translate-y-0.5`.
 - **botão navy**: `0 10px 24px rgba(32,60,124,.18)`, hover `0 14px 28px rgba(32,60,124,.22)` + `-translate-y-0.5`.
-- **cartão flutuante** (vídeo): `0 10px 30px rgba(32,60,124,.25)`.
 - Nenhum botão leva sombra além da sua própria (`shadow-[...]` do variant) —
   um halo/glow extra no CTA da abertura foi testado e removido por criar uma
   "sobra" visível ao redor do botão sobre fundo branco.
@@ -140,6 +138,17 @@ progresso, `ProgressBar.tsx`) e `#FBF3D6` (fundo do selo eyebrow, `Quiz.tsx`).
   tela `nome`), então dá pra usar em qualquer uma dessas telas sem pedir de
   novo.
 
+- **Tela da base** (`tela === 'base'`, no lugar do antigo vídeo da Ana): só
+  tipografia, sem cartões, chips nem ícones. Selo pequeno em cinza
+  (`brand-ink-dim`, 13px), h1 de 26px com a segunda metade em `brand-gold`,
+  lista numerada separada por linhas finas (`brand-line`) e botão dourado
+  ancorado embaixo. As linhas entram uma de cada vez (`.entrada` em
+  `app/globals.css`, 0,12s de atraso entre elas); com `prefers-reduced-motion`
+  a tela aparece parada. A lista de disciplinas vem de `QUESTIONS`, nunca
+  escrita à mão. O recado é o mesmo do vídeo: quem passa forma a base antes
+  do edital. Foi escolhida a versão mais enxuta depois de testar versões com
+  cartões, passos e interação ("mais clean" foi o pedido do cliente).
+
 **Don't:**
 - Não introduzir uma 4ª cor (a versão com roxo profundo + lilás como accent
   foi testada e rejeitada explicitamente — "mistureba de cores"). Variações
@@ -151,8 +160,8 @@ progresso, `ProgressBar.tsx`) e `#FBF3D6` (fundo do selo eyebrow, `Quiz.tsx`).
   pro público de concurso de tribunais. A barra é intencionalmente só um
   preenchimento contínuo, sem marcos nomeados.
 - Não deixar texto de placeholder/instrução de dev em tela que o usuário
-  final vê (aconteceu com a tela de vídeo — "Troque CONFIG.videoSrc..." foi
-  parar em produção; virou comentário de código, não mais texto renderizado).
+  final vê (já aconteceu uma vez: um aviso de "troque o link do vídeo" foi parar em
+  produção; virou comentário de código, não mais texto renderizado).
 - Não alterar as cores/proporções do logotipo — regra do guia oficial, vale
   inclusive pro selo lilás da assinatura "Tribunais".
 - Não inventar um raio, sombra ou cor fora das seções 2, 4 e 5 sem atualizar
@@ -194,13 +203,12 @@ progresso, `ProgressBar.tsx`) e `#FBF3D6` (fundo do selo eyebrow, `Quiz.tsx`).
     "caption": { "fontFamily": "Poppins", "fontSize": 12.5, "fontWeight": 400 },
     "eyebrow": { "fontFamily": "Poppins", "fontSize": 12, "fontWeight": 600 }
   },
-  "radius": { "pill": 999, "opcao": 18, "cartao": 14, "video": 22, "alerta": 16 },
+  "radius": { "pill": 999, "opcao": 18, "cartao": 14, "alerta": 16 },
   "shadow": {
     "botao-dourado": "0 10px 24px rgba(200,155,24,0.28)",
     "botao-dourado-hover": "0 14px 28px rgba(200,155,24,0.32)",
     "botao-navy": "0 10px 24px rgba(32,60,124,0.18)",
-    "botao-navy-hover": "0 14px 28px rgba(32,60,124,0.22)",
-    "cartao-video": "0 10px 30px rgba(32,60,124,0.25)"
+    "botao-navy-hover": "0 14px 28px rgba(32,60,124,0.22)"
   },
   "fonts": ["Poppins"]
 }

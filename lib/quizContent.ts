@@ -7,7 +7,7 @@ import type { RespostasPerfil } from './perfil'
 
 export const CONFIG = {
   quizName: 'Diagnóstico da Base',
-  // PENDENTE: confirmar o número do time de Carreiras Jurídicas (hoje é o mesmo do Tribunais).
+  // Número do time (+55 85 99972-3810), confirmado pro CJ em 12/11/2026; é o mesmo do Tribunais.
   whatsapp: '5585999723810',
   editaisAtualizadosEm: '11 de novembro de 2026',
   instagram: 'https://www.instagram.com/vdeconcursos/',
